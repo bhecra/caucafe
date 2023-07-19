@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+    text-align: center;
+    font-size: 16px;
+}
+
+a{
+    color: black;
+    font-weight: 600;
+    padding-bottom: 3%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 10vh;
+    background-color: #a5907e;
+    align-items: center;
+}
+
+.logo-caucafe{
+    width: 40vw;
+}
+.unicauca{
+
+    height: 7vh;
+    padding-right: 3%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main img{
+    height: 8vh;
+    padding-bottom: 3%;
+}
+
+.section-1{
+    display: flex;
+    width: 80vw;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+footer {
+    background-color: #a5907e;
+    color: white;
+    padding: 20px;
+    
+    bottom: 0;
+    width: 100%;
+    height:auto;
+    z-index: 2;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-links a {
+    color: white;
+    margin-right: 20px;
+    text-decoration: none;
+  }
+  
+  .footer-social a {
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  
+  .footer-social i {
+    font-size: 18px;
+  }
+  
+
+@media (min-width: 768px) {
+    *{
+        font-size: 25px;
+    }
+    main img{
+        height: 15vh;
+        padding-bottom: 0;
+        padding-right:3vw;
+    }
+    
+    .section-1{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .columna{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 20vw;
+    }
+    a{
+        padding-bottom: 0;
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+        height: 15vh;
+        background-color: #a5907e;
+        align-items: center;
+    }
+    
+    .logo-caucafe{
+        width: 30vw;
+    }
+    .unicauca{
+    
+        height: 12vh;
+        padding-right: 3%;
+    }
+    
+    
+}
