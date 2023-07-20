@@ -15,20 +15,12 @@ a{
 
 header {
     display: flex;
-    justify-content: space-between;
-    width: 100vw;
-    height: 10vh;
-    background-color: #a5907e;
-    align-items: center;
+    justify-content: center;
 }
 
-.logo-caucafe{
-    width: 40vw;
-}
 .unicauca{
-
-    height: 7vh;
-    padding-right: 3%;
+    height: 20vh;
+    
 }
 
 main {
@@ -117,20 +109,13 @@ footer {
     }
     header {
         display: flex;
-        justify-content: space-between;
-        width: 100vw;
-        height: 15vh;
-        background-color: #a5907e;
-        align-items: center;
+        justify-content:center ;
+        
     }
     
-    .logo-caucafe{
-        width: 30vw;
-    }
     .unicauca{
-    
-        height: 12vh;
-        padding-right: 3%;
+        height: 20vh;
+        
     }
     
     
