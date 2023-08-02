@@ -1,16 +1,13 @@
 import './App.css';
+import 
+
+const Home = () => <h1>Home</h1>
+const User = () => <h1>user</h1>
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Caucafe.co <code>src/App.tsx</code>
-        </p>
-      </header>
-      <body>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis soluta fugit eaque architecto quo. Recusandae aut, perferendis nemo iste nam rem possimus voluptatem, aperiam aspernatur qui, deserunt et modi ex.
-      </body>
+     
     </div>
   );
 }

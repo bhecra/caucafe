@@ -1,0 +1,70 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60vw;
+}
+
+label{
+    width: 20vw;
+}
+header {
+    display: flex;
+    justify-content: center;
+}
+.unicauca{
+    height: 20vh;
+    padding-bottom: 4vh;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+
+
+.inputs{
+    width: 60vw;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5vw;
+}
+
+.variedadArboles{
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkboxess{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+.button{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.guardar{
+    background-color: blue;
+    border-radius: 10%;
+    color:white;
+}
