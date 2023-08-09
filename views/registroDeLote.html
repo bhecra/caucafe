@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/registroDeLote.css"
+    <title>Registro de lote</title>
+</head>
+<body>
+       
+
+    <main>
+        <form action="#">
+            <div class="inputs">
+            <label for="docCafi">Documento del caficultor</label>
+            <input type="text" id="docCafi" class="docCafi"><br>
+        </div>
+        <a href="./registerCaficultor.html">Registrar Caficultor</a><br>
+        <div class="inputs">
+            
+            <label for="pesoLote">Peso de lote</label>
+            <input type="number" id="pesoLote" class="pesoLote">
+        </div>
+
+        <div class="options">
+            <select class="finca" name="finca">
+                <option class="s" disabled selected>--Finca--</option>
+                <option class="seleccionMuni">**</option>
+            </select> 
+
+            <select class="variedad" name="variedad">
+                <option class="s" disabled selected>--Variedad--</option>
+                <option class="seleccionMuni">**</option>
+            </select> 
+
+            <select class="proceso" name="proceso">
+                <option class="s" disabled selected>--Proceso--</option>
+                <option class="seleccionMuni">**</option>
+            
+            </select> 
+        </div>
+
+        <div class="genCodigo">
+            <button>Generar Codigo</button>
+            <button>Imprimir</button>
+            <input type="number" min="1">
+        </div>
+        </form>
+    </main>
+
+</body>
+</html>
