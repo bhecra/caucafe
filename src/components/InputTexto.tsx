@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import React from 'react';
+
 export default function InputTexto ({nombre}:{nombre:string}){
     return(
         <div className="inputs">
