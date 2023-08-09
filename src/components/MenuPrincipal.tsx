@@ -4,14 +4,13 @@ import coffeeBeansImage from "../assets/images/coffee-beans.svg"
 import farmer from "../assets/images/farmer_2979790.svg"
 import bean from "../assets/images/search-coffe-bean.svg"
 import smell from "../assets/images/smell_5235019.svg"
-import { Link, Outlet, Route, Routes, useParams} from 'react-router-dom';
 
 const sectionsData = [
     {
       imageSrc: coffeeBeansImage,
       altText: 'coffe-bag',
       links: [
-        { text: 'Registrar lote de cps', route: '#',},
+        { text: 'Registrar lote de cps', route: 'RegistrarLote',},
         { text: 'Ver historial de compras', route: '#' },
       ],
     },
@@ -19,14 +18,14 @@ const sectionsData = [
         imageSrc: farmer,
         altText: "farmer",
         links: [
-            {text: "Registrar caficultor", route: "RegistroCaficultor", componente: "RegistroCafcultor"}
+            {text: "Registrar caficultor", route: "RegistroCaficultor"}
         ]
     }, 
     {
         imageSrc: bean,
         altText: "bean",
         links:[
-            {text: "Nuevo análisis físico", route: "#"},
+            {text: "Nuevo análisis físico", route: "RegistroCaficultor/AnalisisFisico"},
             {text:"Ver historial de análisis",route:"#"},
         ]
     },
@@ -34,7 +33,7 @@ const sectionsData = [
         imageSrc: smell,
         altText:'smell',
         links:[
-            {text: "Nueva catación", route:"#"},
+            {text: "Nueva catación", route:"RegistroCaficultor/Catacion"},
             {text: "Ver historial de cataciones", route:"#"}
         ]
     }
