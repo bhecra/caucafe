@@ -1,4 +1,4 @@
-import { Link, Outlet, Route, Routes, useParams} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import './App.css';
 import React from 'react';
 import MenuPrincipal from './components/MenuPrincipal';

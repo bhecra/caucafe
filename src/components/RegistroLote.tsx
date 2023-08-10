@@ -1,6 +1,6 @@
- import {Link, Route, Routes, useParams, Outlet } from "react-router-dom";
+ import {Link, useParams,} from "react-router-dom";
 import InputTexto from "./InputTexto";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //import UbicacionesGeograficas from "./UbicacionesGeograficas";
 //import { useState } from "react";
 type variedad = {
@@ -84,32 +84,46 @@ const variedadesCafe:variedad[] = [
         const caracteresValidos = '0123456789ABCDE';
         const longitudCodigo = 5;
         let codigoGenerado = '';
-      
         for (let i = 0; i < longitudCodigo; i++) {
           const indiceAleatorio = Math.floor(Math.random() * caracteresValidos.length);
           codigoGenerado += caracteresValidos.charAt(indiceAleatorio);
         }
         return codigoGenerado;
-      }
+    }
       
 export default function RegistroLote () {
     const {siguiente} = useParams();
 	const [nombreCaficultor, setNombreCaficultor] = useState('')
 	const [idLote, setIdLote] = useState('')
 	const [selectedMunicipio, setSelectedMunicipio] = useState('')
+    const [selectedVariedad, setSelectedVariedad] = useState('')
+    const [numeroCel, mifuncioncambiarcel] = useState('')
+    const [entradasValidas, setEntradasValidas] = useState("Incorrectas")
+    //Falta Altura (msnm) 
+    const comprobarValidez = ()=>{
+        if(numeroCel.length!==10 || nombreCaficultor.length<5){setEntradasValidas("Incorrectas")}
+        else {setEntradasValidas("Correcta")}
+    }
+    useEffect(()=>{
+        comprobarValidez()
+    },[numeroCel])
+    useEffect(()=>{
+        comprobarValidez()
+    },[nombreCaficultor])
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
-    const [variedad, setVariedad] = useState('')
     function cambiarLote():void{
 		setNombreCaficultor(leerInput("NombreCaficultor"))
-        setVariedad(leerInput("variedadLote"))
+        setSelectedVariedad(leerInput("variedadLote"))
         setSelectedMunicipio(leerInput("MunicipioSelect"))
+        mifuncioncambiarcel(leerInput("celular"))
     }
     function CrearLote ():void {
 		setIdLote(generarCodigo())
 		console.log(nombreCaficultor)
 		console.log(idLote)
-        console.log(variedad)
+        console.log(selectedVariedad)
         console.log(selectedMunicipio)
+        console.log(numeroCel)
       }
       /*const handleMunicipioChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const municipioId = parseInt(event.target.value);
@@ -117,9 +131,17 @@ export default function RegistroLote () {
         setSelectedMunicipio(selectedMun || null);
         console.log(selectedMunicipio?.nombre)
       };*/
+      //<InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
     return(
         <body>
-        <InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
+        <div className="inputs">
+            <label htmlFor="NombreCaficultor"> Nombre de caficultor </label>
+            <input type="text" className="inputs" name="NombreCaficultor" id={"NombreCaficultor"} onChange={cambiarLote}/> <br></br>
+        </div>
+        <div>
+            <label htmlFor="celular">Telefono: </label>
+            <input type="tel" id ="celular" onChange={cambiarLote}></input>
+        </div>
         <div>
             <label>Municipio de Cultivo:  </label>
             <select id= "MunicipioSelect" onChange={cambiarLote}>
@@ -145,9 +167,16 @@ export default function RegistroLote () {
                 state= {{data:{
                     ID: idLote,
                     NombreCaficultor:nombreCaficultor,
-                    Municipio: selectedMunicipio
-                }}}> Siguiente </Link>
+                    Municipio: selectedMunicipio,
+                    Variedad: selectedVariedad
+                }}} > Siguiente </Link>
             </h2>
+        </div>
+        <div>
+            <h4>El nombre escrito es: {nombreCaficultor}</h4>
+            <h4>El numero escrito es: {numeroCel}</h4>
+            <h4>El municipio seleccionado es: {selectedMunicipio}</h4>
+            <h4>Entradas: {entradasValidas}</h4>
         </div>
         </body>
     )
