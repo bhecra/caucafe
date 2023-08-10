@@ -8,6 +8,18 @@ import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+type  InfoLote = {
+  NombreCaficultor: string,
+  Whatsapp: number,
+  Municipio: string,
+  Altura: string,
+  Variedad: string,
+  Peso: number,
+  ID: string,
+}
+
+const Lotes: InfoLote[] = [];
+
 root.render(
   <BrowserRouter>
     <App />

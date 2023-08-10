@@ -1,6 +1,7 @@
+//import { useState } from "react";
 import { useLocation, } from "react-router-dom";
 
-export default function Catacion ()  {
+export default function AnalisisFisico ()  {
    
     const location= useLocation()
     const { data } = location.state || {};
@@ -11,7 +12,7 @@ export default function Catacion ()  {
            <h2>Codigo del lote {ID}</h2>
            <h2>Nombre de caficultor: {NombreCaficultor}</h2>
            <h2>Municipio de cultivo: {Municipio}</h2>
-           <h1> Esta es la pagina de catacion</h1>
+           <h1> Este es el análisis fisico</h1>
         </div>
     )
 }

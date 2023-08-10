@@ -5,9 +5,10 @@ export default function RegistroCaficultor (){
     const {siguiente} = useParams();
     return(
         <body>
-        <InputTexto nombre="Nombre de caficultor"/>
-        <InputTexto nombre="Nombre de la finca"/>
-        <Link to={`/${siguiente}`}> Siguiente</Link>
+        <InputTexto nombre="Nombre de caficultor" Id="NombreCaficultor"/>
+        <InputTexto nombre="Nombre de la finca" Id="Finca"/>
+        <input id="Texto"></input>
+        <Link to={`/${siguiente}/:`}> Siguiente</Link>
         </body>
     )
 }

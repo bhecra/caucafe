@@ -10,7 +10,7 @@ const sectionsData = [
       imageSrc: coffeeBeansImage,
       altText: 'coffe-bag',
       links: [
-        { text: 'Registrar lote de cps', route: 'RegistrarLote',},
+        { text: 'Registrar lote de cps', route: 'RegistroLote',},
         { text: 'Ver historial de compras', route: '#' },
       ],
     },
@@ -25,7 +25,7 @@ const sectionsData = [
         imageSrc: bean,
         altText: "bean",
         links:[
-            {text: "Nuevo análisis físico", route: "RegistroCaficultor/AnalisisFisico"},
+            {text: "Nuevo análisis físico", route: "RegistroLote/AnalisisFisico"},
             {text:"Ver historial de análisis",route:"#"},
         ]
     },
@@ -33,7 +33,7 @@ const sectionsData = [
         imageSrc: smell,
         altText:'smell',
         links:[
-            {text: "Nueva catación", route:"RegistroCaficultor/Catacion"},
+            {text: "Nueva catación", route:"RegistroLote/Catacion"},
             {text: "Ver historial de cataciones", route:"#"}
         ]
     }
