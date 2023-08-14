@@ -1,11 +1,11 @@
 import { Link, Outlet, Route, Routes, useParams} from 'react-router-dom';
 import './App.css';
-import "../public/css/analisisFisico.css";
 import React from 'react';
 import MenuPrincipal from './components/MenuPrincipal';
 import RegistroCaficultor from './components/RegistroCaficultor';
-import AnalisisFisico from './components/AnalisisFisco';
+import AnalisisFisico from './components/AnalisisFisico';
 import Catacion from './components/Catacion';
+import RegistroLote from './components/RegistroLote'
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
           <Route path = 'AnalisisFisico/' element  = {<AnalisisFisico/>}></Route>
           <Route path = 'Catacion/' element  = {<Catacion/>}></Route>
           <Route path = 'RegistroCaficultor/:siguiente' element  = {<RegistroCaficultor/>}></Route>
+          <Route path = 'RegistroLote/:siguiente' element = {<RegistroLote/>}></Route>
       </Routes>
       
       </body>
