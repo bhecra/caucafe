@@ -1,6 +1,7 @@
 //import { useState } from "react";
 import { useLocation, } from "react-router-dom";
 
+
 export default function AnalisisFisico ()  {
    
     const location= useLocation()
@@ -8,7 +9,7 @@ export default function AnalisisFisico ()  {
     const {ID, NombreCaficultor,  Municipio, Variedad} = data || {};
     //const {data} = useLocation()
     return(
-       <div>
+       <div className="divAnalisisFisico">
            <h2>Codigo del lote {ID}</h2>
            <h2>Nombre de caficultor: {NombreCaficultor}</h2>
            <h2>Municipio de cultivo: {Municipio}</h2>
