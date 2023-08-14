@@ -6,8 +6,7 @@ import RegistroCaficultor from './components/RegistroCaficultor';
 import AnalisisFisico from './components/AnalisisFisico';
 import Catacion from './components/Catacion';
 import RegistroLote from './components/RegistroLote';
-
-
+import "../public/css/registerCaficultor.css"
 
 function App() {
   return (
