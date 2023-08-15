@@ -6,7 +6,30 @@
   text-align: center;
   font-size: 16px;
 }
+:root {
+  --gris : #757575;
+  --rojo : #ba1b1d;
+  --blanco: ##F7F4F3;
 
+
+}
+
+
+
+body{
+  height: 100vh;
+
+  
+}
+
+
+.logoCaucafe{
+  height: 40%;
+}
+
+footer{
+  height: 10vh;
+}
 a{
   color: black;
   font-weight: 600;
@@ -16,6 +39,8 @@ a{
 header {
   display: flex;
   justify-content: center;
+  height: 10vh;
+  margin-bottom: 5%;
 }
 
 .unicauca{
@@ -119,4 +144,87 @@ footer {
   }
   
   
+}
+
+/* ANALISIS FISICO */
+
+.divAnalisisFisico{
+  display: flex;
+  width: 70vw;
+  height: 80vh;
+}
+
+.mainRegisterCafi{
+
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: space-around;
+
+}
+
+/* REGISTRO DE LOTE */
+
+.field{
+  background-color: var(--gris);
+  display: flex;
+  height: 60vh;
+  flex-direction: column;
+  border-radius: 1rem;
+  margin: 0 3%
+}
+
+.input-text{
+  width: 90%;
+  border: none;
+  padding: .2rem;
+  border-radius: 0.5rem;
+}
+
+.campoRegistroLote{
+  margin: 5% 0;
+}
+
+.field label{
+  padding-bottom: 2%;
+  display: block;
+  color: white;
+}
+
+.divLabel{
+  display: flex;
+  width: 60%;
+  padding-left: 5%;
+}
+.botonGuardar{
+  background-color: #0097a7;
+  color: var(--blanco);
+  padding: .2rem .2rem;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  width: 40%;
+  text-align: center;
+  border: none;
+}
+
+.bottomRegistro h3{
+  padding-top: 5%;
+}
+.bottomRegistro h4{
+  padding-top: 2%;
+}
+
+.siguiente{
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+  width: 100%;
+}
+
+.siguiente a{
+  padding: 6%;
+  background-color: #0097a7;
+  border-radius: .5rem;
 }

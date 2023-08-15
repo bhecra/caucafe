@@ -1,12 +1,12 @@
-import {Route, Routes} from 'react-router-dom';
+import { Link, Outlet, Route, Routes, useParams} from 'react-router-dom';
 import './App.css';
 import React from 'react';
 import MenuPrincipal from './components/MenuPrincipal';
 import RegistroCaficultor from './components/RegistroCaficultor';
 import AnalisisFisico from './components/AnalisisFisico';
 import Catacion from './components/Catacion';
-import RegistroLote from './components/RegistroLote';
-import "../public/css/registerCaficultor.css"
+import RegistroLote from './components/RegistroLote'
+
 
 function App() {
   return (
@@ -15,13 +15,14 @@ function App() {
       <Routes>
           <Route path="/" element = {<MenuPrincipal/>}></Route>
           <Route path = 'RegistroCaficultor/' element  = {<RegistroCaficultor/>}></Route>
-          <Route path = 'AnalisisFisico' element  = {<AnalisisFisico/>}></Route>
-          <Route path = 'Catacion' element  = {<Catacion/>}></Route>
+          <Route path = 'AnalisisFisico/' element  = {<AnalisisFisico/>}></Route>
+          <Route path = 'Catacion/' element  = {<Catacion/>}></Route>
           <Route path = 'RegistroCaficultor/:siguiente' element  = {<RegistroCaficultor/>}></Route>
           <Route path = 'RegistroLote/:siguiente' element = {<RegistroLote/>}></Route>
       </Routes>
+      
       </body>
-    </div>
+      </div>
   );
 }
 
