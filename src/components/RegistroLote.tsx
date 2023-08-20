@@ -138,6 +138,7 @@ export default function RegistroLote () {
             <header className="header">
                 <img src= {logo} alt="logo-caucafe"></img>
             </header>
+            <main className="main-lote">
             <section className="field">
         <div className="campoRegistroLote">
             <div className="divLabel">
@@ -184,14 +185,17 @@ export default function RegistroLote () {
             
         </div>
         </div>
-        </section>
-       
-        <div>
+
+        {/* <div className="status-regiLote">
             <h4>El nombre escrito es: {nombreCaficultor}</h4>
             <h4>El numero escrito es: {numeroCel}</h4>
             <h4>El municipio seleccionado es: {selectedMunicipio}</h4>
             
-        </div>
+        </div> */}
+        
+        </section>
+        </main>
+        
         </body>
     )
 }
