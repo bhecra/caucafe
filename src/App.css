@@ -40,7 +40,7 @@ header {
   display: flex;
   justify-content: center;
   height: 10vh;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
 
 .unicauca{
@@ -150,28 +150,60 @@ footer {
 
 .divAnalisisFisico{
   display: flex;
-  width: 70vw;
-  height: 80vh;
-}
+  width: 70%;
+  height: 80%}
 
 .mainRegisterCafi{
 
   display: flex;
   flex-direction: column;
-  height: 60vh;
+  height: 60%;
   justify-content: space-around;
 
 }
 
 /* REGISTRO DE LOTE */
 
+
+
+
 .field{
-  background-color: var(--gris);
+  
   display: flex;
-  height: 60vh;
+  height: 80%;
+  background-color: var(--gris);
   flex-direction: column;
   border-radius: 1rem;
-  margin: 0 3%
+  margin: 0 3%;
+  width: 75%;
+}
+
+.main-lote{
+  height: 75%;
+}
+.status-regiLote{
+  height: 10%;
+  padding-top: 5%;
+}
+
+@media (min-width: 768px) {
+    .field {
+      height:100%;
+      width: 75%;
+      
+}
+.main-lote{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 95%;
+}
+
+.siguiente-lote{  
+  padding-top: 5%;
+  padding-bottom: 2%;
+}
 }
 
 .input-text{
@@ -182,7 +214,7 @@ footer {
 }
 
 .campoRegistroLote{
-  margin: 5% 0;
+  margin: 3% 0;
 }
 
 .field label{
@@ -210,16 +242,17 @@ footer {
 }
 
 .bottomRegistro h3{
-  padding-top: 5%;
+  padding-top: 1%;
 }
 .bottomRegistro h4{
-  padding-top: 2%;
+  padding-top: 1%;
 }
 
 .siguiente{
   display: flex;
   justify-content: center;
-  padding-top: 5%;
+  padding-top: 1%;
+  padding-bottom: 2%;
   width: 100%;
 }
 
