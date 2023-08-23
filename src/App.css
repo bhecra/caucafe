@@ -151,11 +151,20 @@ footer {
 
 /* REGISTRO DE LOTE */
 
+.ImageBackground{
+  padding-bottom: 30px;
+  background-image: url(../public/images/coffee-bean-berry-ripening-coffee-farm.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 
 
 .field{
-  
+
+
+  background-color: rgb(255,255,255,0.5);
+  margin: 3%;
   display: flex;
   padding: 10px;
   flex-direction: column;
@@ -196,7 +205,9 @@ footer {
 .field label{
   text-align: left;
   display: block;
-  color: white;
+  color: rgb(72, 72, 72);
+  font-size: 100%;
+  padding-left: 10px;
 }
 
 .botonGuardar{
