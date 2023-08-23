@@ -12,30 +12,31 @@ type defecto = {
 type puntajeSCA =
     | 7 | 7.25 | 7.5 | 7.75 | 8 | 8.25 | 8.5 | 8.75 | 9 | 9.25 | 9.5 | 9.75 | 10;
 interface CatacionLote {
-    id: number;
-    codigo?: string;
-    InfoView: "InfoVisible" | "InfoInvisible";
-    variedad?: string;
-    altura?: number;
-    proceso?: string;
-    factordeRendimiento?: number;
-    defectos?: defecto[];
-    tostion?: number;
-    catador?: string;
-    fragancia?: puntajeSCA;
-    seco?: number;
-    espumoso?: number;
-    sabor?: number;
-    residual?: number;
     acidez?: number;
-    intensidad?: number;
-    cuerpo?: number;
-    nivel?: number;
+    altura?: number;
     balance?: number;
-    uniformidad?: number;
-    tasaLimpia?: number;
+    catador?: string;
+    codigo?: string;
+    cuerpo?: number;
+    defectos?: defecto[];
     dulzor?: number;
+    factordeRendimiento?: number;
+    fragancia?: puntajeSCA;
+    id: number;
+    InfoClass?: "InfoVisible" | "InfoInvisible"
+    InfoView: boolean;
+    intensidad?: number;
+    mojado?: number;
+    nivel?: number;
+    proceso?: string;
     puntajeCatador?: number;
+    residual?: number;
+    sabor?: number;
+    seco?: number;
+    tasaLimpia?: number;
+    tostion?: number;
+    uniformidad?: number;
+    variedad?: string;
 }
 
 
@@ -43,14 +44,15 @@ interface CatacionLote {
 // ... ESTILOS ......................
 
 const PageContainer = styled.div`
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 0px;
   font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 0px;
 `;
 
 const ScoreInputsContainer = styled.div`
@@ -70,8 +72,7 @@ const ScoreInputsContainer = styled.div`
 
 const CatacionContainer = styled.div`
   border: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 0px;
 `;
 
 const CatacionHeader = styled.h1`
@@ -94,50 +95,49 @@ const AddCatacionButton = styled.button`
 // TERMINAN ESTILOS ----------------------------------------------
 
 export default function Catacion() {
-    const [catacionCount, setCatacionCount] = useState(0);
-    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([]);
-
+    const location = useLocation();
+    const { data } = location.state || {};
+    const { ID, NombreCaficultor, Municipio, Variedad, Proceso, Peso, Altura, NumeroCel } = data || {};
+    const [catacionCount, setCatacionCount] = useState(1);
+    
+    const MuestraInicial:CatacionLote = {
+        id: 1,
+        codigo: ID,
+        InfoView: true,
+        InfoClass: "InfoVisible",
+        variedad: Variedad,
+        proceso: Proceso,
+        altura: Altura,
+        
+    }
+    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([MuestraInicial]);
+   
+    
     const handleNuevaCatacion = () => {
         const newCatacionCount = catacionCount + 1;
         setCatacionCount(newCatacionCount);
-
         const newCatacionElement: CatacionLote = {
             id: newCatacionCount,
-            InfoView: "InfoInvisible"
+            InfoView: false
         };
         setCatacionElements(prevElements => [...prevElements, newCatacionElement]);
     };
-
-    const handleCodigo = (id: number, newCodigo: string) => {
+    function handleCatacionProp(id:number, Propiedad: keyof CatacionLote,  e:React.ChangeEvent<HTMLInputElement> ){
+        const newValue = e.target.value
         setCatacionElements(prevData =>
             prevData.map(data =>
-                data.id === id ? { ...data, codigo: newCodigo } : data
+                data.id === id ? { ...data,[Propiedad]: newValue } : data
             )
         );
-    };
-
-    function handleInfoView(id: number) {
-        setCatacionElements(catacionElements =>
-            catacionElements.map(catacionElement => {
-                if (catacionElement.id === id) {
-                    return {
-                        ...catacionElement,
-                        InfoView:
-                            catacionElement.InfoView === "InfoInvisible"
-                                ? "InfoVisible"
-                                : "InfoInvisible"
-                    };
-                } else {
-                    return catacionElement;
-                }
-            })
-        );
     }
-
-    const location = useLocation();
-    const { data } = location.state || {};
-    const { ID, NombreCaficultor, Municipio } = data || {};
-
+    function handleInfoView(id: number) {
+        setCatacionElements(prevData =>
+            prevData.map(data =>
+                data.id === id ? { ...data, InfoView: !data.InfoView} : data
+            )
+        );
+        
+    }
     const handleScoreChange = (
         id: number,
         aspect: keyof CatacionLote,
@@ -149,94 +149,96 @@ export default function Catacion() {
             )
         );
     };
-
+    //handleNuevaCatacion();
     return (
         <PageContainer>
-            <h2>Codigo del lote {ID}</h2>
             <h2>Nombre de caficultor: {NombreCaficultor}</h2>
             <h2>Municipio de cultivo: {Municipio}</h2>
-            <h1>Esta es la pagina de catacion</h1>
-            <div>
-                <h1>Botón para Agregar Inputs</h1>
-                <AddCatacionButton onClick={handleNuevaCatacion}>
-                    Agregar Catacion
-                </AddCatacionButton>
                 {catacionElements.map(catacionElement => (
                     <CatacionContainer key={catacionElement.id}>
-                        <CatacionHeader>Muestra {catacionElement.id}</CatacionHeader>
-                        {/* ... (other code) */}
-                        <CatacionData className={catacionElement.InfoView}>
-                            <h3>Altura: {catacionElement.altura} Variedad: {catacionElement.variedad} proceso: {catacionElement.proceso}</h3>
+                        <CatacionHeader>
+                            Muestra {catacionElement.id} <br/>
+                            Codigo:
+                            <input type="text" id="InputCodigoLote" onChange={(event)=>handleCatacionProp(catacionElement.id, "codigo", event)} value={catacionElement.codigo}></input>
+                            <button >Buscar</button>
+                            <a href="/RegistroLote/Catacion" target="_blank">Registrar Lote</a>
+                        </CatacionHeader>
+                        <button onClick={e=>{handleInfoView(catacionElement.id)}}>Ver/ocultar info</button>
+                        <div className={catacionElement.InfoView? "InfoVisible":"InfoInvisible"}>
+                            <h3>Altura: {catacionElement.altura}    Variedad: {catacionElement.variedad}      proceso: {catacionElement.proceso}</h3>
+
+                        </div>
+                        <CatacionData >
                             {/* ... (other data) */}
                             <CatacionScoreInputs>
                                 
                                 <ScoreInputsContainer>
                                 <CoffeeScoreInput
-                                    aspect="fragancia"
-                                    score={catacionElement.fragancia || 0}
+                                    aspect="Fragancia"
+                                    score={catacionElement.fragancia || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "fragancia", value as puntajeSCA)
                                     }
                                 />
                                 <CoffeeScoreInput
-                                    aspect="seco"
-                                    score={catacionElement.seco || 6}
+                                    aspect="Seco"
+                                    score={catacionElement.seco || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "seco", value)
                                     }
                                 />
                                 <CoffeeScoreInput
-                                    aspect="espumoso"
-                                    score={catacionElement.espumoso || 6}
+                                    aspect="Mojado"
+                                    score={catacionElement.mojado || 8}
                                     onChange={(value) =>
-                                        handleScoreChange(catacionElement.id, "espumoso", value)
+                                        handleScoreChange(catacionElement.id, "mojado", value)
                                     }
                                 />
                                 <CoffeeScoreInput
                                     aspect="sabor"
-                                    score={catacionElement.sabor || 6}
+                                    score={catacionElement.sabor || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "sabor", value)
                                     }
                                 />
                                 <CoffeeScoreInput
                                     aspect="residual"
-                                    score={catacionElement.residual || 6}
+                                    score={catacionElement.residual || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "residual", value)
                                     }
                                 />
                                 <CoffeeScoreInput
                                     aspect="acidez"
-                                    score={catacionElement.acidez || 6}
+                                    score={catacionElement.acidez || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "acidez", value)
                                     }
                                 />
                                 <CoffeeScoreInput
                                     aspect="intensidad"
-                                    score={catacionElement.intensidad || 6}
+                                    score={catacionElement.intensidad || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "intensidad", value)
                                     }
                                 />
                                 <CoffeeScoreInput
                                     aspect="cuerpo"
-                                    score={catacionElement.cuerpo || 6}
+                                    score={catacionElement.cuerpo || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "cuerpo", value)
                                     }
                                 />
                                 <CoffeeScoreInput
                                     aspect="nivel"
-                                    score={catacionElement.nivel || 6}
+                                    score={catacionElement.nivel || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "nivel", value)
                                     }
                                 />
                                 <CoffeeScoreInput
                                     aspect="balance"
-                                    score={catacionElement.balance || 6}
+                                    score={catacionElement.balance || 8}
                                     onChange={(value) =>
                                         handleScoreChange(catacionElement.id, "balance", value)
                                     }
@@ -295,7 +297,9 @@ export default function Catacion() {
                         </CatacionData>
                     </CatacionContainer>
                 ))}
-            </div>
+                <AddCatacionButton onClick={handleNuevaCatacion}>
+                    Agregar Catacion
+                </AddCatacionButton>
         </PageContainer>
     );
 }

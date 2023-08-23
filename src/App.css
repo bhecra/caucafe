@@ -15,16 +15,8 @@
 }
 
 
-
-body{
-  height: 100vh;
-
-  
-}
-
-
 .logoCaucafe{
-  height: 40%;
+  width: 10%;
 }
 
 footer{
@@ -39,10 +31,12 @@ a{
 header {
   display: flex;
   justify-content: center;
-  height: 10vh;
   margin-bottom: 2%;
 }
 
+header img{
+  width: 50%;
+}
 .unicauca{
   height: 20vh;
   
@@ -51,15 +45,12 @@ header {
 main {
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  
   justify-content: space-evenly;
   align-items: center;
 }
 
-main img{
-  height: 8vh;
-  padding-bottom: 3%;
-}
+
 
 .section-1{
   display: flex;
@@ -112,11 +103,7 @@ footer {
   *{
       font-size: 25px;
   }
-  main img{
-      height: 15vh;
-      padding-bottom: 0;
-      padding-right:3vw;
-  }
+
   
   .section-1{
       display: flex;
@@ -164,41 +151,35 @@ footer {
 
 /* REGISTRO DE LOTE */
 
+.ImageBackground{
+  padding-bottom: 30px;
+  background-image: url(../public/images/coffee-bean-berry-ripening-coffee-farm.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 
 
 .field{
-  
+
+
+  background-color: rgb(255,255,255,0.5);
+  margin: 3%;
   display: flex;
-  height: 80%;
-  background-color: var(--gris);
+  padding: 10px;
   flex-direction: column;
   border-radius: 1rem;
-  margin: 0 3%;
-  width: 75%;
+  box-shadow: 3px 3px 5px rgb(50, 50, 50);
 }
 
-.main-lote{
-  height: 75%;
-}
 .status-regiLote{
   height: 10%;
   padding-top: 5%;
 }
 
 @media (min-width: 768px) {
-    .field {
-      height:100%;
-      width: 75%;
-      
-}
-.main-lote{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 95%;
-}
+   
+
 
 .siguiente-lote{  
   padding-top: 5%;
@@ -206,28 +187,29 @@ footer {
 }
 }
 
-.input-text{
-  width: 90%;
-  border: none;
-  padding: .2rem;
-  border-radius: 0.5rem;
-}
-
 .campoRegistroLote{
-  margin: 3% 0;
+  margin: 1% 0;
+  width: 80%;
+  align-self: center;
 }
 
+.campoRegistroLote input, select{
+  background-color: white;
+  color: black;
+  width: 100%;
+  min-width: 150px;
+  border: 1px solid darkgray;
+  padding: .2rem;
+  border-radius: 1rem;
+}
 .field label{
-  padding-bottom: 2%;
+  text-align: left;
   display: block;
-  color: white;
+  color: rgb(72, 72, 72);
+  font-size: 100%;
+  padding-left: 10px;
 }
 
-.divLabel{
-  display: flex;
-  width: 60%;
-  padding-left: 5%;
-}
 .botonGuardar{
   background-color: #0097a7;
   color: var(--blanco);
@@ -260,4 +242,12 @@ footer {
   padding: 6%;
   background-color: #0097a7;
   border-radius: .5rem;
+}
+
+.InfoInvisible {
+  display: none;
+}
+
+.InfoVisible {
+  display: inline;
 }

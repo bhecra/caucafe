@@ -1,10 +1,10 @@
  import {Link, useParams,} from "react-router-dom";
-import InputTexto from "./InputTexto";
-import { useEffect, useState } from "react";
+//import InputTexto from "./InputTexto";
+import { useState } from "react";
 //import UbicacionesGeograficas from "./UbicacionesGeograficas";
 //import { useState } from "react";
 import logo from "../assets/images/logo.svg";
-type variedad = {
+type listItems = {
     id: number
     nombre: string
 }
@@ -61,7 +61,14 @@ function leerInput (InputID:string){
     const Value = HTMLElement.value
     return Value
 }
-const variedadesCafe:variedad[] = [
+const procesos:listItems[] = [
+    {id:0,nombre:"Lavado"},
+    {id:1,nombre:"Natural"},
+    {id:2,nombre:"Honey"},
+    {id:3,nombre:"Fermentación"},
+    {id:4,nombre:"Otro"}
+]
+const variedadesCafe:listItems[] = [
     {id:0,nombre:"Otra"},
     {id:1,nombre:"Bourbon"},
     {id:2,nombre:"Bourbon Rosado"},
@@ -91,40 +98,27 @@ const variedadesCafe:variedad[] = [
         }
         return codigoGenerado;
     }
-      
+type InfoRegistro = {
+    nombreCaficultor?:string,
+    proceso?:string,
+    municipio?:string,
+    variedad?:string,
+    numeroCel?:string,
+    altura?: number,
+    peso?: number,
+}
 export default function RegistroLote () {
     const {siguiente} = useParams();
-	const [nombreCaficultor, setNombreCaficultor] = useState('')
 	const [idLote, setIdLote] = useState('')
-	const [selectedMunicipio, setSelectedMunicipio] = useState('')
-    const [selectedVariedad, setSelectedVariedad] = useState('')
-    const [numeroCel, mifuncioncambiarcel] = useState('')
-    const [entradasValidas, setEntradasValidas] = useState("Incorrectas")
+    const [registroLote, setRegistroLote] = useState<InfoRegistro>()
     //Falta Altura (msnm) 
-    const comprobarValidez = ()=>{
-        if(numeroCel.length!==10 || nombreCaficultor.length<5){setEntradasValidas("Incorrectas")}
-        else {setEntradasValidas("Correcta")}
-    }
-    useEffect(()=>{
-        comprobarValidez()
-    },[numeroCel])
-    useEffect(()=>{
-        comprobarValidez()
-    },[nombreCaficultor])
+
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
-    function cambiarLote():void{
-		setNombreCaficultor(leerInput("NombreCaficultor"))
-        setSelectedVariedad(leerInput("variedadLote"))
-        setSelectedMunicipio(leerInput("MunicipioSelect"))
-        mifuncioncambiarcel(leerInput("celular"))
+    function cambiarLote(atributo: keyof InfoRegistro, id:string){
+		setRegistroLote({[atributo]: leerInput(id)})
     }
     function CrearLote ():void {
 		setIdLote(generarCodigo())
-		console.log(nombreCaficultor)
-		console.log(idLote)
-        console.log(selectedVariedad)
-        console.log(selectedMunicipio)
-        console.log(numeroCel)
       }
       /*const handleMunicipioChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const municipioId = parseInt(event.target.value);
@@ -134,68 +128,74 @@ export default function RegistroLote () {
       };*/
       //<InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
     return(
-        <body className="body-Lote">
+        <div className="ImageBackground">   
             <header className="header">
-                <img src= {logo} alt="logo-caucafe"></img>
+                <img width={300} src= {logo} alt="logo-caucafe"></img>
             </header>
-            <main className="main-lote">
-            <section className="field">
-        <div className="campoRegistroLote">
-            <div className="divLabel">
-            <label htmlFor="Nom</div>breCaficultor"> Nombre de caficultor </label> </div>
-            <input type="text" className="input-text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={cambiarLote}/> <br></br>
+            <div>   
+            <div className="field">
+                <div className="campoRegistroLote">
+                    <label htmlFor="NombreCaficultor"> Nombre de caficultor </label> 
+                    <input type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e=>cambiarLote("nombreCaficultor", "NombreCaficultor")}/> <br></br>
+                </div>
+                <div className="campoRegistroLote">
+                    <label htmlFor="celular">Telefono</label>
+                    <input type="tel" id ="celular"   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 3161112222" onChange={e=>cambiarLote("numeroCel","celular")}></input>
+                </div>
+                <div className="campoRegistroLote">
+                    <label>Municipio de Cultivo:  </label>
+                    <select id= "MunicipioSelect" onChange={e=>cambiarLote("municipio", "MunicipioSelect")} className="input-text">
+                        <option value={0}>Selecciona un municipio</option>
+                        {municipiosCauca.map(mun => (
+                        <option key={mun.id} value={mun.nombre}>{mun.nombre}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="campoRegistroLote">
+                    <label htmlFor="alturaFinca">Altura de la finca (msnm)</label>
+                    <input type="number" id="alturaFinca" onChange={e=>cambiarLote("altura", "alturaFinca")}></input>
+                </div>
+                <div className="campoRegistroLote">
+                    <label htmlFor="pesoLote">Peso del lote (Kg)</label>
+                    <input type="number" id="pesoLote" onChange={e=>cambiarLote("peso", "MunicipioSelect")}></input>
+                </div>
+                <div className="campoRegistroLote">
+                    <label htmlFor="variedadLote">Variedad</label>
+                    <select  id="variedadLote" onChange={e=>cambiarLote("variedad", "variedadLote")} className="input-text">
+                        <option>Seleccione</option>
+                        {variedadesCafe.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
+                    </select>
+                </div>
+                <div className="campoRegistroLote">
+                    <label >Proceso</label>
+                    <select  id="procesoLote" onChange={e=>cambiarLote("proceso", "procesoLote")} className="input-text">
+                        <option>Seleccione</option>
+                        {procesos.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
+                    </select>
+                </div>
+                <div className="campoBoton">
+                    <button onClick ={CrearLote} className="botonGuardar">Generar</button>
+                </div>
+                <div className="bottomRegistro">
+                    <h3> Codigo de Lote: {idLote}</h3>
+                    <div className="siguiente">
+                        <h2>
+                            <Link to = {`/${siguiente}`}
+                            state= {{data:{
+                                ID: idLote,
+                                NombreCaficultor:registroLote?.nombreCaficultor,
+                                Municipio: registroLote?.municipio,
+                                Variedad: registroLote?.variedad,
+                                Proceso: registroLote?.proceso,
+                                Altura: registroLote?.altura,
+                                Peso: registroLote?.peso,
+                                NumeroCel: registroLote?.numeroCel
+                            }}} > Siguiente </Link>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
-        <div className="campoRegistroLote">
-            <div className="divLabel"><label htmlFor="celular">Telefono</label></div>
-            <input type="tel" id ="celular"   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 316-111-2222" onChange={cambiarLote} className="input-text"></input>
-        </div>
-        <div className="campoRegistroLote">
-           <div className="divLabel"> <label>Municipio de Cultivo:  </label></div>
-            <select id= "MunicipioSelect" onChange={cambiarLote} className="input-text">
-                <option value={0}>Selecciona un municipio</option>
-                {municipiosCauca.map(mun => (
-                <option key={mun.id} value={mun.nombre}>{mun.nombre}</option>
-                ))}
-            </select>
-        </div>
-        <div className="campoRegistroLote">
-            <div className="divLabel"><label>Variedad del Lote</label></div>
-            <select  id="variedadLote" onChange={cambiarLote} className="input-text">
-                <option>Seleccione</option>
-                {variedadesCafe.map(vari => ( <option key={vari.id}>{vari.nombre}</option>)
-                    )}
-            </select>
-        </div>
-        <div className="campoBoton">
-		<button onClick ={CrearLote} className="botonGuardar">Generar</button>
-        </div>
-    <div className="bottomRegistro">
-        <h3> Codigo de Lote: {idLote}</h3>
-        <h4>Entradas: {entradasValidas}</h4>
-		<div className="siguiente">
-            <h2>
-                <Link to = {`/${siguiente}`}
-                state= {{data:{
-                    ID: idLote,
-                    NombreCaficultor:nombreCaficultor,
-                    Municipio: selectedMunicipio,
-                    Variedad: selectedVariedad
-                }}} > Siguiente </Link>
-            </h2>
-            
-        </div>
-        </div>
-
-        {/* <div className="status-regiLote">
-            <h4>El nombre escrito es: {nombreCaficultor}</h4>
-            <h4>El numero escrito es: {numeroCel}</h4>
-            <h4>El municipio seleccionado es: {selectedMunicipio}</h4>
-            
-        </div> */}
-        
-        </section>
-        </main>
-        
-        </body>
     )
 }
