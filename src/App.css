@@ -211,8 +211,8 @@ footer {
 }
 
 .botonGuardar{
-  background-color: #0097a7;
-  color: var(--blanco);
+  background-color: #9c0101;
+  color: white;
   padding: .2rem .2rem;
   text-decoration: none;
   text-transform: none;
@@ -240,7 +240,8 @@ footer {
 
 .siguiente a{
   padding: 6%;
-  background-color: #0097a7;
+  background-color: #9c0101;
+  color: white;
   border-radius: .5rem;
 }
 
