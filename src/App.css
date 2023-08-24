@@ -1,4 +1,4 @@
-* {
+* { 
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -14,7 +14,9 @@
 
 }
 
-
+h4{
+  font-size: 16px;
+}
 .logoCaucafe{
   width: 10%;
 }
@@ -157,19 +159,29 @@ footer {
   background-size: cover;
   background-attachment: fixed;
 }
+#catacionInfoLote{
+  font-size: 20px !important
+}
+.Image2Background{
+  padding-bottom: 30px;
+  background-image: url(../public/images/top-view-delicious-coffee-beans-arrangement.jpg);
+  background-size: cover;
+  background-attachment: fixed;
 
-
+}
 
 .field{
-
-
   background-color: rgb(255,255,255,0.5);
   margin: 3%;
-  display: flex;
   padding: 10px;
-  flex-direction: column;
   border-radius: 1rem;
   box-shadow: 3px 3px 5px rgb(50, 50, 50);
+}
+
+.loteForm{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
 }
 
 .status-regiLote{
@@ -206,7 +218,6 @@ footer {
   text-align: left;
   display: block;
   color: rgb(72, 72, 72);
-  font-size: 100%;
   padding-left: 10px;
 }
 
@@ -250,5 +261,11 @@ footer {
 }
 
 .InfoVisible {
+  display: inline;
+}
+
+/*Catacion*/
+
+.SCACheckBox input{
   display: inline;
 }

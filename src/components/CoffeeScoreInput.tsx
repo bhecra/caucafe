@@ -5,16 +5,18 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 5px;
 `;
 
 const Label = styled.label`
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
 `;
 
 const ScoreSlider = styled.input`
-  width: 100%;
+  width: 100px;
+  font-size: 16px;
 `;
 
 interface CoffeeScoreInputProps {
@@ -35,7 +37,7 @@ const CoffeeScoreInput: React.FC<CoffeeScoreInputProps> = ({ aspect, score, onCh
         value={score}
         onChange={(e) => onChange(parseFloat(e.target.value))}
       />
-      <span>{score}</span>
+      <span style={{fontSize:"16px"}}>{score}</span>
     </InputContainer>
   );
 };

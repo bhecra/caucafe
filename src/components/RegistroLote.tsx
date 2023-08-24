@@ -115,7 +115,8 @@ export default function RegistroLote () {
 
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
     function cambiarLote(atributo: keyof InfoRegistro, id:string){
-		setRegistroLote({[atributo]: leerInput(id)})
+		const Input:any = leerInput(id);
+        setRegistroLote({...registroLote, [atributo]:Input})
     }
     function CrearLote ():void {
 		setIdLote(generarCodigo())
@@ -132,69 +133,69 @@ export default function RegistroLote () {
             <header className="header">
                 <img width={300} src= {logo} alt="logo-caucafe"></img>
             </header>
-            <div>   
-            <div className="field">
-                <div className="campoRegistroLote">
-                    <label htmlFor="NombreCaficultor"> Nombre de caficultor </label> 
-                    <input type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e=>cambiarLote("nombreCaficultor", "NombreCaficultor")}/> <br></br>
-                </div>
-                <div className="campoRegistroLote">
-                    <label htmlFor="celular">Telefono</label>
-                    <input type="tel" id ="celular"   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 3161112222" onChange={e=>cambiarLote("numeroCel","celular")}></input>
-                </div>
-                <div className="campoRegistroLote">
-                    <label>Municipio de Cultivo:  </label>
-                    <select id= "MunicipioSelect" onChange={e=>cambiarLote("municipio", "MunicipioSelect")} className="input-text">
-                        <option value={0}>Selecciona un municipio</option>
-                        {municipiosCauca.map(mun => (
-                        <option key={mun.id} value={mun.nombre}>{mun.nombre}</option>
-                        ))}
-                    </select>
-                </div>
-                <div className="campoRegistroLote">
-                    <label htmlFor="alturaFinca">Altura de la finca (msnm)</label>
-                    <input type="number" id="alturaFinca" onChange={e=>cambiarLote("altura", "alturaFinca")}></input>
-                </div>
-                <div className="campoRegistroLote">
-                    <label htmlFor="pesoLote">Peso del lote (Kg)</label>
-                    <input type="number" id="pesoLote" onChange={e=>cambiarLote("peso", "MunicipioSelect")}></input>
-                </div>
-                <div className="campoRegistroLote">
-                    <label htmlFor="variedadLote">Variedad</label>
-                    <select  id="variedadLote" onChange={e=>cambiarLote("variedad", "variedadLote")} className="input-text">
-                        <option>Seleccione</option>
-                        {variedadesCafe.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
-                    </select>
-                </div>
-                <div className="campoRegistroLote">
-                    <label >Proceso</label>
-                    <select  id="procesoLote" onChange={e=>cambiarLote("proceso", "procesoLote")} className="input-text">
-                        <option>Seleccione</option>
-                        {procesos.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
-                    </select>
-                </div>
-                <div className="campoBoton">
-                    <button onClick ={CrearLote} className="botonGuardar">Generar</button>
-                </div>
-                <div className="bottomRegistro">
-                    <h3> Codigo de Lote: {idLote}</h3>
-                    <div className="siguiente">
-                        <h2>
-                            <Link to = {`/${siguiente}`}
-                            state= {{data:{
-                                ID: idLote,
-                                NombreCaficultor:registroLote?.nombreCaficultor,
-                                Municipio: registroLote?.municipio,
-                                Variedad: registroLote?.variedad,
-                                Proceso: registroLote?.proceso,
-                                Altura: registroLote?.altura,
-                                Peso: registroLote?.peso,
-                                NumeroCel: registroLote?.numeroCel
-                            }}} > Siguiente </Link>
-                        </h2>
+            <div className="field">   
+                <div className="loteForm">
+                    <div className="campoRegistroLote">
+                        <label htmlFor="NombreCaficultor"> Nombre de caficultor </label> 
+                        <input type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e=>cambiarLote("nombreCaficultor", "NombreCaficultor")}/><br/>
+                    </div>
+                    <div className="campoRegistroLote">
+                        <label htmlFor="celular">Telefono</label>
+                        <input type="tel" id ="celular"   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 3161112222" onChange={e=>cambiarLote("numeroCel","celular")}></input>
+                    </div>
+                    <div className="campoRegistroLote">
+                        <label>Municipio de Cultivo:  </label>
+                        <select id= "MunicipioSelect" onChange={e=>cambiarLote("municipio", "MunicipioSelect")} className="input-text">
+                            <option value={0}>Selecciona un municipio</option>
+                            {municipiosCauca.map(mun => (
+                            <option key={mun.id} value={mun.nombre}>{mun.nombre}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="campoRegistroLote">
+                        <label>Altura de la finca (msnm)</label>
+                        <input type="number" id="alturaFinca" onChange={e=>cambiarLote("altura", "alturaFinca")}></input>
+                    </div>
+                    <div className="campoRegistroLote">
+                        <label htmlFor="pesoLote">Peso del lote (Kg)</label>
+                        <input value={registroLote?.peso} type="number" id="pesoLote" onChange={e=>cambiarLote("peso", "pesoLote")}></input>
+                    </div>
+                    <div className="campoRegistroLote">
+                        <label>Variedad</label>
+                        <select  id="variedadLote" onChange={e=>cambiarLote("variedad", "variedadLote")} className="input-text">
+                            <option>Seleccione</option>
+                            {variedadesCafe.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
+                        </select>
+                    </div>
+                    <div className="campoRegistroLote">
+                        <label >Proceso</label>
+                        <select  id="procesoLote" onChange={e=>cambiarLote("proceso", "procesoLote")} className="input-text">
+                            <option>Seleccione</option>
+                            {procesos.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
+                        </select>
+                    </div>
+                    <div className="campoBoton">
+                        <button onClick ={CrearLote} className="botonGuardar">Generar</button>
+                    </div>
+                    <div className="bottomRegistro">
+                        <h3> Codigo de Lote: {idLote}</h3>
+                        <div className="siguiente">
+                            <h2>
+                                <Link to = {`/${siguiente}`}
+                                state= {{data:{
+                                    ID: idLote,
+                                    NombreCaficultor:registroLote?.nombreCaficultor,
+                                    Municipio: registroLote?.municipio,
+                                    Variedad: registroLote?.variedad,
+                                    Proceso: registroLote?.proceso,
+                                    Altura: registroLote?.altura,
+                                    Peso: registroLote?.peso,
+                                    NumeroCel: registroLote?.numeroCel
+                                }}} > Siguiente </Link>
+                            </h2>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     )
