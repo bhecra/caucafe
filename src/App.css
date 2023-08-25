@@ -154,15 +154,16 @@ footer {
 /* REGISTRO DE LOTE */
 
 .ImageBackground{
-  padding-bottom: 30px;
+  padding: 30px;
   background-image: url(../public/images/coffee-bean-berry-ripening-coffee-farm.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
 #catacionInfoLote{
-  font-size: 20px !important
+  font-size: 14px !important
 }
 .Image2Background{
+  padding: 30px; 
   padding-bottom: 30px;
   background-image: url(../public/images/top-view-delicious-coffee-beans-arrangement.jpg);
   background-size: cover;
@@ -172,7 +173,7 @@ footer {
 
 .field{
   background-color: rgb(255,255,255,0.5);
-  margin: 3%;
+  margin: 0%;
   padding: 10px;
   border-radius: 1rem;
   box-shadow: 3px 3px 5px rgb(50, 50, 50);
@@ -266,6 +267,48 @@ footer {
 
 /*Catacion*/
 
+.tableBody{
+  position: sticky;
+  height: 90%;
+}
 .SCACheckBox input{
   display: inline;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 15px;
+  height: 15px;
+}
+.SCACheckBox input:checked{
+  display: inline;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 15px;
+  height: 15px;
+}
+.searchdiv {
+  align-items: center;
+  height: 30px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.searchdiv input{
+  height: inherit;
+  margin: 0px;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+  width: 90px; 
+  display:inline;
+  font-size:16px;
+}
+.searchdiv Button {
+  height: inherit;
+  display:inline;
+  font-size:16px;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  padding: 2px;
+}
+
+.tableHeader{
+  top: 0px;
 }

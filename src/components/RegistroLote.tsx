@@ -4,6 +4,7 @@ import { useState } from "react";
 //import UbicacionesGeograficas from "./UbicacionesGeograficas";
 //import { useState } from "react";
 import logo from "../assets/images/logo.svg";
+import { Lote } from "./MyTypes";
 type listItems = {
     id: number
     nombre: string
@@ -110,11 +111,11 @@ type InfoRegistro = {
 export default function RegistroLote () {
     const {siguiente} = useParams();
 	const [idLote, setIdLote] = useState('')
-    const [registroLote, setRegistroLote] = useState<InfoRegistro>()
+    const [registroLote, setRegistroLote] = useState<Lote>()
     //Falta Altura (msnm) 
 
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
-    function cambiarLote(atributo: keyof InfoRegistro, id:string){
+    function cambiarLote(atributo: keyof Lote, id:string){
 		const Input:any = leerInput(id);
         setRegistroLote({...registroLote, [atributo]:Input})
     }
@@ -192,6 +193,11 @@ export default function RegistroLote () {
                                     Peso: registroLote?.peso,
                                     NumeroCel: registroLote?.numeroCel
                                 }}} > Siguiente </Link>
+                            </h2>
+                            <h2>
+                                <Link to = {'/AnalisisFisico'}
+                                state= {{miLote: registroLote
+                                }} > Siguiente 2 </Link>
                             </h2>
                         </div>
                     </div>

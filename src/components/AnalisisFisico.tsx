@@ -1,5 +1,7 @@
 //import { useState } from "react";
 import { useLocation, } from "react-router-dom";
+import { useState } from "react";
+import { Lote } from "./MyTypes";
 //import AnalisisFisicoLote from "./AnalisisFisicoLote";
 //(import '.../public/css/registerCaficultor.css';
 //<AnalisisFisicoLote {...codigo:"w4e234"; variedad:Variedad; altura:1800; proceso:"Lavado"}/>
@@ -20,21 +22,19 @@ function AnalisisFisicoLote ({codigo, variedad, altura, proceso, municipio}:{cod
     )}
 export default function AnalisisFisico ()  {
     const location= useLocation()
-    const { data } = location.state || {};
-    const {ID, NombreCaficultor,  Municipio, Variedad, AlturaLote, ProcesoLote}:{ID:string, NombreCaficultor:string,  Municipio:string, Variedad:string, AlturaLote:number, ProcesoLote:string} = data || {};
+    const { miLote}:{miLote:Lote} = location.state || {};
+    const [reactLote, setReactLote] = useState(miLote);
+    //const {ID, NombreCaficultor,  Municipio, Variedad, AlturaLote, ProcesoLote}:{ID:string, NombreCaficultor:string,  Municipio:string, Variedad:string, AlturaLote:number, ProcesoLote:string} = data || {};
     //const {data} = useLocation()                      
     
         //<AnalisisFisicoLote  codigo={ID} variedad = {Variedad} municipio ={Municipio} altura={AlturaLote} proceso ={ProcesoLote} />
     return(
        <div className="Inputs">
            <body>
-            <button onClick={()=>AnalisisFisicoLote({
-                codigo:ID,
-                variedad:Variedad,
-                municipio:Municipio,
-                altura:AlturaLote,
-                proceso:ProcesoLote
-            })}>Nuevo Análisis</button>
+            <h1>
+                {reactLote.nombreCaficultor}
+                {reactLote.altura}
+            </h1>
            </body>
         </div>
     )
