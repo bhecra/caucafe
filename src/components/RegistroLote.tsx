@@ -121,6 +121,7 @@ export default function RegistroLote () {
     }
     function CrearLote ():void {
 		setIdLote(generarCodigo())
+        setRegistroLote({...registroLote, codigo:generarCodigo()})
       }
       /*const handleMunicipioChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const municipioId = parseInt(event.target.value);
@@ -139,6 +140,10 @@ export default function RegistroLote () {
                     <div className="campoRegistroLote">
                         <label htmlFor="NombreCaficultor"> Nombre de caficultor </label> 
                         <input type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e=>cambiarLote("nombreCaficultor", "NombreCaficultor")}/><br/>
+                    </div>
+                    <div className="campoRegistroLote">
+                        <label htmlFor="idCaficultor"> Número de cédula </label> 
+                        <input type="text" name="idCaficultor" id={"idCaficultor"} onChange={e=>cambiarLote("idCaficultor", "idCaficultor")}/><br/>
                     </div>
                     <div className="campoRegistroLote">
                         <label htmlFor="celular">Telefono</label>
@@ -179,25 +184,13 @@ export default function RegistroLote () {
                         <button onClick ={CrearLote} className="botonGuardar">Generar</button>
                     </div>
                     <div className="bottomRegistro">
-                        <h3> Codigo de Lote: {idLote}</h3>
+                        <h3> Codigo de Lote: {registroLote?.codigo}</h3>
                         <div className="siguiente">
                             <h2>
                                 <Link to = {`/${siguiente}`}
-                                state= {{data:{
-                                    ID: idLote,
-                                    NombreCaficultor:registroLote?.nombreCaficultor,
-                                    Municipio: registroLote?.municipio,
-                                    Variedad: registroLote?.variedad,
-                                    Proceso: registroLote?.proceso,
-                                    Altura: registroLote?.altura,
-                                    Peso: registroLote?.peso,
-                                    NumeroCel: registroLote?.numeroCel
-                                }}} > Siguiente </Link>
-                            </h2>
-                            <h2>
-                                <Link to = {'/AnalisisFisico'}
-                                state= {{miLote: registroLote
-                                }} > Siguiente 2 </Link>
+                                state= {{ 
+                                    miLote: registroLote
+                                }} > Siguiente </Link>
                             </h2>
                         </div>
                     </div>

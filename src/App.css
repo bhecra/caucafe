@@ -285,6 +285,17 @@ footer {
   width: 15px;
   height: 15px;
 }
+
+.SCAScore{
+  width: inherit;
+  padding: 4px;
+  border: 1px solid black;
+  position: relative;
+
+}
+.SCAScore h2{
+  font-size: 16px;
+}
 .searchdiv {
   align-items: center;
   height: 30px;
@@ -311,4 +322,10 @@ footer {
 
 .tableHeader{
   top: 0px;
+}
+
+.atributosInput{
+  font-size: 16px;
+  margin: 5px;
+  height: fit-content;
 }

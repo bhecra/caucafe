@@ -54,7 +54,6 @@ export type Lote = {
     variedad?: string;
     altura?:number;
     peso?: number;
-    cuppings?: CatacionLote[];
-    cuppingProm?: CatacionLote;
-    analysis?: AnalisisFisico[];
+    cupping?: CatacionLote;
+    analysis?: AnalisisFisico;
 }
