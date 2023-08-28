@@ -8,6 +8,8 @@ import Catacion from './components/Catacion';
 import RegistroLote from './components/RegistroLote'
 
 
+
+
 function App() {
   return (
     <div className="App">
@@ -16,7 +18,7 @@ function App() {
           <Route path="/" element = {<MenuPrincipal/>}></Route>
           <Route path = 'RegistroCaficultor/' element  = {<RegistroCaficultor/>}></Route>
           <Route path = 'AnalisisFisico/' element  = {<AnalisisFisico/>}></Route>
-          <Route path = 'Catacion/' element  = {<Catacion/>}></Route>
+          <Route path="Catacion/" element={<Catacion/>} />
           <Route path = 'RegistroCaficultor/:siguiente' element  = {<RegistroCaficultor/>}></Route>
           <Route path = 'RegistroLote/:siguiente' element = {<RegistroLote/>}></Route>
       </Routes>

@@ -43,6 +43,7 @@ export  type CatacionLote = {
     uniformidadScore?: number;
     tostion?: number;
     variedad?: string;
+    notas?: string;
 }
 export type Lote = {
     codigo?: string;
