@@ -2,10 +2,7 @@ import { useLocation } from "react-router-dom";
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoffeeScoreInput from './CoffeeScoreInput';
-import { CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect } from './MyTypes';
-import axios from 'axios';
-// const twilio = require('twilio');
-// import { TwilioClient } from "twilio-client";
+import {CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect} from './MyTypes';
 // ... ESTILOS ......................
 
 const PageContainer = styled.div`
@@ -93,10 +90,10 @@ const AddCatacionButton = styled.button`
 
 export default function Catacion() {
     const location = useLocation();
-    const { miLote }: { miLote: Lote } = location.state || {};
+    const {miLote }:{miLote:Lote} = location.state || {};
     const [catacionCount, setCatacionCount] = useState(1);
-    const [reactLote, setReactLote] = useState<Lote>(miLote);
-    const [catador, setCatador] = useState('');
+    const [reactLote, setReactLote] = useState<Lote[]>([miLote]);
+    const [catador,setCatador] = useState('');
     /* const falseSCAboxList: SCAboxList = [
             {index:1, value: false},
             {index:2, value: false},
@@ -105,40 +102,28 @@ export default function Catacion() {
             {index:5, value: false},
         ]
     */
-
-
-
-    const MuestraInicial: CatacionLote = {
-        id: 1,
-        codigo: reactLote.codigo,
-        InfoView: false,
-        InfoClass: "InfoInvisible",
-        variedad: reactLote.variedad,
-        proceso: reactLote.proceso,
-        altura: reactLote.altura,
     const muestraVacia: CatacionLote = {
         id: 0,
         dulzor: [
-            { index: 1, value: true },
-            { index: 2, value: true },
-            { index: 3, value: true },
-            { index: 4, value: true },
-            { index: 5, value: true },
+            {index:1, value: true},
+            {index:2, value: true},
+            {index:3, value: true},
+            {index:4, value: true},
+            {index:5, value: true},
         ],
         uniformidad: [
-            { index: 1, value: true },
-            { index: 2, value: true },
-            { index: 3, value: true },
-            { index: 4, value: true },
-            { index: 5, value: true },
+            {index:1, value: true},
+            {index:2, value: true},
+            {index:3, value: true},
+            {index:4, value: true},
+            {index:5, value: true},
         ],
-
         tazaLimpia: [
-            { index: 1, value: true },
-            { index: 2, value: true },
-            { index: 3, value: true },
-            { index: 4, value: true },
-            { index: 5, value: true },
+            {index:1, value: true},
+            {index:2, value: true},
+            {index:3, value: true},
+            {index:4, value: true},
+            {index:5, value: true},
         ],
         defectsList: [],
         uniformidadScore: 10,
@@ -183,21 +168,21 @@ export default function Catacion() {
         setCatacionElements(prevElements => [...prevElements, newCatacionElement]);
         //setReactLote({...reactLote, cu})
     };
-    function handleCatacionProp(id: number, Propiedad: keyof CatacionLote, e: React.ChangeEvent<HTMLInputElement>) {
+    function handleCatacionProp(id:number, Propiedad: keyof CatacionLote,  e:React.ChangeEvent<HTMLInputElement> ){
         const newValue = e.target.value
         setCatacionElements(prevData =>
             prevData.map(data =>
-                data.id === id ? { ...data, [Propiedad]: newValue } : data
+                data.id === id ? { ...data,[Propiedad]: newValue } : data
             )
         );
     }
     function handleInfoView(id: number) {
         setCatacionElements(prevData =>
             prevData.map(data =>
-                data.id === id ? { ...data, InfoView: !data.InfoView } : data
+                data.id === id ? { ...data, InfoView: !data.InfoView} : data
             )
         );
-
+        
     }
     function handleFinalScore(id:number){
         setCatacionElements(elements => 
@@ -262,18 +247,18 @@ export default function Catacion() {
         id: number,
         InputIndex: number
     ) => {
-        let newScore: number = 0;
+        let newScore:number = 0;
         //let newSCABoxList:SCAboxList
-        catacionElements.forEach(catacionElement => {
-            if (catacionElement.id === id) {
-                let newSCABoxList = catacionElement.uniformidad
-                newSCABoxList.forEach(box => {
-                    box.value = box.index === InputIndex ? !box.value : box.value;
-                    if (box.value) newScore += 2
+        catacionElements.forEach(catacionElement=>{
+            if(catacionElement.id===id){
+                let newSCABoxList=catacionElement.uniformidad
+                newSCABoxList.forEach(box=>{
+                    box.value =  box.index===InputIndex? !box.value: box.value;
+                    if(box.value) newScore+=2
                 })
                 setCatacionElements(prevData =>
                     prevData.map(data =>
-                        data.id === id ? { ...data, uniformidad: newSCABoxList, uniformidadScore: newScore } : data
+                        data.id === id ? { ...data, uniformidad:newSCABoxList, uniformidadScore: newScore} : data
                     )
                 );
             }
@@ -298,7 +283,7 @@ export default function Catacion() {
                 })
                 setCatacionElements(prevData =>
                     prevData.map(data =>
-                        data.id === id ? { ...data, tazaLimpia: newSCABoxList, tazaLimpiaScore: newScore, SCAdefectsQty:newDefectsQty } : data
+                        data.id === id ? { ...data, tazaLimpia:newSCABoxList, tazaLimpiaScore: newScore, SCAdefectsQty:newDefectsQty} : data
                     )
                 );
                 handleDefectsChange(catacionElement.id,catacionElement.defectsIntesity || 0)
@@ -306,19 +291,19 @@ export default function Catacion() {
             }
         })
     }
-    function handleDulzorChange(id: number, InputIndex: number) {
-        let newScore: number = 0;
+    function handleDulzorChange(id: number,InputIndex: number) {
+        let newScore:number = 0;
         //let newSCABoxList:SCAboxList
-        catacionElements.forEach(catacionElement => {
-            if (catacionElement.id === id) {
-                let newSCABoxList = catacionElement.dulzor
-                newSCABoxList.forEach(box => {
-                    box.value = box.index === InputIndex ? !box.value : box.value;
-                    if (box.value) newScore += 2
+        catacionElements.forEach(catacionElement=>{
+            if(catacionElement.id===id){
+                let newSCABoxList=catacionElement.dulzor
+                newSCABoxList.forEach(box=>{
+                    box.value =  box.index===InputIndex? !box.value: box.value;
+                    if(box.value) newScore+=2
                 })
                 setCatacionElements(prevData =>
                     prevData.map(data =>
-                        data.id === id ? { ...data, dulzor: newSCABoxList, dulzorScore: newScore } : data
+                        data.id === id ? { ...data, dulzor:newSCABoxList, dulzorScore: newScore} : data
                     )
                 );
             }
@@ -357,23 +342,6 @@ export default function Catacion() {
             )
         )
     }
-
-        // Valida los datos de la catazon
-        if (!valoresCatacion.some((catacionElement) => {
-            return catacionElement.dulzor || catacionElement.uniformidad || catacionElement.tazaLimpia || catacionElement.acidez || catacionElement.cuerpo || catacionElement.balance || catacionElement.complejidad;
-        })) {
-            throw new Error("El campo 'notas' no puede estar vacío");
-        }
-    
-        // Envía los valores de la catazon a tu backend
-        const response = await axios.post('/api/enviar-catacion', valoresCatacion);
-    
-        console.log(response.data);
-    };
-    
-
-    const [valoresCatacion, setValoresCatacion] = useState<CatacionLote[]>(catacionElements);
-
     //handleNuevaCatacion();
     return (
         <div className="Image2Background" >
@@ -382,8 +350,8 @@ export default function Catacion() {
                     <div className="field">
                         <div>
 
-                            <h2 style={{ display: "inline" }}>Catador </h2>
-                            <input type="text" onChange={(e) => handleCatador(e)}></input>
+                        <h2 style={{display:"inline"}}>Catador </h2>
+                        <input type="text" onChange={(e)=>handleCatador(e)}></input>
                         </div>
                     </div>
                 </div>
@@ -391,9 +359,9 @@ export default function Catacion() {
                     {catacionElements.map(catacionElement => (
                         <CatacionContainer key={catacionElement.id}>
                             <CatacionHeader>
-                                <h2>Muestra {catacionElement.id}</h2><br />
-                                <div className="searchdiv" style={{ height: "25px" }}>
-                                    <input autoCapitalize="characters" placeholder="Código" type="text" id="InputCodigoLote" onChange={(event) => handleCatacionProp(catacionElement.id, "codigo", event)} value={catacionElement.codigo}></input>
+                                <h2>Muestra {catacionElement.id}</h2><br/>
+                                <div className="searchdiv" style={{height:"25px"}}>
+                                    <input autoCapitalize="characters"  placeholder="Código" type="text" id="InputCodigoLote" onChange={(event)=>handleCatacionProp(catacionElement.id, "codigo", event)} value={catacionElement.codigo}></input>
                                     <button>Buscar</button>
 
                                 </div>
@@ -413,7 +381,7 @@ export default function Catacion() {
                                 <div>Puntaje final: {catacionElement.finalScore}</div>
                                 <ScoreInputsContainer>
                                     <SCABlock>
-                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
                                             <div className="SCAScore">
                                                 <h2>Total: {catacionElement.fragancia}</h2>
                                             </div>
@@ -474,11 +442,11 @@ export default function Catacion() {
                                     <textarea className="atributosInput" placeholder="Atributos"  onChange={(e)=>handleAtributoChange(catacionElement.id,"residualA",e)}/>
                                     </SCABlock>
                                     <SCABlock>
-                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                                            <div className="SCAScore">
-                                                <h2>Total: {catacionElement.acidez}</h2>
+                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
+                                                <div className="SCAScore">
+                                                    <h2>Total: {catacionElement.acidez}</h2>
+                                                </div>
                                             </div>
-                                        </div>
                                         <CoffeeScoreInput
                                             aspect="Acidez"
                                             score={catacionElement.acidez || 8}
@@ -496,7 +464,7 @@ export default function Catacion() {
                                         />
                                     </SCABlock>
                                     <SCABlock>
-                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
                                             <div className="SCAScore">
                                                 <h2>Total: {catacionElement.cuerpo}</h2>
                                             </div>
@@ -519,37 +487,37 @@ export default function Catacion() {
                                     </SCABlock>
                                     <SCABlock>
                                         <SCABlock>
-                                            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                                                <div className="SCAScore">
-                                                    <h2>Total: {catacionElement.uniformidadScore}</h2>
-                                                </div>
+                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
+                                            <div className="SCAScore">
+                                                <h2>Total: {catacionElement.uniformidadScore}</h2>
                                             </div>
-                                            <div className="SCACheckBox">
-                                                <h2 style={{ fontSize: "16px" }}>Uniformidad</h2>
-                                                {catacionElement.uniformidad.map((scabox) => (
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={scabox.value}
-                                                        onChange={() => {
-                                                            handleUniformidadChange(catacionElement.id, scabox.index);
-                                                        }}
-                                                    />
-                                                ))}
-                                            </div>
+                                        </div>
+                                        <div className="SCACheckBox">
+                                        <h2 style={{fontSize:"16px"}}>Uniformidad</h2>
+                                        {catacionElement.uniformidad.map((scabox) => (
+                                            <input 
+                                                type="checkbox"
+                                                checked={scabox.value}
+                                                onChange={() => {
+                                                    handleUniformidadChange(catacionElement.id, scabox.index);
+                                                }}
+                                            />
+                                        ))}
+                                        </div>
                                         </SCABlock>
                                         <SCABlock>
-                                            <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                                                <div className="SCAScore">
-                                                    <h2>Total: {catacionElement.balance}</h2>
-                                                </div>
+                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
+                                            <div className="SCAScore">
+                                                <h2>Total: {catacionElement.balance}</h2>
                                             </div>
-                                            <CoffeeScoreInput
-                                                aspect="balance"
-                                                score={catacionElement.balance || 8}
-                                                onChange={(value) =>
-                                                    handleScoreChange(catacionElement.id, "balance", value)
-                                                }
-                                            />
+                                        </div>
+                                        <CoffeeScoreInput
+                                            aspect="balance"
+                                            score={catacionElement.balance || 8}
+                                            onChange={(value) =>
+                                                handleScoreChange(catacionElement.id, "balance", value)
+                                            }
+                                        /> 
                                         </SCABlock>
                                     </SCABlock>
                                 {/* Add more CoffeeScoreInput components for other attributes */}
@@ -663,14 +631,5 @@ export default function Catacion() {
                 </div>
             </div>
         </div>
-                </div>
-                <AddCatacionButton onClick={handleNuevaCatacion}>
-                    Agregar Catacion
-                </AddCatacionButton>
-                <button onClick={() => handleEnviarCatacion()}>Enviar catazon</button>
-            </div>
-        </div>
     );
-
-
-
+}
