@@ -6,6 +6,7 @@ import RegistroCaficultor from './components/RegistroCaficultor';
 import AnalisisFisico from './components/AnalisisFisico';
 import Catacion from './components/Catacion';
 import RegistroLote from './components/RegistroLote'
+import PruebaTwilio from './components/PruebaTwilio';
 
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="Catacion/" element={<Catacion/>} />
           <Route path = 'RegistroCaficultor/:siguiente' element  = {<RegistroCaficultor/>}></Route>
           <Route path = 'RegistroLote/:siguiente' element = {<RegistroLote/>}></Route>
+          <Route path = "prueba" element = {<PruebaTwilio/>}> </Route>
       </Routes>
       
       </body>
