@@ -57,7 +57,7 @@ const municipiosCauca: Municipio[] = [
     { id: 341, nombre: 'Totoró' },
     { id: 342, nombre: 'Villa Rica' },
   ];
-function leerInput (InputID:string){
+export function leerInput (InputID:string){
     const HTMLElement = document.getElementById(`${InputID}`) as HTMLInputElement
     const Value = HTMLElement.value
     return Value
