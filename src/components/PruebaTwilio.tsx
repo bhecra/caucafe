@@ -21,6 +21,7 @@ function App() {
         value={data}
         onChange={(e) => setData(e.target.value)}
       />
+      <h1>{data}</h1>
       <button onClick={sendDataToServer}>Enviar Datos</button>
     </div>
   );
