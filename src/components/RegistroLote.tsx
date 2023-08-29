@@ -117,7 +117,7 @@ export default function RegistroLote () {
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
     function cambiarLote(atributo: keyof Lote, id:string){
 		const Input:any = leerInput(id);
-        setRegistroLote({...registroLote, [atributo]:Input})
+        setRegistroLote({...registroLote, [atributo]:Input, numeroCel:Input})
     }
     function CrearLote ():void {
 		setIdLote(generarCodigo())
@@ -130,6 +130,8 @@ export default function RegistroLote () {
         console.log(selectedMunicipio?.nombre)
       };*/
       //<InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
+
+      
     return(
         <div className="ImageBackground">   
             <header className="header">
@@ -189,7 +191,8 @@ export default function RegistroLote () {
                             <h2>
                                 <Link to = {`/${siguiente}`}
                                 state= {{ 
-                                    miLote: registroLote
+                                    miLote: registroLote,
+                                    numeroCel: registroLote?.numeroCel
                                 }} > Siguiente </Link>
                             </h2>
                         </div>
