@@ -3,8 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
-
 const app = express();
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(pino);
 
@@ -20,7 +20,22 @@ app.listen(3001, () =>
 );
 
 
+app.use(bodyParser.json());
 
+app.post('/sendData', (req, res) => {
+  const receivedData = req.body.data;
+  console.log('Received data:', receivedData);
+
+  // Aquí puedes realizar cualquier lógica adicional con los datos recibidos
+  // y enviar una respuesta de vuelta si es necesario.
+
+  res.send('Datos recibidos con éxito en el servidor.');
+});
+
+// const PORT = 3002;
+// app.listen(PORT, () => {
+//   console.log(`Servidor Express ejecutándose en el puerto ${PORT}`);
+// });
   // const client = require("twilio")(
   //   "ACb55a91863b1edc341d35b33984b2f908",
   //   "ca86ec5eb1c7cc0d02f95bb2a1cdf99a"
