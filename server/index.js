@@ -3,11 +3,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
+var cors = require('cors')
 const app = express();
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(pino);
-
+app.use(cors())
 app.get("/api/greeting/:name", (req, res) => {
   const name = req.query.name || req.params.name;
   res.setHeader("Content-Type", "application/json");
@@ -15,38 +16,34 @@ app.get("/api/greeting/:name", (req, res) => {
 
 });
 
-app.listen(3001, () =>
-  console.log("Express server is running on localhost:3001")
-);
-
-
-app.use(bodyParser.json());
-
 app.post('/sendData', (req, res) => {
   const receivedData = req.body.data;
   console.log('Received data:', receivedData);
-
+  
   // Aquí puedes realizar cualquier lógica adicional con los datos recibidos
   // y enviar una respuesta de vuelta si es necesario.
 
   res.send('Datos recibidos con éxito en el servidor.');
 });
+app.listen(3001, () =>
+  console.log("Express server is running on localhost:3001")
+);
 
 // const PORT = 3002;
 // app.listen(PORT, () => {
 //   console.log(`Servidor Express ejecutándose en el puerto ${PORT}`);
 // });
-  // const client = require("twilio")(
-  //   "ACb55a91863b1edc341d35b33984b2f908",
-  //   "ca86ec5eb1c7cc0d02f95bb2a1cdf99a"
-  // );
-  // const mivariable = "hola mundo";
-  // client.messages
-  //   .create({
-  //     body: mivariable,
-  //     from: "whatsapp:+14155238886",
-  //     to: "whatsapp:+573166313394",
-  //   })
-  //   .then((message) => console.log(message.sid));
+  const client = require("twilio")(
+    "ACb55a91863b1edc341d35b33984b2f908",
+    "ca86ec5eb1c7cc0d02f95bb2a1cdf99a"
+  );
+  const mivariable = "hola mundo";
+  client.messages
+    .create({
+      body: mivariable,
+      from: "whatsapp:+14155238886",
+      to: "whatsapp:+573166313394",
+    })
+    .then((message) => console.log(message.sid));
 
   // ESTA FUNCION ES LA QUE MANDA EL MENSAJE A WHATSAPP, COMENTADA PARA QUE NO SE EJECUTE CADA QUE SE INICIE EL PROYECTO Y NO GASTAR LOS CREDITOS DE PUREBA
