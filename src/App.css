@@ -38,6 +38,8 @@ header {
 
 header img{
   width: 50%;
+  background-color: rgba(255, 255, 255, 0.895);
+  border-radius: 50px;
 }
 .unicauca{
   height: 20vh;
@@ -56,9 +58,15 @@ main {
 
 .section-1{
   display: flex;
-  width: 80vw;
+  gap: 50px;
+  width: 80%;
   flex-direction: column;
   align-items: center;
+
+}
+
+.section-1 > img{
+  width: 150px;
 
 }
 
@@ -115,9 +123,13 @@ footer {
   .columna{
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: left;
       width: 20vw;
   }
+  .columna > ul{
+    list-style: none;
+    text-align: left;
+}
   a{
       padding-bottom: 0;
   }
@@ -172,7 +184,7 @@ footer {
 }
 
 .field{
-  background-color: rgb(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.895);
   margin: 0%;
   padding: 10px;
   border-radius: 1rem;
