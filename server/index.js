@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 var cors = require('cors')
 const app = express();
 app.use(bodyParser.json());
@@ -34,8 +35,8 @@ app.listen(3001, () =>
 //   console.log(`Servidor Express ejecutándose en el puerto ${PORT}`);
 // });
   const client = require("twilio")(
-    "ACb55a91863b1edc341d35b33984b2f908",
-    "ca86ec5eb1c7cc0d02f95bb2a1cdf99a"
+    accountSid,
+    authToken,
   );
   const mivariable = "hola mundo";
   client.messages
