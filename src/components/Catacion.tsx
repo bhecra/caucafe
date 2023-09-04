@@ -102,55 +102,55 @@ export default function Catacion() {
             {index:5, value: false},
         ]
     */
-    const muestraVacia: CatacionLote = {
-        id: 0,
-        dulzor: [
-            {index:1, value: true},
-            {index:2, value: true},
-            {index:3, value: true},
-            {index:4, value: true},
-            {index:5, value: true},
-        ],
-        uniformidad: [
-            {index:1, value: true},
-            {index:2, value: true},
-            {index:3, value: true},
-            {index:4, value: true},
-            {index:5, value: true},
-        ],
-        tazaLimpia: [
-            {index:1, value: true},
-            {index:2, value: true},
-            {index:3, value: true},
-            {index:4, value: true},
-            {index:5, value: true},
-        ],
-        defectsList: [],
-        uniformidadScore: 10,
-        dulzorScore: 10,
-        tazaLimpiaScore:10,
-        InfoView: false,
-        InfoClass: "InfoInvisible",
-        defectsQty: 0,
-        SCAdefectsQty: 0,
-        SCAdefects: 0,
-        fragancia: 6,
-        sabor: 6,
-        residual: 6,
-        acidez: 6,
-        cuerpo: 6,
-        balance: 6,
-        puntajeCatador: 6,
-        finalScore: 0,
-        defectsIntesity: 2
-    }
+        const catacionVacia: CatacionLote = {
+            id: 0,
+            dulzor: [
+                {index:1, value: true},
+                {index:2, value: true},
+                {index:3, value: true},
+                {index:4, value: true},
+                {index:5, value: true},
+              ],
+            uniformidad: [
+                {index:1, value: true},
+                {index:2, value: true},
+                {index:3, value: true},
+                {index:4, value: true},
+                {index:5, value: true},
+            ],
+            tazaLimpia: [
+                {index:1, value: true},
+                {index:2, value: true},
+                {index:3, value: true},
+                {index:4, value: true},
+                {index:5, value: true},
+            ],
+            defectsList: [],
+            uniformidadScore: 10,
+            dulzorScore: 10,
+            tazaLimpiaScore:10,
+            InfoView: false,
+            InfoClass: "InfoInvisible",
+            defectsQty: 0,
+            SCAdefectsQty: 0,
+            SCAdefects: 0,
+            fragancia: 6,
+            sabor: 6,
+            residual: 6,
+            acidez: 6,
+            cuerpo: 6,
+            balance: 6,
+            puntajeCatador: 6,
+            finalScore: 0,
+            defectsIntesity: 2
+        }
     const MuestraInicial:CatacionLote = {
-        ...muestraVacia,
+        ...catacionVacia,
         id: 1,
-        codigo: miLote.codigo,
-        variedad: miLote.variedad,
-        proceso: miLote.proceso,
-        altura: miLote.altura,
+        codigo: miLote?.codigo || '',
+        variedad: miLote?.variedad,
+        proceso: miLote?.proceso,
+        altura: miLote?.altura,
 
     }
     const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([MuestraInicial]);
@@ -162,7 +162,7 @@ export default function Catacion() {
         const newCatacionCount = catacionCount + 1;
         setCatacionCount(newCatacionCount);
         const newCatacionElement: CatacionLote = {
-            ...muestraVacia,
+            ...catacionVacia,
             id: newCatacionCount,
         };
         setCatacionElements(prevElements => [...prevElements, newCatacionElement]);

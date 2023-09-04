@@ -4,7 +4,7 @@ import coffeeBeansImage from "../assets/images/coffee-beans.svg"
 import farmer from "../assets/images/farmer_2979790.svg"
 import bean from "../assets/images/search-coffe-bean.svg"
 import smell from "../assets/images/smell_5235019.svg"
-
+import { Lote, CatacionLote } from "./MyTypes";
 const sectionsData = [
     {
       imageSrc: coffeeBeansImage,

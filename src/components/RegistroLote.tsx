@@ -1,4 +1,4 @@
- import {Link, useParams,} from "react-router-dom";
+ import {Link, useParams, useLocation} from "react-router-dom";
 //import InputTexto from "./InputTexto";
 import { useState } from "react";
 //import UbicacionesGeograficas from "./UbicacionesGeograficas";
@@ -99,19 +99,12 @@ const variedadesCafe:listItems[] = [
         }
         return codigoGenerado;
     }
-type InfoRegistro = {
-    nombreCaficultor?:string,
-    proceso?:string,
-    municipio?:string,
-    variedad?:string,
-    numeroCel?:string,
-    altura?: number,
-    peso?: number,
-}
+
 export default function RegistroLote () {
+    const location = useLocation();
+    const {miLote }:{miLote:Lote} = location.state || {};
     const {siguiente} = useParams();
-	const [idLote, setIdLote] = useState('')
-    const [registroLote, setRegistroLote] = useState<Lote>()
+    const [registroLote, setRegistroLote] = useState<Lote>(miLote)
     //Falta Altura (msnm) 
 
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
@@ -120,7 +113,6 @@ export default function RegistroLote () {
         setRegistroLote({...registroLote, [atributo]:Input, numeroCel:Input})
     }
     function CrearLote ():void {
-		setIdLote(generarCodigo())
         setRegistroLote({...registroLote, codigo:generarCodigo()})
       }
       /*const handleMunicipioChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -135,7 +127,9 @@ export default function RegistroLote () {
     return(
         <div className="ImageBackground">   
             <header className="header">
-                <img width={300} src= {logo} alt="logo-caucafe"></img>
+                <Link to={"/"}>
+                    <img width={300} src= {logo} alt="logo-caucafe"></img>
+                </Link>
             </header>
             <div className="field">   
                 <div className="loteForm">
@@ -183,19 +177,22 @@ export default function RegistroLote () {
                         </select>
                     </div>
                     <div className="campoBoton">
-                        <button onClick ={CrearLote} className="botonGuardar">Generar</button>
-                    </div>
-                    <div className="bottomRegistro">
+                        <button onClick ={CrearLote} >Generar</button>
                         <h3> Codigo de Lote: {registroLote?.codigo}</h3>
-                        <div className="siguiente">
-                            <h2>
-                                <Link to = {`/${siguiente}`}
-                                state= {{ 
-                                    miLote: registroLote,
-                                    numeroCel: registroLote?.numeroCel
-                                }} > Siguiente </Link>
-                            </h2>
-                        </div>
+                        <button>
+                            <Link to = {'/AnalisisFisico'}
+                            state= {{ 
+                                miLote: registroLote,
+                                numeroCel: registroLote?.numeroCel
+                            }} > Análisis Físico </Link>
+                        </button><br/>
+                        <button>
+                            <Link to = {'/Catacion'}
+                            state= {{ 
+                                miLote: registroLote,
+                                numeroCel: registroLote?.numeroCel
+                            }} > Catación </Link>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -32,8 +32,8 @@ export default function AnalisisFisico ()  {
        <div className="Inputs">
            <body>
             <h1>
-                {reactLote.nombreCaficultor}
-                {reactLote.altura}
+                {reactLote?.nombreCaficultor}
+                {reactLote?.altura}
             </h1>
            </body>
         </div>

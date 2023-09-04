@@ -202,14 +202,30 @@ footer {
   padding-top: 5%;
 }
 
-@media (min-width: 768px) {
-   
 
+   
+.campoBoton{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+.campoBoton button, .campoBoton a{
+  background-color: #9c0101;
+  color: white;
+  padding: .2rem .2rem;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  width: 300px;
+  text-align: center;
+  border: none;
+}
 
 .siguiente-lote{  
   padding-top: 5%;
   padding-bottom: 2%;
-}
 }
 
 .campoRegistroLote{
@@ -218,7 +234,7 @@ footer {
   align-self: center;
 }
 
-.campoRegistroLote input, select{
+.campoRegistroLote input, .campoRegistroLote select{
   background-color: white;
   color: black;
   width: 100%;
@@ -234,32 +250,16 @@ footer {
   padding-left: 10px;
 }
 
-.botonGuardar{
-  background-color: #9c0101;
-  color: white;
-  padding: .2rem .2rem;
-  text-decoration: none;
-  text-transform: none;
-  font-weight: bold;
-  border-radius: 0.5rem;
-  width: 40%;
-  text-align: center;
-  border: none;
-}
 
-.bottomRegistro h3{
-  padding-top: 1%;
-}
-.bottomRegistro h4{
-  padding-top: 1%;
-}
+
 
 .siguiente{
   display: flex;
-  justify-content: center;
-  padding-top: 1%;
-  padding-bottom: 2%;
-  width: 100%;
+  flex-direction: column;
+
+}
+.siguiente h2{
+  height: 50px;
 }
 
 .siguiente a{
