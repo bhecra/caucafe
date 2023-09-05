@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoffeeScoreInput from './CoffeeScoreInput';
 import {CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect} from './MyTypes';
+import {LoteInfo} from "./LoteInfo";
 // ... ESTILOS ......................
 
 const PageContainer = styled.div`
@@ -82,7 +83,7 @@ const CatacionScoreInputs = styled.div`
   flex-direction: row !important;
 `;
 const AddCatacionButton = styled.button`
-    display: none;
+    
   margin-bottom: 20px;
   /* Other styles you want to apply */
 `;
@@ -102,48 +103,48 @@ export default function Catacion() {
             {index:5, value: false},
         ]
     */
-        const catacionVacia: CatacionLote = {
-            id: 0,
-            dulzor: [
-                {index:1, value: true},
-                {index:2, value: true},
-                {index:3, value: true},
-                {index:4, value: true},
-                {index:5, value: true},
-              ],
-            uniformidad: [
-                {index:1, value: true},
-                {index:2, value: true},
-                {index:3, value: true},
-                {index:4, value: true},
-                {index:5, value: true},
+    const catacionVacia: CatacionLote = {
+        id: 0,
+        dulzor: [
+            {index:1, value: true},
+            {index:2, value: true},
+            {index:3, value: true},
+            {index:4, value: true},
+            {index:5, value: true},
             ],
-            tazaLimpia: [
-                {index:1, value: true},
-                {index:2, value: true},
-                {index:3, value: true},
-                {index:4, value: true},
-                {index:5, value: true},
-            ],
-            defectsList: [],
-            uniformidadScore: 10,
-            dulzorScore: 10,
-            tazaLimpiaScore:10,
-            InfoView: false,
-            InfoClass: "InfoInvisible",
-            defectsQty: 0,
-            SCAdefectsQty: 0,
-            SCAdefects: 0,
-            fragancia: 6,
-            sabor: 6,
-            residual: 6,
-            acidez: 6,
-            cuerpo: 6,
-            balance: 6,
-            puntajeCatador: 6,
-            finalScore: 0,
-            defectsIntesity: 2
-        }
+        uniformidad: [
+            {index:1, value: true},
+            {index:2, value: true},
+            {index:3, value: true},
+            {index:4, value: true},
+            {index:5, value: true},
+        ],
+        tazaLimpia: [
+            {index:1, value: true},
+            {index:2, value: true},
+            {index:3, value: true},
+            {index:4, value: true},
+            {index:5, value: true},
+        ],
+        defectsList: [],
+        uniformidadScore: 10,
+        dulzorScore: 10,
+        tazaLimpiaScore:10,
+        InfoView: false,
+        InfoClass: "InfoInvisible",
+        defectsQty: 0,
+        SCAdefectsQty: 0,
+        SCAdefects: 0,
+        fragancia: 6,
+        sabor: 6,
+        residual: 6,
+        acidez: 6,
+        cuerpo: 6,
+        balance: 6,
+        puntajeCatador: 6,
+        finalScore: 0,
+        defectsIntesity: 2
+    }
     const MuestraInicial:CatacionLote = {
         ...catacionVacia,
         id: 1,
@@ -167,7 +168,7 @@ export default function Catacion() {
         };
         setCatacionElements(prevElements => [...prevElements, newCatacionElement]);
         //setReactLote({...reactLote, cu})
-    };
+    }
     function handleCatacionProp(id:number, Propiedad: keyof CatacionLote,  e:React.ChangeEvent<HTMLInputElement> ){
         const newValue = e.target.value
         setCatacionElements(prevData =>
@@ -176,14 +177,7 @@ export default function Catacion() {
             )
         );
     }
-    function handleInfoView(id: number) {
-        setCatacionElements(prevData =>
-            prevData.map(data =>
-                data.id === id ? { ...data, InfoView: !data.InfoView} : data
-            )
-        );
-        
-    }
+    
     function handleFinalScore(id:number){
         setCatacionElements(elements => 
             elements.map(element =>{
@@ -363,19 +357,8 @@ export default function Catacion() {
                                 <div className="searchdiv" style={{height:"25px"}}>
                                     <input autoCapitalize="characters"  placeholder="Código" type="text" id="InputCodigoLote" onChange={(event)=>handleCatacionProp(catacionElement.id, "codigo", event)} value={catacionElement.codigo}></input>
                                     <button>Buscar</button>
-
                                 </div>
-                                <a style={{fontSize:"14px", color:"black", display:"block"}} href="/RegistroLote/Catacion" target="_blank"> Registrar Lote</a> <br/>
-                                <button style={{fontSize:"16px", borderRadius: "0.5em", padding:"3px"}} onClick={e=>{handleInfoView(catacionElement.id)}}>Info</button>
-                                <div className={catacionElement.InfoView? "InfoVisible":"InfoInvisible"}><br/>
-                                    <p style={{fontSize:"14px"}} id="catacionInfoLote">
-                                        Caficultor: {miLote.nombreCaficultor}<br/>
-                                        Municipio: {miLote.municipio}<br/>
-                                        Altura: {catacionElement?.altura} msnm<br/>
-                                        Variedad: {catacionElement?.variedad}<br/>
-                                        Proceso: {catacionElement.proceso}
-                                    </p>
-                                </div>
+                                <LoteInfo miLote={miLote} />
                             </CatacionHeader>
                             <CatacionData >
                                 <div>Puntaje final: {catacionElement.finalScore}</div>
@@ -612,7 +595,7 @@ export default function Catacion() {
                                         ))}
                                     </select>
                                     <button onClick={()=>handleAddDefect(catacionElement.id)}>Agregar</button>
-                                    <h1>{defectValue.id}{defectValue.name}</h1>
+                                    
                                     {catacionElement.defectsList.map((row) => (
                                         <tr key={row.id}>
                                         <td>{row.name}</td>

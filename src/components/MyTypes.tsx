@@ -1,8 +1,13 @@
 export type defectoFisico = {
-    nombreDefecto: string;
-    peso?: number;
-    porcentaje: number;
+    id:number;
+    name: string;
+    group: 1 | 2;
 };
+export type samplePhysicalDefect = {
+    defect: defectoFisico,
+    peso:number,
+    porcentaje: number,
+}
 export type CupDefect = {
     id:number;
     name: string;
@@ -31,7 +36,20 @@ export const predefinedDefects: CupDefect[] = [
     { id: 19, name: 'Metálico' },
     { id: 20, name: 'Ahumado' },
   ];
-  
+export const predefinedPhysicalDefects: defectoFisico[] = [
+    {id:1, name: 'Brocado leve', group: 1 },
+    {id:11, name: 'Brocado severo', group: 1 },
+    {id:2, name: 'Negro parcial', group: 1 },
+    {id:3, name: 'Negro total', group: 1 },
+    {id:4, name: 'Vinagre', group: 1 },
+    {id:5, name: 'Cardenillo', group: 1 },
+    {id:6, name: 'Cereza', group: 1 },
+    {id:7, name: 'Inmaduro', group: 1 },
+    {id:8, name: 'Concha', group: 1 },
+    {id:9, name: 'Vano', group: 1 },
+    {id:10, name: 'Averanado', group: 1 }
+
+]
 export type SCAbox = {
     index:number;
     value: boolean;
@@ -41,8 +59,17 @@ export type puntajeSCA =
 
 export type SCAboxList =  [SCAbox,SCAbox,SCAbox,SCAbox,SCAbox]
 export type AnalisisFisico = {
-    defectos?: defectoFisico[];
-    factordeRendimiento?: number;
+    sampleWeight:number
+    humidity?: number
+    aw?: number
+    volume?:number
+    excelso?:number
+    defects: samplePhysicalDefect[]
+    factordeRendimiento?: number
+    Merma?: number
+    pcDefects?:number
+    density?: number
+    mallas?: {numero: number, weight:number, pc:number}[]
 }
 export type SCAScoring = {
     

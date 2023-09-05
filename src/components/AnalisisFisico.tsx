@@ -1,41 +1,124 @@
 //import { useState } from "react";
 import { useLocation, } from "react-router-dom";
-import { useState } from "react";
-import { Lote } from "./MyTypes";
+import { HTMLInputTypeAttribute, useState } from "react";
+import { AnalisisFisico, Lote, defectoFisico, predefinedPhysicalDefects, samplePhysicalDefect } from "./MyTypes";
+import {LoteCodigo, LoteInfo} from "./LoteInfo";
 //import AnalisisFisicoLote from "./AnalisisFisicoLote";
 //(import '.../public/css/registerCaficultor.css';
 //<AnalisisFisicoLote {...codigo:"w4e234"; variedad:Variedad; altura:1800; proceso:"Lavado"}/>
-function AnalisisFisicoLote ({codigo, variedad, altura, proceso, municipio}:{codigo:string, variedad:string, altura:number, proceso:string, municipio:string}) {
-    //export default function AnalisisFisicoLote  ({codigo, altura}:{codigo:string, altura:number}) {
-    console.log("Entre a la funcion")
-    return (
-            <div>
-                <body>
+function createAnalisisFisico():AnalisisFisico {
+    let newAnalisis: AnalisisFisico = {
+        sampleWeight: 1,
+        defects: [],
+    }
+    return newAnalisis
+}
+function InputAnalisis ({propLote,inputLabel,inputValue,handleFcn}: {propLote:keyof AnalisisFisico, inputLabel:string, inputValue:number | undefined, handleFcn:(prop: keyof AnalisisFisico,  e:React.ChangeEvent<HTMLInputElement>)=>void}){
+    return(
+        <div className="InputAnalisis ">
+            <label>{inputLabel}</label>
+            <input className="LoteInput" type="number" onChange={e=>handleFcn(propLote, e)} value={inputValue}></input>
+        </div> 
+    )
+}
 
-                    <h2>Codigo del lote {codigo}</h2>
-                    <h2>Nombre de caficultor: {variedad}</h2>
-                    <h2>Municipio de cultivo: {municipio}</h2>
-                    <h2>Variedad de cultivo: {variedad}</h2>
-                    <h1> Este es el análisis fisico</h1>
-                </body>
-            </div>
-    )}
-export default function AnalisisFisico ()  {
+export default function AnalisisFisicoPage ()  {
     const location= useLocation()
     const { miLote}:{miLote:Lote} = location.state || {};
     const [reactLote, setReactLote] = useState(miLote);
-    //const {ID, NombreCaficultor,  Municipio, Variedad, AlturaLote, ProcesoLote}:{ID:string, NombreCaficultor:string,  Municipio:string, Variedad:string, AlturaLote:number, ProcesoLote:string} = data || {};
-    //const {data} = useLocation()                      
+    const [newAnalisis, setNewAnalisis] = useState<AnalisisFisico>({sampleWeight: 1,defects: []})
+    const [selectedDefect, setSelectedDefect] = useState<defectoFisico>({id:0, name:'', group:1})
+    const [defectWeight, setDefectWeight] = useState(0)
     
-        //<AnalisisFisicoLote  codigo={ID} variedad = {Variedad} municipio ={Municipio} altura={AlturaLote} proceso ={ProcesoLote} />
+    function handleCodigo(e:React.ChangeEvent<HTMLInputElement>){
+        setReactLote({...miLote, codigo:e.target.value})
+    }
+    function handleProp(prop: keyof AnalisisFisico, e:React.ChangeEvent<HTMLInputElement>){
+        
+        setNewAnalisis({...newAnalisis, [prop]: e.target.value})
+    }
+    
+    function TabladeDefectos (){
+        
+        function handleDefectValue(event: React.ChangeEvent<HTMLSelectElement>):void {
+            const newName:string = event.target.value
+            const newDefect: defectoFisico = predefinedPhysicalDefects.find((defecto)=>defecto.name===newName) || selectedDefect
+            setSelectedDefect(newDefect)
+        }
+        function handleDefectWeight (e:React.ChangeEvent<HTMLInputElement>){
+            const newDefectWeight = e.target.valueAsNumber
+            setDefectWeight(newDefectWeight)
+        }
+        function handleAddDefect():void{
+            const added:boolean = newAnalisis.defects?.some(defecto=>defecto.defect.name===selectedDefect.name)
+            if(!added) {
+                const newPorcentaje:number = defectWeight/newAnalisis?.sampleWeight*100
+                const newSamplePhysicalDefect:samplePhysicalDefect = {defect:selectedDefect, peso:defectWeight, porcentaje:newPorcentaje}
+                console.log(newSamplePhysicalDefect)
+                const newDefectsList= newAnalisis.defects.concat(newSamplePhysicalDefect)
+                console.log(newDefectsList)
+                setNewAnalisis({...newAnalisis, defects:newDefectsList})
+            }
+            else console.log("Defecto añadido")
+        }
+        return(
+            <div className="InputAnalisis">
+                <h1>Defectos</h1>
+                <select value={selectedDefect.name} onChange={(e)=>handleDefectValue(e)}>
+                    <option value="">Seleccione un defecto</option>
+                    {predefinedPhysicalDefects.map(defecto=>(
+                        <option key={defecto.id}>
+                            {defecto.name}
+                        </option>
+                    ))}
+                </select>
+                <label>Peso [g]:</label>
+                <input  type="number" value={defectWeight} onChange={(e)=>handleDefectWeight(e)}></input>
+                <button onClick={handleAddDefect} >Agregar</button>
+                <h2>{selectedDefect.name} id: {selectedDefect.id} w {defectWeight} g: {selectedDefect.group}</h2>
+                {newAnalisis.defects?.map((defecto)=>(
+                    <tr key={defecto.defect.id}>
+                        <td>{defecto.defect.name}</td>
+                        <td>{defecto.peso} g</td>
+                        <td>{defecto.porcentaje} %</td>
+                    </tr>
+                ))}
+            </div>
+        )
+    }
     return(
-       <div className="Inputs">
-           <body>
-            <h1>
-                {reactLote?.nombreCaficultor}
-                {reactLote?.altura}
-            </h1>
-           </body>
+        <div>
+            <div className="LoteHeader">
+                <LoteCodigo miLote={reactLote} handleCodigo={handleCodigo}/>
+                <LoteInfo miLote={reactLote}/>
+            </div>
+            <div>
+                <InputAnalisis
+                    inputValue={newAnalisis?.sampleWeight}
+                    propLote={"sampleWeight"}
+                    handleFcn={handleProp}
+                    inputLabel="Peso de la muestra [g]:  "
+                />
+                <InputAnalisis 
+                    propLote={"volume"} 
+                    inputValue={newAnalisis?.volume} 
+                    handleFcn={handleProp}
+                    inputLabel="Volumen [ml]:  "
+                />
+                <InputAnalisis 
+                    inputValue={newAnalisis?.humidity} 
+                    propLote={"humidity"} 
+                    handleFcn={handleProp}
+                    inputLabel="Humedad [%]:  "
+                />
+                <InputAnalisis 
+                    inputValue={newAnalisis?.aw} 
+                    propLote={"aw"} 
+                    handleFcn={handleProp}
+                    inputLabel="Actvidad de agua:  "
+                />
+                <TabladeDefectos/>
+            </div>
         </div>
     )
 }
