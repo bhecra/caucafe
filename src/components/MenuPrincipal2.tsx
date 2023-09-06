@@ -4,17 +4,22 @@ import { Lote, CatacionLote } from "./MyTypes";
 import { Link } from 'react-router-dom';
 import fondo from "../assets/images/fondo.png"
 import logo from "../logo.svg"
+import ReactDOM from 'react-dom'
+//@ts-ignore
+import { Helmet } from 'react-helmet';
 
-  const miLote:Lote = {
-    codigo: '',
-    nombreCaficultor: '',
-    municipio: '',
-    proceso: '',
-    variedad: '',
-}
+const miLote:Lote = {
+  codigo: '',}
+
 export default function MenuPrincipal() {
   return (
+  
     <main className="main">
+      <div>
+      <Helmet>
+      <title>Menu Principal</title>
+    </Helmet>
+      </div>
       <div className='imgFondoMP'>
         <div className='boxShadow'>
 

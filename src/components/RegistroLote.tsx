@@ -1,10 +1,12 @@
- import {Link, useParams, useLocation} from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 //import InputTexto from "./InputTexto";
 import { useState } from "react";
 //import UbicacionesGeograficas from "./UbicacionesGeograficas";
 //import { useState } from "react";
 import logo from "../assets/images/logo.svg";
 import { Lote } from "./MyTypes";
+//@ts-ignore
+import { Helmet } from 'react-helmet';
 type listItems = {
     id: number
     nombre: string
@@ -12,7 +14,7 @@ type listItems = {
 interface Municipio {
     id: number;
     nombre: string;
-  }
+}
 const municipiosCauca: Municipio[] = [
     { id: 301, nombre: 'Almaguer' },
     { id: 302, nombre: 'Argelia' },
@@ -56,142 +58,147 @@ const municipiosCauca: Municipio[] = [
     { id: 340, nombre: 'Toribío' },
     { id: 341, nombre: 'Totoró' },
     { id: 342, nombre: 'Villa Rica' },
-  ];
-export function leerInput (InputID:string){
+];
+export function leerInput(InputID: string) {
     const HTMLElement = document.getElementById(`${InputID}`) as HTMLInputElement
     const Value = HTMLElement.value
     return Value
 }
-const procesos:listItems[] = [
-    {id:0,nombre:"Lavado"},
-    {id:1,nombre:"Natural"},
-    {id:2,nombre:"Honey"},
-    {id:3,nombre:"Fermentación"},
-    {id:4,nombre:"Otro"}
+const procesos: listItems[] = [
+    { id: 0, nombre: "Lavado" },
+    { id: 1, nombre: "Natural" },
+    { id: 2, nombre: "Honey" },
+    { id: 3, nombre: "Fermentación" },
+    { id: 4, nombre: "Otro" }
 ]
-const variedadesCafe:listItems[] = [
-    {id:0,nombre:"Otra"},
-    {id:1,nombre:"Bourbon"},
-    {id:2,nombre:"Bourbon Rosado"},
-    {id:3,nombre:"Castillo"},
-    {id:4,nombre:"Catimore"},
-    {id:5,nombre:"Caturra"},
-    {id:6,nombre:"Cenicafe 1"},
-    {id:7,nombre:"Chiroso"},
-    {id:8,nombre:"Colombia"},
-    {id:9,nombre:"Geisha"},
-    {id:10,nombre:"Laurina"},
-    {id:11,nombre:"Maragogipie"},
-    {id:12,nombre:"Pacamara"},
-    {id:13,nombre:"Sidra"},
-    {id:14,nombre:"Sudan Rume"},
-    {id:15,nombre:"Supremo"},
-    {id:16,nombre:"Tabi"},
+const variedadesCafe: listItems[] = [
+    { id: 0, nombre: "Otra" },
+    { id: 1, nombre: "Bourbon" },
+    { id: 2, nombre: "Bourbon Rosado" },
+    { id: 3, nombre: "Castillo" },
+    { id: 4, nombre: "Catimore" },
+    { id: 5, nombre: "Caturra" },
+    { id: 6, nombre: "Cenicafe 1" },
+    { id: 7, nombre: "Chiroso" },
+    { id: 8, nombre: "Colombia" },
+    { id: 9, nombre: "Geisha" },
+    { id: 10, nombre: "Laurina" },
+    { id: 11, nombre: "Maragogipie" },
+    { id: 12, nombre: "Pacamara" },
+    { id: 13, nombre: "Sidra" },
+    { id: 14, nombre: "Sudan Rume" },
+    { id: 15, nombre: "Supremo" },
+    { id: 16, nombre: "Tabi" },
 ]
 
- function generarCodigo(): string {
-        const caracteresValidos = '0123456789ABCDE';
-        const longitudCodigo = 5;
-        let codigoGenerado = '';
-        for (let i = 0; i < longitudCodigo; i++) {
-          const indiceAleatorio = Math.floor(Math.random() * caracteresValidos.length);
-          codigoGenerado += caracteresValidos.charAt(indiceAleatorio);
-        }
-        return codigoGenerado;
+function generarCodigo(): string {
+    const caracteresValidos = '0123456789ABCDE';
+    const longitudCodigo = 5;
+    let codigoGenerado = '';
+    for (let i = 0; i < longitudCodigo; i++) {
+        const indiceAleatorio = Math.floor(Math.random() * caracteresValidos.length);
+        codigoGenerado += caracteresValidos.charAt(indiceAleatorio);
     }
+    return codigoGenerado;
+}
 
-export default function RegistroLote () {
+export default function RegistroLote() {
     const location = useLocation();
-    const {miLote }:{miLote:Lote} = location.state || {};
-    const {siguiente} = useParams();
+    const { miLote }: { miLote: Lote } = location.state || {};
+    const { siguiente } = useParams();
     const [registroLote, setRegistroLote] = useState<Lote>(miLote)
     //Falta Altura (msnm) 
 
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
-    function cambiarLote(atributo: keyof Lote, id:string){
-		const Input:any = leerInput(id);
-        setRegistroLote({...registroLote, [atributo]:Input, numeroCel:Input})
+    function cambiarLote(atributo: keyof Lote, id: string) {
+        const Input: any = leerInput(id);
+        setRegistroLote({ ...registroLote, [atributo]: Input, numeroCel: Input })
     }
-    function CrearLote ():void {
-        setRegistroLote({...registroLote, codigo:generarCodigo()})
-      }
-      /*const handleMunicipioChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const municipioId = parseInt(event.target.value);
-        const selectedMun = municipiosCauca.find(mun => mun.id === municipioId);
-        setSelectedMunicipio(selectedMun || null);
-        console.log(selectedMunicipio?.nombre)
-      };*/
-      //<InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
+    function CrearLote(): void {
+        setRegistroLote({ ...registroLote, codigo: generarCodigo() })
+    }
+    /*const handleMunicipioChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const municipioId = parseInt(event.target.value);
+      const selectedMun = municipiosCauca.find(mun => mun.id === municipioId);
+      setSelectedMunicipio(selectedMun || null);
+      console.log(selectedMunicipio?.nombre)
+    };*/
+    //<InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
 
-      
-    return(
-        <div className="ImageBackground">   
+
+    return (
+
+        <div className="ImageBackground">
+            <div>
+                <Helmet>
+                    <title>Registro Lote</title>
+                </Helmet> </div>
             <header className="header">
                 <Link to={"/"}>
-                    <img width={300} src= {logo} alt="logo-caucafe"></img>
+                    <img width={300} src={logo} alt="logo-caucafe"></img>
                 </Link>
             </header>
-            <div className="field">   
+            <div className="field">
                 <div className="loteForm">
                     <div className="campoRegistroLote">
-                        <label htmlFor="NombreCaficultor"> Nombre de caficultor </label> 
-                        <input type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e=>cambiarLote("nombreCaficultor", "NombreCaficultor")}/><br/>
+                        <label htmlFor="NombreCaficultor"> Nombre de caficultor </label>
+                        <input type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e => cambiarLote("nombreCaficultor", "NombreCaficultor")} /><br />
                     </div>
                     <div className="campoRegistroLote">
-                        <label htmlFor="idCaficultor"> Número de cédula </label> 
-                        <input type="text" name="idCaficultor" id={"idCaficultor"} onChange={e=>cambiarLote("idCaficultor", "idCaficultor")}/><br/>
+                        <label htmlFor="idCaficultor"> Número de cédula </label>
+                        <input type="text" name="idCaficultor" id={"idCaficultor"} onChange={e => cambiarLote("idCaficultor", "idCaficultor")} /><br />
                     </div>
                     <div className="campoRegistroLote">
                         <label htmlFor="celular">Telefono</label>
-                        <input type="tel" id ="celular"   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 3161112222" onChange={e=>cambiarLote("numeroCel","celular")}></input>
+                        <input type="tel" id="celular" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 3161112222" onChange={e => cambiarLote("numeroCel", "celular")}></input>
                     </div>
                     <div className="campoRegistroLote">
                         <label>Municipio de Cultivo:  </label>
-                        <select id= "MunicipioSelect" onChange={e=>cambiarLote("municipio", "MunicipioSelect")} className="input-text">
+                        <select id="MunicipioSelect" onChange={e => cambiarLote("municipio", "MunicipioSelect")} className="input-text">
                             <option value={0}>Selecciona un municipio</option>
                             {municipiosCauca.map(mun => (
-                            <option key={mun.id} value={mun.nombre}>{mun.nombre}</option>
+                                <option key={mun.id} value={mun.nombre}>{mun.nombre}</option>
                             ))}
                         </select>
                     </div>
                     <div className="campoRegistroLote">
                         <label>Altura de la finca (msnm)</label>
-                        <input type="number" id="alturaFinca" onChange={e=>cambiarLote("altura", "alturaFinca")}></input>
+                        <input type="number" id="alturaFinca" onChange={e => cambiarLote("altura", "alturaFinca")}></input>
                     </div>
                     <div className="campoRegistroLote">
                         <label htmlFor="pesoLote">Peso del lote (Kg)</label>
-                        <input value={registroLote?.peso} type="number" id="pesoLote" onChange={e=>cambiarLote("peso", "pesoLote")}></input>
+                        <input value={registroLote?.peso} type="number" id="pesoLote" onChange={e => cambiarLote("peso", "pesoLote")}></input>
                     </div>
                     <div className="campoRegistroLote">
                         <label>Variedad</label>
-                        <select  id="variedadLote" onChange={e=>cambiarLote("variedad", "variedadLote")} className="input-text">
+                        <select id="variedadLote" onChange={e => cambiarLote("variedad", "variedadLote")} className="input-text">
                             <option>Seleccione</option>
-                            {variedadesCafe.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
+                            {variedadesCafe.map(vari => (<option key={vari.id}>{vari.nombre}</option>))}
                         </select>
                     </div>
                     <div className="campoRegistroLote">
                         <label >Proceso</label>
-                        <select  id="procesoLote" onChange={e=>cambiarLote("proceso", "procesoLote")} className="input-text">
+                        <select id="procesoLote" onChange={e => cambiarLote("proceso", "procesoLote")} className="input-text">
                             <option>Seleccione</option>
-                            {procesos.map(vari => ( <option key={vari.id}>{vari.nombre}</option>))}
+                            {procesos.map(vari => (<option key={vari.id}>{vari.nombre}</option>))}
                         </select>
                     </div>
                     <div className="campoBoton">
-                        <button onClick ={CrearLote} >Generar</button>
+                        <button onClick={CrearLote} >Generar</button>
                         <h3> Codigo de Lote: {registroLote?.codigo}</h3>
                         <button>
-                            <Link to = {'/AnalisisFisico'}
-                            state= {{ 
-                                miLote: registroLote,
-                                numeroCel: registroLote?.numeroCel
-                            }} > Análisis Físico </Link>
-                        </button><br/>
+                            <Link to={'/AnalisisFisico'}
+                                state={{
+                                    miLote: registroLote,
+                                    numeroCel: registroLote?.numeroCel
+                                }} > Análisis Físico </Link>
+                        </button><br />
                         <button>
-                            <Link to = {'/Catacion'}
-                            state= {{ 
-                                miLote: registroLote,
-                                numeroCel: registroLote?.numeroCel
-                            }} > Catación </Link>
+                            <Link to={'/Catacion'}
+                                state={{
+                                    miLote: registroLote,
+                                    numeroCel: registroLote?.numeroCel
+                                }} > Catación </Link>
                         </button>
                     </div>
                 </div>

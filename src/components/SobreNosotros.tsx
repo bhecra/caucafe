@@ -3,40 +3,45 @@ import logo from "../logo.svg"
 import foto from "../assets/images/fotos-devs.png"
 import { Link } from 'react-router-dom';
 import { Lote, CatacionLote } from "./MyTypes";
-
-const miLote:Lote = {
-    codigo: '',
-    nombreCaficultor: '',
-    municipio: '',
-    proceso: '',
-    variedad: '',
+//@ts-ignore
+import { Helmet } from 'react-helmet';
+const miLote: Lote = {
+  codigo: '',
+  nombreCaficultor: '',
+  municipio: '',
+  proceso: '',
+  variedad: '',
 }
 
 
 export default function SobreNosotros() {
-    return (
-        <main className="">
-            <div className="headerMP">
-                <img src={logo} alt="logo" />
-                <Link to={'/RegistroLote'}
+  return (
+    <main className="">
+      <div>
+        <Helmet>
+          <title>Sobre Nosotros</title>
+        </Helmet> </div>
+      <div className="headerMP">
+        <img src={logo} alt="logo" />
+        <Link to={'/RegistroLote'}
           state={{
-            miLote:miLote
+            miLote: miLote
           }}
           target="_blank"
-          >Nuevo Análisis</Link>
-            </div>
-            <div className="contentSobreNosotros">
-                <div className="imgSobreNosotros">
-                    <img src={foto} alt="foto-devs" />
-                </div>
+        >Nuevo Análisis</Link>
+      </div>
+      <div className="contentSobreNosotros">
+        <div className="imgSobreNosotros">
+          <img src={foto} alt="foto-devs" />
+        </div>
 
-                <div className="mision">
-                    <h1>Nuestra historia</h1>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam autem nisi odit ratione optio ab consequatur veritatis dolorum dicta sequi, aperiam eaque quod vitae officia facilis, est fugit aspernatur aut?</p>
-                </div>
-            </div>
+        <div className="mision">
+          <h1>Nuestra historia</h1>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam autem nisi odit ratione optio ab consequatur veritatis dolorum dicta sequi, aperiam eaque quod vitae officia facilis, est fugit aspernatur aut?</p>
+        </div>
+      </div>
 
-            {/* <footer>
+      {/* <footer>
         <div className="container"> 
           <div className="footer-content">
             <div className="footer-links">
@@ -51,8 +56,8 @@ export default function SobreNosotros() {
         </div>
         
       </footer> */}
-        </main>
-    )
+    </main>
+  )
 
 
 }

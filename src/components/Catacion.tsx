@@ -2,9 +2,11 @@ import { useLocation } from "react-router-dom";
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoffeeScoreInput from './CoffeeScoreInput';
-import {CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect} from './MyTypes';
-import {LoteInfo} from "./LoteInfo";
+import { CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect } from './MyTypes';
+import { LoteInfo } from "./LoteInfo";
 // ... ESTILOS ......................
+//@ts-ignore
+import { Helmet } from 'react-helmet';
 
 const PageContainer = styled.div`
 
@@ -91,10 +93,10 @@ const AddCatacionButton = styled.button`
 
 export default function Catacion() {
     const location = useLocation();
-    const {miLote }:{miLote:Lote} = location.state || {};
+    const { miLote }: { miLote: Lote } = location.state || {};
     const [catacionCount, setCatacionCount] = useState(1);
     const [reactLote, setReactLote] = useState<Lote[]>([miLote]);
-    const [catador,setCatador] = useState('');
+    const [catador, setCatador] = useState('');
     /* const falseSCAboxList: SCAboxList = [
             {index:1, value: false},
             {index:2, value: false},
@@ -106,30 +108,30 @@ export default function Catacion() {
     const catacionVacia: CatacionLote = {
         id: 0,
         dulzor: [
-            {index:1, value: true},
-            {index:2, value: true},
-            {index:3, value: true},
-            {index:4, value: true},
-            {index:5, value: true},
-            ],
+            { index: 1, value: true },
+            { index: 2, value: true },
+            { index: 3, value: true },
+            { index: 4, value: true },
+            { index: 5, value: true },
+        ],
         uniformidad: [
-            {index:1, value: true},
-            {index:2, value: true},
-            {index:3, value: true},
-            {index:4, value: true},
-            {index:5, value: true},
+            { index: 1, value: true },
+            { index: 2, value: true },
+            { index: 3, value: true },
+            { index: 4, value: true },
+            { index: 5, value: true },
         ],
         tazaLimpia: [
-            {index:1, value: true},
-            {index:2, value: true},
-            {index:3, value: true},
-            {index:4, value: true},
-            {index:5, value: true},
+            { index: 1, value: true },
+            { index: 2, value: true },
+            { index: 3, value: true },
+            { index: 4, value: true },
+            { index: 5, value: true },
         ],
         defectsList: [],
         uniformidadScore: 10,
         dulzorScore: 10,
-        tazaLimpiaScore:10,
+        tazaLimpiaScore: 10,
         InfoView: false,
         InfoClass: "InfoInvisible",
         defectsQty: 0,
@@ -145,7 +147,7 @@ export default function Catacion() {
         finalScore: 0,
         defectsIntesity: 2
     }
-    const MuestraInicial:CatacionLote = {
+    const MuestraInicial: CatacionLote = {
         ...catacionVacia,
         id: 1,
         codigo: miLote?.codigo || '',
@@ -155,8 +157,8 @@ export default function Catacion() {
 
     }
     const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([MuestraInicial]);
-    const [defectValue, setDefectValue] = useState<CupDefect>({id:0, name:''});
-    const handleCatador = (e:React.ChangeEvent<HTMLInputElement> ) => {
+    const [defectValue, setDefectValue] = useState<CupDefect>({ id: 0, name: '' });
+    const handleCatador = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCatador(e.target.value)
     }
     const handleNuevaCatacion = () => {
@@ -169,32 +171,32 @@ export default function Catacion() {
         setCatacionElements(prevElements => [...prevElements, newCatacionElement]);
         //setReactLote({...reactLote, cu})
     }
-    function handleCatacionProp(id:number, Propiedad: keyof CatacionLote,  e:React.ChangeEvent<HTMLInputElement> ){
+    function handleCatacionProp(id: number, Propiedad: keyof CatacionLote, e: React.ChangeEvent<HTMLInputElement>) {
         const newValue = e.target.value
         setCatacionElements(prevData =>
             prevData.map(data =>
-                data.id === id ? { ...data,[Propiedad]: newValue } : data
+                data.id === id ? { ...data, [Propiedad]: newValue } : data
             )
         );
     }
-    
-    function handleFinalScore(id:number){
-        setCatacionElements(elements => 
-            elements.map(element =>{
-                if (element.id===id) {
-                    let newFinalScore:number = 
-                    element.fragancia + 
-                    element.sabor +
-                    element.residual +
-                    element.acidez +
-                    element.cuerpo + 
-                    element.uniformidadScore +
-                    element.balance +
-                    element.tazaLimpiaScore +
-                    element.dulzorScore + 
-                    element.puntajeCatador -
-                    element.SCAdefects
-                    return {...element, finalScore:newFinalScore}
+
+    function handleFinalScore(id: number) {
+        setCatacionElements(elements =>
+            elements.map(element => {
+                if (element.id === id) {
+                    let newFinalScore: number =
+                        element.fragancia +
+                        element.sabor +
+                        element.residual +
+                        element.acidez +
+                        element.cuerpo +
+                        element.uniformidadScore +
+                        element.balance +
+                        element.tazaLimpiaScore +
+                        element.dulzorScore +
+                        element.puntajeCatador -
+                        element.SCAdefects
+                    return { ...element, finalScore: newFinalScore }
                 }
                 else return element
             })
@@ -205,19 +207,19 @@ export default function Catacion() {
         aspect: keyof CatacionLote,
         value: number
     ) => {
-        
+
         setCatacionElements(prevElements =>
-            prevElements.map(element =>{
+            prevElements.map(element => {
                 handleFinalScore(element.id)
-                if(element.id === id) return  { ...element, [aspect]: value}
+                if (element.id === id) return { ...element, [aspect]: value }
                 else return element
             })
         );
     }
-    function handleAtributoChange (id:number, atributo: keyof CatacionLote, e:React.ChangeEvent<HTMLTextAreaElement>){
+    function handleAtributoChange(id: number, atributo: keyof CatacionLote, e: React.ChangeEvent<HTMLTextAreaElement>) {
         setCatacionElements(prevElements =>
-            prevElements.map(element =>{
-                if(element.id === id) return  { ...element, [atributo]: e.target.value}
+            prevElements.map(element => {
+                if (element.id === id) return { ...element, [atributo]: e.target.value }
                 else return element
             })
         );
@@ -226,12 +228,12 @@ export default function Catacion() {
         id: number,
         value: number
     ) => {
-        setCatacionElements(prevElements => 
-            prevElements.map(element =>{
-                if(element.id===id){
-                    let newDefects:number = element.SCAdefectsQty * value
-                    return { ...element, defectsIntesity:value, SCAdefects: newDefects} 
-                } 
+        setCatacionElements(prevElements =>
+            prevElements.map(element => {
+                if (element.id === id) {
+                    let newDefects: number = element.SCAdefectsQty * value
+                    return { ...element, defectsIntesity: value, SCAdefects: newDefects }
+                }
                 else return element
             })
         );
@@ -241,82 +243,82 @@ export default function Catacion() {
         id: number,
         InputIndex: number
     ) => {
-        let newScore:number = 0;
+        let newScore: number = 0;
         //let newSCABoxList:SCAboxList
-        catacionElements.forEach(catacionElement=>{
-            if(catacionElement.id===id){
-                let newSCABoxList=catacionElement.uniformidad
-                newSCABoxList.forEach(box=>{
-                    box.value =  box.index===InputIndex? !box.value: box.value;
-                    if(box.value) newScore+=2
+        catacionElements.forEach(catacionElement => {
+            if (catacionElement.id === id) {
+                let newSCABoxList = catacionElement.uniformidad
+                newSCABoxList.forEach(box => {
+                    box.value = box.index === InputIndex ? !box.value : box.value;
+                    if (box.value) newScore += 2
                 })
                 setCatacionElements(prevData =>
                     prevData.map(data =>
-                        data.id === id ? { ...data, uniformidad:newSCABoxList, uniformidadScore: newScore} : data
+                        data.id === id ? { ...data, uniformidad: newSCABoxList, uniformidadScore: newScore } : data
                     )
                 );
             }
         })
         handleFinalScore(id);
-            
+
     }
     const handleTazaLimpiaChange = (
         id: number,
         InputIndex: number
     ) => {
-        let newScore:number = 0;
-        let newDefectsQty:number = 0;
+        let newScore: number = 0;
+        let newDefectsQty: number = 0;
         //let newSCABoxList:SCAboxList
-        catacionElements.forEach(catacionElement=>{
-            if(catacionElement.id===id){
-                let newSCABoxList=catacionElement.tazaLimpia
-                newSCABoxList.forEach(box=>{
-                    box.value =  box.index===InputIndex? !box.value: box.value;
-                    if(box.value) newScore+=2
-                    else newDefectsQty+=1
+        catacionElements.forEach(catacionElement => {
+            if (catacionElement.id === id) {
+                let newSCABoxList = catacionElement.tazaLimpia
+                newSCABoxList.forEach(box => {
+                    box.value = box.index === InputIndex ? !box.value : box.value;
+                    if (box.value) newScore += 2
+                    else newDefectsQty += 1
                 })
                 setCatacionElements(prevData =>
                     prevData.map(data =>
-                        data.id === id ? { ...data, tazaLimpia:newSCABoxList, tazaLimpiaScore: newScore, SCAdefectsQty:newDefectsQty} : data
+                        data.id === id ? { ...data, tazaLimpia: newSCABoxList, tazaLimpiaScore: newScore, SCAdefectsQty: newDefectsQty } : data
                     )
                 );
-                handleDefectsChange(catacionElement.id,catacionElement.defectsIntesity || 0)
+                handleDefectsChange(catacionElement.id, catacionElement.defectsIntesity || 0)
                 handleFinalScore(id);
             }
         })
     }
-    function handleDulzorChange(id: number,InputIndex: number) {
-        let newScore:number = 0;
+    function handleDulzorChange(id: number, InputIndex: number) {
+        let newScore: number = 0;
         //let newSCABoxList:SCAboxList
-        catacionElements.forEach(catacionElement=>{
-            if(catacionElement.id===id){
-                let newSCABoxList=catacionElement.dulzor
-                newSCABoxList.forEach(box=>{
-                    box.value =  box.index===InputIndex? !box.value: box.value;
-                    if(box.value) newScore+=2
+        catacionElements.forEach(catacionElement => {
+            if (catacionElement.id === id) {
+                let newSCABoxList = catacionElement.dulzor
+                newSCABoxList.forEach(box => {
+                    box.value = box.index === InputIndex ? !box.value : box.value;
+                    if (box.value) newScore += 2
                 })
                 setCatacionElements(prevData =>
                     prevData.map(data =>
-                        data.id === id ? { ...data, dulzor:newSCABoxList, dulzorScore: newScore} : data
+                        data.id === id ? { ...data, dulzor: newSCABoxList, dulzorScore: newScore } : data
                     )
                 );
             }
         })
         handleFinalScore(id);
     }
-    function handleDefectValue(event: React.ChangeEvent<HTMLSelectElement>):void {
-        const newName:string = event.target.value
-        const newDefect: CupDefect = predefinedDefects.find((defect)=>defect.name===newName) || defectValue
+    function handleDefectValue(event: React.ChangeEvent<HTMLSelectElement>): void {
+        const newName: string = event.target.value
+        const newDefect: CupDefect = predefinedDefects.find((defect) => defect.name === newName) || defectValue
         setDefectValue(newDefect)
     }
-    function handleAddDefect(id:number){
+    function handleAddDefect(id: number) {
         setCatacionElements(prevElements =>
-            prevElements.map(element =>{
-                if(element.id === id){
-                    const added:boolean = element.defectsList.some(defect=>defect.name===defectValue.name)
-                    if(!added){
+            prevElements.map(element => {
+                if (element.id === id) {
+                    const added: boolean = element.defectsList.some(defect => defect.name === defectValue.name)
+                    if (!added) {
                         const newDefectlist = element.defectsList.concat(defectValue)
-                        return  { ...element, defectsList:newDefectlist }
+                        return { ...element, defectsList: newDefectlist }
                     }
                     else return element
                 }
@@ -324,15 +326,15 @@ export default function Catacion() {
             })
         );
     }
-    function handleDeleteDefect(id:number, defectId:number){
-        setCatacionElements(prevElement => 
+    function handleDeleteDefect(id: number, defectId: number) {
+        setCatacionElements(prevElement =>
             prevElement.map(element => {
-                    if(element.id === id) {
-                        const newDefectsList = element.defectsList.filter(defect=> defect.id!==defectId)
-                        return  { ...element, defectsList:newDefectsList}
-                    }
-                    else return element
+                if (element.id === id) {
+                    const newDefectsList = element.defectsList.filter(defect => defect.id !== defectId)
+                    return { ...element, defectsList: newDefectsList }
                 }
+                else return element
+            }
             )
         )
     }
@@ -340,12 +342,16 @@ export default function Catacion() {
     return (
         <div className="Image2Background" >
             <div>
+                <Helmet>
+                    <title>Catación</title>
+                </Helmet> </div>
+            <div>
                 <div className="tableHeader">
                     <div className="field">
                         <div>
 
-                        <h2 style={{display:"inline"}}>Catador </h2>
-                        <input type="text" onChange={(e)=>handleCatador(e)}></input>
+                            <h2 style={{ display: "inline" }}>Catador </h2>
+                            <input type="text" onChange={(e) => handleCatador(e)}></input>
                         </div>
                     </div>
                 </div>
@@ -353,9 +359,9 @@ export default function Catacion() {
                     {catacionElements.map(catacionElement => (
                         <CatacionContainer key={catacionElement.id}>
                             <CatacionHeader>
-                                <h2>Muestra {catacionElement.id}</h2><br/>
-                                <div className="searchdiv" style={{height:"25px"}}>
-                                    <input autoCapitalize="characters"  placeholder="Código" type="text" id="InputCodigoLote" onChange={(event)=>handleCatacionProp(catacionElement.id, "codigo", event)} value={catacionElement.codigo}></input>
+                                <h2>Muestra {catacionElement.id}</h2><br />
+                                <div className="searchdiv" style={{ height: "25px" }}>
+                                    <input autoCapitalize="characters" placeholder="Código" type="text" id="InputCodigoLote" onChange={(event) => handleCatacionProp(catacionElement.id, "codigo", event)} value={catacionElement.codigo}></input>
                                     <button>Buscar</button>
                                 </div>
                                 <LoteInfo miLote={miLote} />
@@ -364,7 +370,7 @@ export default function Catacion() {
                                 <div>Puntaje final: {catacionElement.finalScore}</div>
                                 <ScoreInputsContainer>
                                     <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
+                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
                                             <div className="SCAScore">
                                                 <h2>Total: {catacionElement.fragancia}</h2>
                                             </div>
@@ -376,7 +382,7 @@ export default function Catacion() {
                                                 handleScoreChange(catacionElement.id, "fragancia", value as puntajeSCA)
                                             }
                                         />
-                                        <textarea className="atributosInput" placeholder="Fragancias" onChange={(e)=>handleAtributoChange(catacionElement.id,"fraganciaA",e)}/>
+                                        <textarea className="atributosInput" placeholder="Fragancias" onChange={(e) => handleAtributoChange(catacionElement.id, "fraganciaA", e)} />
                                         <p>{catacionElement?.fraganciaA}</p>
                                         <CoffeeScoreInput
                                             aspect="Seco"
@@ -394,7 +400,7 @@ export default function Catacion() {
                                         />
                                     </SCABlock>
                                     <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
+                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
                                             <div className="SCAScore">
                                                 <h2>Total: {catacionElement.sabor}</h2>
                                             </div>
@@ -406,11 +412,11 @@ export default function Catacion() {
                                                 handleScoreChange(catacionElement.id, "sabor", value)
                                             }
                                         />
-                                        
-                                        <textarea className="atributosInput"  placeholder="Sabores"  onChange={(event)=>handleAtributoChange(catacionElement.id,"saborA",event)}/>
+
+                                        <textarea className="atributosInput" placeholder="Sabores" onChange={(event) => handleAtributoChange(catacionElement.id, "saborA", event)} />
                                     </SCABlock>
                                     <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
+                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
                                             <div className="SCAScore">
                                                 <h2>Total: {catacionElement.residual}</h2>
                                             </div>
@@ -422,14 +428,14 @@ export default function Catacion() {
                                                 handleScoreChange(catacionElement.id, "residual", value)
                                             }
                                         />
-                                    <textarea className="atributosInput" placeholder="Atributos"  onChange={(e)=>handleAtributoChange(catacionElement.id,"residualA",e)}/>
+                                        <textarea className="atributosInput" placeholder="Atributos" onChange={(e) => handleAtributoChange(catacionElement.id, "residualA", e)} />
                                     </SCABlock>
                                     <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
-                                                <div className="SCAScore">
-                                                    <h2>Total: {catacionElement.acidez}</h2>
-                                                </div>
+                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                            <div className="SCAScore">
+                                                <h2>Total: {catacionElement.acidez}</h2>
                                             </div>
+                                        </div>
                                         <CoffeeScoreInput
                                             aspect="Acidez"
                                             score={catacionElement.acidez || 8}
@@ -437,7 +443,7 @@ export default function Catacion() {
                                                 handleScoreChange(catacionElement.id, "acidez", value)
                                             }
                                         />
-                                        <textarea className="atributosInput"  placeholder="Atributos"  onChange={(e)=>handleAtributoChange(catacionElement.id,"acidezA",e)}/>
+                                        <textarea className="atributosInput" placeholder="Atributos" onChange={(e) => handleAtributoChange(catacionElement.id, "acidezA", e)} />
                                         <CoffeeScoreInput
                                             aspect="Intensidad"
                                             score={catacionElement.intensidad || 8}
@@ -447,7 +453,7 @@ export default function Catacion() {
                                         />
                                     </SCABlock>
                                     <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
+                                        <div style={{ display: "flex", justifyContent: "flex-end" }}>
                                             <div className="SCAScore">
                                                 <h2>Total: {catacionElement.cuerpo}</h2>
                                             </div>
@@ -459,7 +465,7 @@ export default function Catacion() {
                                                 handleScoreChange(catacionElement.id, "cuerpo", value)
                                             }
                                         />
-                                        <textarea className="atributosInput" placeholder="Atributos"  onChange={(e)=>handleAtributoChange(catacionElement.id,"cuerpoA",e)}/>
+                                        <textarea className="atributosInput" placeholder="Atributos" onChange={(e) => handleAtributoChange(catacionElement.id, "cuerpoA", e)} />
                                         <CoffeeScoreInput
                                             aspect="nivel"
                                             score={catacionElement.nivel || 8}
@@ -470,138 +476,138 @@ export default function Catacion() {
                                     </SCABlock>
                                     <SCABlock>
                                         <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
-                                            <div className="SCAScore">
-                                                <h2>Total: {catacionElement.uniformidadScore}</h2>
+                                            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                                <div className="SCAScore">
+                                                    <h2>Total: {catacionElement.uniformidadScore}</h2>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="SCACheckBox">
-                                        <h2 style={{fontSize:"16px"}}>Uniformidad</h2>
-                                        {catacionElement.uniformidad.map((scabox) => (
-                                            <input 
-                                                type="checkbox"
-                                                checked={scabox.value}
-                                                onChange={() => {
-                                                    handleUniformidadChange(catacionElement.id, scabox.index);
-                                                }}
-                                            />
-                                        ))}
-                                        </div>
+                                            <div className="SCACheckBox">
+                                                <h2 style={{ fontSize: "16px" }}>Uniformidad</h2>
+                                                {catacionElement.uniformidad.map((scabox) => (
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={scabox.value}
+                                                        onChange={() => {
+                                                            handleUniformidadChange(catacionElement.id, scabox.index);
+                                                        }}
+                                                    />
+                                                ))}
+                                            </div>
                                         </SCABlock>
                                         <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
-                                            <div className="SCAScore">
-                                                <h2>Total: {catacionElement.balance}</h2>
+                                            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                                <div className="SCAScore">
+                                                    <h2>Total: {catacionElement.balance}</h2>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <CoffeeScoreInput
-                                            aspect="balance"
-                                            score={catacionElement.balance || 8}
-                                            onChange={(value) =>
-                                                handleScoreChange(catacionElement.id, "balance", value)
-                                            }
-                                        /> 
+                                            <CoffeeScoreInput
+                                                aspect="balance"
+                                                score={catacionElement.balance || 8}
+                                                onChange={(value) =>
+                                                    handleScoreChange(catacionElement.id, "balance", value)
+                                                }
+                                            />
                                         </SCABlock>
                                     </SCABlock>
-                                {/* Add more CoffeeScoreInput components for other attributes */}
-                                
-                                <SCABlock>
-                                <SCABlock>
-                                <div style={{display:"flex",justifyContent:"flex-end"}}>
-                                    <div className="SCAScore">
-                                        <h2>Total: {catacionElement.tazaLimpiaScore}</h2>
-                                    </div>
-                                </div>           
-                                <div className="SCACheckBox">
-                                    <h4>Tasa Limpia</h4>
-                                    <div>
-                                        {catacionElement.tazaLimpia.map((scabox) => (
-                                                <input 
-                                                    type="checkbox"
-                                                    checked={scabox.value}
-                                                    onChange={() => {
-                                                        handleTazaLimpiaChange(catacionElement.id, scabox.index);
-                                                    }}
-                                                />
-                                            ))}
-                                    </div>
-                                </div>
-                                </SCABlock>
-                                <SCABlock>
-                                <div >
-                                    <div style={{display:"flex",justifyContent:"flex-end"}}>
-                                        <div className="SCAScore">
-                                            <h2>Total: {catacionElement.dulzorScore}</h2>
-                                        </div>
-                                    </div>   
-                                    <h4>Dulzor</h4>
-                                    <div className="SCACheckBox">
-                                    {catacionElement.dulzor.map((dscabox) => (
-                                            <input 
-                                                type="checkbox"
-                                                checked={dscabox.value}
-                                                onChange={() => {
-                                                    handleDulzorChange(catacionElement.id, dscabox.index);
-                                                }}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-                                </SCABlock>
-                                </SCABlock>
-                                <SCABlock>
+                                    {/* Add more CoffeeScoreInput components for other attributes */}
+
                                     <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
-                                            <div className="SCAScore">
-                                                <h2>Total: {catacionElement.puntajeCatador}</h2>
+                                        <SCABlock>
+                                            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                                <div className="SCAScore">
+                                                    <h2>Total: {catacionElement.tazaLimpiaScore}</h2>
+                                                </div>
                                             </div>
-                                        </div>   
-                                        <CoffeeScoreInput
-                                            aspect="Puntaje Catador"
-                                            score={catacionElement.puntajeCatador || 6}
-                                            onChange={(value) =>
-                                                handleScoreChange(catacionElement.id, "puntajeCatador", value)
-                                            }
-                                        />
+                                            <div className="SCACheckBox">
+                                                <h4>Tasa Limpia</h4>
+                                                <div>
+                                                    {catacionElement.tazaLimpia.map((scabox) => (
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={scabox.value}
+                                                            onChange={() => {
+                                                                handleTazaLimpiaChange(catacionElement.id, scabox.index);
+                                                            }}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </SCABlock>
+                                        <SCABlock>
+                                            <div >
+                                                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                                    <div className="SCAScore">
+                                                        <h2>Total: {catacionElement.dulzorScore}</h2>
+                                                    </div>
+                                                </div>
+                                                <h4>Dulzor</h4>
+                                                <div className="SCACheckBox">
+                                                    {catacionElement.dulzor.map((dscabox) => (
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={dscabox.value}
+                                                            onChange={() => {
+                                                                handleDulzorChange(catacionElement.id, dscabox.index);
+                                                            }}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </SCABlock>
                                     </SCABlock>
                                     <SCABlock>
-                                        <div style={{display:"flex",justifyContent:"flex-end"}}>
-                                            <div className="SCAScore">
-                                                <h2>Total: {catacionElement?.SCAdefects}</h2>
+                                        <SCABlock>
+                                            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                                <div className="SCAScore">
+                                                    <h2>Total: {catacionElement.puntajeCatador}</h2>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div style={{margin: "5px", display:"flex", flexDirection:"column"}}>
-                                            <div>
-                                                <h4>Defectos</h4>
+                                            <CoffeeScoreInput
+                                                aspect="Puntaje Catador"
+                                                score={catacionElement.puntajeCatador || 6}
+                                                onChange={(value) =>
+                                                    handleScoreChange(catacionElement.id, "puntajeCatador", value)
+                                                }
+                                            />
+                                        </SCABlock>
+                                        <SCABlock>
+                                            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                                                <div className="SCAScore">
+                                                    <h2>Total: {catacionElement?.SCAdefects}</h2>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h4>Ctd: {catacionElement.SCAdefectsQty}</h4>
-                                                <h4>Intensidad: {catacionElement?.defectsIntesity}</h4>
-                                                <button className="intensityButton" id="intensity2" onClick={()=>handleDefectsChange(catacionElement.id,  2)}>2</button>
-                                                <button className="intensityButton" id="intensity4" onClick={()=>handleDefectsChange(catacionElement.id, 4)}>4</button>
+                                            <div style={{ margin: "5px", display: "flex", flexDirection: "column" }}>
+                                                <div>
+                                                    <h4>Defectos</h4>
+                                                </div>
+                                                <div>
+                                                    <h4>Ctd: {catacionElement.SCAdefectsQty}</h4>
+                                                    <h4>Intensidad: {catacionElement?.defectsIntesity}</h4>
+                                                    <button className="intensityButton" id="intensity2" onClick={() => handleDefectsChange(catacionElement.id, 2)}>2</button>
+                                                    <button className="intensityButton" id="intensity4" onClick={() => handleDefectsChange(catacionElement.id, 4)}>4</button>
+                                                </div>
                                             </div>
-                                        </div>   
-                                    </SCABlock>   
-                                </SCABlock>
+                                        </SCABlock>
+                                    </SCABlock>
                                 </ScoreInputsContainer>
-                                <div style={{fontSize:"16px", background: "white"}} >
+                                <div style={{ fontSize: "16px", background: "white" }} >
                                     <h3>Defectos</h3>
-                                    <select value={defectValue.name} onChange={(e)=>handleDefectValue(e)}>
+                                    <select value={defectValue.name} onChange={(e) => handleDefectValue(e)}>
                                         <option value="">Seleccione una opción</option>
                                         {predefinedDefects.map((option) => (
-                                        <option key={option.id} value={option.name}>
-                                            {option.name}
-                                        </option>
+                                            <option key={option.id} value={option.name}>
+                                                {option.name}
+                                            </option>
                                         ))}
                                     </select>
-                                    <button onClick={()=>handleAddDefect(catacionElement.id)}>Agregar</button>
-                                    
+                                    <button onClick={() => handleAddDefect(catacionElement.id)}>Agregar</button>
+
                                     {catacionElement.defectsList.map((row) => (
                                         <tr key={row.id}>
-                                        <td>{row.name}</td>
-                                        <td>
-                                            <button onClick={() => handleDeleteDefect(catacionElement.id, row.id)}>Eliminar</button>
-                                        </td>
+                                            <td>{row.name}</td>
+                                            <td>
+                                                <button onClick={() => handleDeleteDefect(catacionElement.id, row.id)}>Eliminar</button>
+                                            </td>
                                         </tr>
                                     ))}
                                 </div>
