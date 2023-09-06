@@ -7,6 +7,7 @@ import AnalisisFisicoPage from './components/AnalisisFisico';
 import Catacion from './components/Catacion';
 import RegistroLote from './components/RegistroLote'
 import PruebaTwilio from './components/PruebaTwilio';
+import SobreNosotros from './components/SobreNosotros';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <body>
         <Routes>
             <Route path="/" element = {<MenuPrincipal/> }></Route>
+            <Route path="SobreNosotros" element = {<SobreNosotros/> }></Route>
             <Route path = 'RegistroCaficultor/' element  = {<RegistroCaficultor/>}></Route>
             <Route path = 'AnalisisFisico/' element  = {<AnalisisFisicoPage/>}></Route>
             <Route path="Catacion/" element={<Catacion/>} />
