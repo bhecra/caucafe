@@ -196,8 +196,7 @@ export default function RegistroLote() {
                         <button>
                             <Link to={'/Catacion'}
                                 state={{
-                                    miLote: registroLote,
-                                    numeroCel: registroLote?.numeroCel
+                                    miLote: registroLote
                                 }} > Catación </Link>
                         </button>
                     </div>

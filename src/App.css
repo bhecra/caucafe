@@ -376,8 +376,6 @@ footer {
 }
 
 
-
-
 .siguiente{
   display: flex;
   flex-direction: column;
@@ -493,13 +491,54 @@ footer {
   margin: 5px;
 }
 .InputAnalisis label{
+  display: inline;
   font-size: 16px;
   border-radius: 0.2em;
 }
 .InputAnalisis input{
+  display: inline;
   font-size: 16px;
   border-radius: 0.5em;
   width: 100px;
   height: 25px;
   border: 1px solid black;
+}
+.inputInvalid label{
+  display: inline;
+  font-size: 16px;
+  border-radius: 0.2em;
+  color: red
+}
+.inputValid label{
+  display: inline;
+  font-size: 16px;
+  border-radius: 0.2em;
+  color: black
+}
+.inputInvalid input{
+  display: inline;
+  font-size: 16px;
+  border-radius: 0.5em;
+  width: 100px;
+  height: 25px;
+  border: 1px solid red
+}
+
+.inputInvalid p{
+  display: inline;
+  color: red !important;
+  font-size: 12px;
+}
+
+.inputValid input{
+  font-size: 16px;
+  border-radius: 0.5em;
+  width: 100px;
+  height: 25px;
+  border: 1px solid green
+}
+
+.inputValid p{
+  display: none;
+  color: 1px solid red
 }

@@ -1,7 +1,21 @@
 import { useState } from "react";
-import { CatacionLote, Lote } from "./MyTypes";
+import { CatacionLote, Lote, AnalisisFisico } from "./MyTypes";
 export function HandleLote(){
     
+}
+export function createAnalisisFisico():AnalisisFisico {
+    let newAnalisis: AnalisisFisico = {
+        sampleWeight: 250,
+        defects: [],
+        defectsWeight: 0,
+        excelso: 0,
+        factordeRendimiento:100,
+        group1DefectsWeight:0,
+        group2DefectsWeight:0,
+        mallas:{
+        }
+    }
+    return newAnalisis
 }
 export function createCupping(myLote:Lote, newCatacion: CatacionLote):Lote{
     myLote.cupping = newCatacion;

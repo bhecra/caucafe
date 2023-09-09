@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CoffeeScoreInput from './CoffeeScoreInput';
@@ -347,6 +347,12 @@ export default function Catacion() {
                 </Helmet> </div>
             <div>
                 <div className="tableHeader">
+                <button>
+                    <Link to={'/analisisFisico'}
+                    state={{
+                        miLote: miLote
+                    }} > Análisis Físico </Link>
+                </button>
                     <div className="field">
                         <div>
 
@@ -365,6 +371,7 @@ export default function Catacion() {
                                     <button>Buscar</button>
                                 </div>
                                 <LoteInfo miLote={miLote} />
+                                <h1>{miLote.analysis?.factordeRendimiento}</h1>
                             </CatacionHeader>
                             <CatacionData >
                                 <div>Puntaje final: {catacionElement.finalScore}</div>
