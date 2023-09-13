@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import CoffeeScoreInput from './CoffeeScoreInput';
 import { CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect } from './MyTypes';
 import { LoteInfo } from "./LoteInfo";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
 // ... ESTILOS ......................
 //@ts-ignore
 import { Helmet } from 'react-helmet';
@@ -346,13 +349,16 @@ export default function Catacion() {
                     <title>Catación</title>
                 </Helmet> </div>
             <div>
-                <div className="tableHeader">
-                <button>
-                    <Link to={'/analisisFisico'}
+                <Link to={'/analisisFisico'}
                     state={{
                         miLote: miLote
-                    }} > Análisis Físico </Link>
-                </button>
+                    }} className="backToAf"> Análisis Físico </Link>
+
+
+                <div className="tableHeader">
+        
+                    
+            
                     <div className="field">
                         <div>
 
@@ -597,9 +603,9 @@ export default function Catacion() {
                                         </SCABlock>
                                     </SCABlock>
                                 </ScoreInputsContainer>
-                                <div style={{ fontSize: "16px", background: "white" }} >
+                                <div className="selectDefectos" style={{ fontSize: "16px",}} >
                                     <h3>Defectos</h3>
-                                    <select value={defectValue.name} onChange={(e) => handleDefectValue(e)}>
+                                    <select value={defectValue.name} onChange={(e) => handleDefectValue(e)} className="selectDEF">
                                         <option value="">Seleccione una opción</option>
                                         {predefinedDefects.map((option) => (
                                             <option key={option.id} value={option.name}>
@@ -613,7 +619,7 @@ export default function Catacion() {
                                         <tr key={row.id}>
                                             <td>{row.name}</td>
                                             <td>
-                                                <button onClick={() => handleDeleteDefect(catacionElement.id, row.id)}>Eliminar</button>
+                                                <button onClick={() => handleDeleteDefect(catacionElement.id, row.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
                                             </td>
                                         </tr>
                                     ))}
@@ -621,7 +627,7 @@ export default function Catacion() {
                             </CatacionData>
                         </CatacionContainer>
                     ))}
-                    <AddCatacionButton onClick={handleNuevaCatacion}>
+                    <AddCatacionButton onClick={handleNuevaCatacion} style={{backgroundColor:"#007bff"}}>
                         Agregar Catacion
                     </AddCatacionButton>
                 </div>
