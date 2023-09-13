@@ -317,8 +317,10 @@ footer {
 
   flex-direction: column;
   align-content: center;
-  justify-content: center;
+  justify-content: space-between;
+
 }
+.campoBoton h3 { margin-bottom: .8rem;}
 .campoBoton button,
 .campoBoton a {
   background-color: #9c0101;
@@ -331,6 +333,7 @@ footer {
   width: 300px;
   text-align: center;
   border: none;
+  margin-bottom: .8rem;
 }
 
 .siguiente-lote {
@@ -533,7 +536,7 @@ footer {
 
 /* Estilos para el botón "Eliminar" dentro de .selectDefectos */
 .selectDefectos button {
-  background-color: #dc3545; /* Color de fondo del botón "Eliminar" */
+  background-color: var(--rojo); /* Color de fondo del botón "Eliminar" */
   color: #fff; /* Color de texto del botón "Eliminar" */
   border: none; /* Eliminar el borde del botón "Eliminar" */
   padding: 5px 10px; /* Espacio interno del botón "Eliminar" */
@@ -701,7 +704,7 @@ select {
 label {
   /* Estilos para etiquetas de entrada */
   display: block;
-  margin-top: 10px;
+
 }
 
 div.valid-input {
@@ -725,6 +728,18 @@ p.valid-error {
   margin-top: 5px;
 }
 
+.inputValid{
+  height: 100%;
+}
+
+.input-group label{
+  margin: none  ;
+}
+
+.selectDefect{
+  height: 100%;
+  padding: 0;
+}
 button {
   /* Estilos para botones */
   display: inline-block;
@@ -779,7 +794,7 @@ table td {
 /* Estilos para el label */
 .input-group label {
   font-weight: bold;
-  margin-right: 5px; /* Espacio entre el label y el select/input */
+  margin: auto; /* Espacio entre el label y el select/input */
 }
 
 /* Estilos para el select */
@@ -793,7 +808,7 @@ table td {
 /* Estilos para el input */
 .input-group input {
   width: 100%;
-  padding: 5px;
+  padding: 15px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -805,6 +820,7 @@ table td {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  padding: 3px 4px;;
 }
 
 /* Estilos para el mensaje de error */
@@ -816,13 +832,15 @@ table td {
 
 
 .h4-container {
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   padding: 20px;
   border: 1px solid #ccc;
-  background-color: #007bff; /* Cambiamos el color de fondo a un azul brillante */
+  background-color: #D1CCDC; /* Cambiamos el color de fondo a un azul brillante */
   margin: 0 3rem 5rem 3rem;
   width: 90%;
   transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Agregamos una transición para el color de fondo y la sombra */
@@ -831,9 +849,15 @@ table td {
   font-weight: bold; /* Hacemos el texto en negrita */
 }
 
+.h4-container h4{
+  color: #000;
+    margin-bottom: .5rem;
+
+  
+}
 /* Estilos para el container cuando se hace hover */
 .h4-container:hover {
-  background-color: #0056b3; /* Cambia el color de fondo a un tono más oscuro al hacer hover */
+  background-color: #B3AAC5; /* Cambia el color de fondo a un tono más oscuro al hacer hover */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregamos una sombra al hacer hover */
 }
 
@@ -853,7 +877,7 @@ table td {
   padding: 20px;
   border: 1px solid #ccc;
   background-color: #f7f7f7;
-  margin: 3rem;
+  margin: 3rem 3rem 1rem 3rem;
   width: 90%;
 
 }
@@ -916,13 +940,15 @@ table td {
 }
 
 .container-malla{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     padding: 20px;
     border: 1px solid #ccc;
-    background-color: #007bff; /* Cambiamos el color de fondo a un azul brillante */
+    background-color: #D1CCDC; /* Cambiamos el color de fondo a un azul brillante */
     margin: 0 3rem 5rem 3rem;
     width: 90%;
     transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Agregamos una transición para el color de fondo y la sombra */
@@ -933,10 +959,12 @@ table td {
   
   /* Estilos para el container cuando se hace hover */
   .container-malla:hover {
-    background-color: #0056b3; /* Cambia el color de fondo a un tono más oscuro al hacer hover */
+    background-color: #B3AAC5; /* Cambia el color de fondo a un tono más oscuro al hacer hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregamos una sombra al hacer hover */
   }
-  
+  .container-malla h4{
+    margin-bottom: .5rem;
+  }
   
 
 .last-buttons {

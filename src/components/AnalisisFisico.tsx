@@ -273,8 +273,9 @@ export default function AnalisisFisicoPage() {
                     <div className="InputAnalisis">
                         <div className="input-row">
                             <div className="input-group">
-                                <label htmlFor="defectSelect">Defectos:</label>
+                                <label htmlFor="defectSelect" style={{margin:"none"}}>Defectos:</label>
                                 <select
+                                    style={{fontSize:"16px"}}
                                     id="defectSelect"
                                     value={selectedDefect.name}
                                     onChange={(e) => handleDefectValue(e)}
@@ -289,6 +290,7 @@ export default function AnalisisFisicoPage() {
                                 <label htmlFor="pesoDefecto">Peso [g]:</label>
                                 <div className={validClass["pesoDefecto"].classStatus}>
                                     <input
+                                        
                                         min="0"
                                         className={validClass["pesoDefecto"].classStatus}
                                         step={0.1}
@@ -316,15 +318,16 @@ export default function AnalisisFisicoPage() {
                                     <td>{defecto.peso} g</td>
                                     <td>{defecto.porcentaje} %</td>
                                     <td>
-                                        <button onClick={() => handleDeleteDefect(defecto.defect.id)}><FontAwesomeIcon icon={faTrashAlt} /> </button>
+                                        <button onClick={() => handleDeleteDefect(defecto.defect.id)}><FontAwesomeIcon icon={faTrashAlt}/> </button>
                                     </td>
                                 </tr>
                             ))}
                         </table>
                     </div>
                 </section>
-                <p style={{textAlign:"center"}}>Resultado:</p>
+                <p style={{textAlign:"center", display:"block", margin:"auto", width:"90%"}}>Resultado:</p>
                 <div className="h4-container">
+                    
                     <h4>Peso defectos: {newAnalisis.defectsWeight} g</h4>
                     <h4>Grupo 1: {newAnalisis.group1DefectsWeight} g</h4>
                     <h4>Grupo 2: {newAnalisis.group2DefectsWeight} g</h4>
@@ -353,6 +356,7 @@ export default function AnalisisFisicoPage() {
                     </table>
                         <button onClick={() => setMallas(mallas.concat(Number(mallas.slice(-1)) - 1))}>Agregar malla</button>
                     </div>
+                    <p style={{textAlign:"center", display:"block", margin:"auto"}}>Resultado:</p>
                     <div className="container-malla">
                             <h4>Factor de rendimiento: {newAnalisis.factordeRendimiento}</h4>
                             <h4>Merma calculada: {newAnalisis.Merma} g</h4>
