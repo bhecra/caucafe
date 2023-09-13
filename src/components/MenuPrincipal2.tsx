@@ -3,7 +3,7 @@ import bean from "../assets/images/search-coffe-bean.svg"
 import { Lote, CatacionLote } from "./MyTypes";
 import { Link } from 'react-router-dom';
 import fondo from "../assets/images/fondo.png"
-import logo from "../logo.svg"
+import logo from "../assets/images/smell_5235019.svg"
 import ReactDOM from 'react-dom'
 //@ts-ignore
 import { Helmet } from 'react-helmet';
@@ -24,8 +24,9 @@ export default function MenuPrincipal() {
         <div className='boxShadow'>
 
       <div className="headerMP">
-        <img src={logo} alt="logo" />
+        <img src={logo} alt="logo"/>  
       <Link to={'/SobreNosotros'}
+
           target="_blank"
           >Sobre Nosotros</Link>
       </div>

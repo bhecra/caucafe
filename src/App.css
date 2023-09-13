@@ -14,6 +14,14 @@
 
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number]{
+  -moz-appearance: textfield;
+}
 
 h4{
   font-size: 16px;
@@ -257,6 +265,7 @@ footer {
 }
   a{
       padding-bottom: 0;
+      color: white !important;
   }
   header {
       display: flex;
@@ -479,6 +488,7 @@ footer {
 
 /* Análisis Físico*/
 
+/* TOP */
 .LoteHeader{
   font-size: 16px;
   margin: 10px;
@@ -541,4 +551,242 @@ footer {
 .inputValid p{
   display: none;
   color: 1px solid red
+}
+
+div.col-3 {background-color: #f5f5f5;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 5px 5px 20px 5px;
+}
+
+/* Estilos para los elementos InputAnalisis */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col-3 {
+  flex: 0 0 calc(33.33% - 10px); 
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+/* Estilos para etiquetas y mensajes de error */
+.InputAnalisis label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+.inputInvalid label {display: block; font-weight: bold;}
+.inputValid label {display: block; font-weight: bold;}
+.InputAnalisis p {
+  color: red;
+  margin-top: 5px;
+  display: none;
+}
+
+/* Estilos para mensajes de error visibles */
+.InputAnalisis.error p {
+  display: block;
+}
+
+/* Defectos */
+.defectos {
+
+  /* Estilos generales para la sección */
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  margin: 3rem;
+}
+
+.InputAnalisis {
+  /* Estilos para el contenedor principal */
+  margin-bottom: 20px;
+}
+
+.defectos h1 {
+  /* Estilos para encabezados h1 */
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+select {
+  /* Estilos para el elemento select */
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+label {
+  /* Estilos para etiquetas de entrada */
+  display: block;
+  margin-top: 10px;
+}
+
+div.valid-input {
+  /* Estilos para el contenedor de entrada con validación */
+  position: relative;
+  margin-top: 10px;
+}
+
+input.valid-input {
+  /* Estilos para la entrada con validación */
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+p.valid-error {
+  /* Estilos para el mensaje de error */
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+button {
+  /* Estilos para botones */
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #9c0101;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.agg{
+  background-color: #007bff;
+}
+
+table {
+  /* Estilos para tablas */
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #000;
+  margin-top: 20px;
+}
+
+table tr {
+  /* Estilos para filas de tabla */
+  border: 1px solid #000;
+}
+
+table td {
+  /* Estilos para celdas de tabla */
+  padding: 5px;
+  border: 1px solid #000;
+}
+
+
+.h4-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+h4 {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #9c0101;
+  color: #fff;
+  border: 2px solid #d00030;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
+}
+
+h4:hover {
+  background-color: #d00030;
+  transform: scale(1.05);
+}
+
+
+/* Granulometria */
+
+/* Estilos para la nueva sección */
+.new-section {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+/* Estilos para el título h1 */
+.new-section h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilos para la tabla */
+.new-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.new-section th, .new-section td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Estilos para los botones */
+.new-section button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.new-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para los elementos h4 */
+.new-section h4 {
+  font-weight: bold;
+  color: white;
+  margin-top: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.bottom-elements {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-around;
+}
+
+.last-buttons{
+
+  display: flex;
+  justify-content: space-around;
+margin-bottom: 3rem;
+}
+
+.LoteHeader{
+  display: flex;
+  flex-direction: column;
 }
