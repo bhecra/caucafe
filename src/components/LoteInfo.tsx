@@ -35,16 +35,16 @@ export function LoteInfo ({miLote}:{miLote:Lote}){
         setInfoView(!InfoView)
     }
     return (
-        <div>
+        <div style={{margin: "5px"}}>
             <button style={{fontSize:"16px", borderRadius: "0.5em", padding:"3px"}} onClick={handleInfoView}>Info</button>
-            <div className={InfoView? "InfoVisible":"InfoInvisible"}><br/>
-                <p style={{fontSize:"14px"}} id="catacionInfoLote">
-                    Caficultor: {miLote.nombreCaficultor}<br/>
-                    Municipio: {miLote.municipio}<br/>
-                    Altura: {miLote?.altura} msnm<br/>
-                    Variedad: {miLote?.variedad}<br/>
-                    Proceso: {miLote.proceso}
-                </p>
+            <div className={InfoView? "InfoVisible":"InfoInvisible"}>
+                <div style={{fontSize:"14px", display:"flex"}} id="catacionInfoLote">
+                    <div className={miLote.nombreCaficultor?"InfoVisible":"InfoInvisible"}>Caficultor: {miLote.nombreCaficultor}</div>
+                    <div className={miLote.municipio?"InfoVisible":"InfoInvisible"}>Municipio: {miLote.municipio}</div>
+                    <div className={miLote.altura?"InfoVisible":"InfoInvisible"}>Altura: {miLote?.altura} msnm</div>
+                    <div className={miLote.variedad?"InfoVisible":"InfoInvisible"}>Variedad: {miLote?.variedad}</div>
+                    <div className={miLote.proceso?"InfoVisible":"InfoInvisible"}>Proceso: {miLote.proceso}</div>
+                </div>
             </div>
         </div>
     )
