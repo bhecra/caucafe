@@ -12,7 +12,6 @@ import SobreNosotros from './components/SobreNosotros';
 function App() {
   return (
     <div className="App">
-      <body>
         <Routes>
             <Route path="/" element = {<MenuPrincipal/> }></Route>
             <Route path="SobreNosotros" element = {<SobreNosotros/> }></Route>
@@ -23,7 +22,6 @@ function App() {
             <Route path = 'RegistroLote/' element = {<RegistroLote/>}></Route>
             <Route path = "prueba" element = {<PruebaTwilio/>}> </Route>
         </Routes>
-      </body>
     </div>
   );
 }

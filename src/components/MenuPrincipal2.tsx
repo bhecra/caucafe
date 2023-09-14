@@ -1,15 +1,16 @@
 import React from 'react';
-import bean from "../assets/images/search-coffe-bean.svg"
-import { Lote, CatacionLote } from "./MyTypes";
+import { Lote} from "./MyTypes";
 import { Link } from 'react-router-dom';
-import fondo from "../assets/images/fondo.png"
 import logo from "../assets/images/smell_5235019.svg"
-import ReactDOM from 'react-dom'
+
 //@ts-ignore
 import { Helmet } from 'react-helmet';
+import { createAnalisisFisico } from './LoteInfo';
 
 const miLote:Lote = {
-  codigo: '',}
+  codigo: '',
+  analysis: createAnalisisFisico()
+}
 
 export default function MenuPrincipal() {
   return (

@@ -43,7 +43,7 @@ export const predefinedPhysicalDefects: defectoFisico[] = [
     {id:4, name: 'Brocado severo', group: 1 },
     {id:5, name: 'Negro parcial', group: 1 },
     {id:6, name: 'Negro total', group: 1 },
-    {id:4, name: 'Vinagre', group: 1 },
+    {id:7, name: 'Vinagre', group: 1 },
     {id:8, name: 'Cardenillo', group: 1 },
     {id:8, name: 'Cereza', group: 1 },
     {id:10, name: 'Inmaduro', group: 1 },

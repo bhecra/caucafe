@@ -8,7 +8,7 @@ export function createAnalisisFisico():AnalisisFisico {
         sampleWeight: 250,
         defects: [],
         defectsWeight: 0,
-        excelso: 0,
+        excelso: 200,
         factordeRendimiento:100,
         group1DefectsWeight:0,
         group2DefectsWeight:0,

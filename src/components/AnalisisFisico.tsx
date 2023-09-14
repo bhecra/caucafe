@@ -20,8 +20,8 @@ function InputAnalisis({ propLote, inputLabel, inputValue, handleFcn, inputClass
     return (
         <div className={inputClass}>
             <label>{inputLabel}</label>
-            <input className="LoteInput" type="number" onChange={e => handleFcn(propLote, e)} value={inputValue} min={"0"}></input>
-            <br /><p>{p}</p>
+            <input type="number" onChange={e => handleFcn(propLote, e)} value={inputValue} min={"0"}></input>
+            <div style={{height:"fit-content"}}><p>{p}</p></div>
         </div>
     )
 }
@@ -113,9 +113,15 @@ export default function AnalisisFisicoPage() {
         let newfactordeRendimiento: number = (newAnalisis2.sampleWeight / newAnalisis2.excelso) * 70
         newfactordeRendimiento = Number(newfactordeRendimiento.toFixed(1))
         const newMerma: number = newAnalisis2.sampleWeight - newAnalisis2.excelso
+        if(newAnalisis2.excelso && newAnalisis2.volume){
+            let newDensity = newAnalisis2.excelso/newAnalisis2.volume
+            newDensity = parseFloat(newDensity.toFixed(3))
+            newAnalisis2.density = newDensity
+        } 
         let newpcMerma: number = newMerma / newAnalisis2.sampleWeight * 100
         newpcMerma = parseFloat(newpcMerma.toFixed(2))
-        setNewAnalisis({ ...newAnalisis2, factordeRendimiento: newfactordeRendimiento, Merma: newMerma, pcMerma: newpcMerma })
+        setNewAnalisis({ ...newAnalisis2, factordeRendimiento: newfactordeRendimiento, Merma: newMerma, pcMerma: newpcMerma})
+        
     }
 
     function handleDefectValue(event: React.ChangeEvent<HTMLSelectElement>): void {
@@ -166,7 +172,6 @@ export default function AnalisisFisicoPage() {
         })
         setNewAnalisis({ ...newAnalisis, defects: newDefectsList, defectsWeight: newDefectsWeight, group1DefectsWeight: group_1, group2DefectsWeight: group_2 })
     }
-
     function endAnalysis(): void {
         miLote.analysis = newAnalisis
     }
@@ -199,14 +204,12 @@ export default function AnalisisFisicoPage() {
     // }
     return (
         <div className="container-analisisf">
-
             <div className="LoteHeader">
                 <LoteCodigo miLote={reactLote} handleCodigo={handleCodigo} />
                 <LoteInfo miLote={reactLote} />
             </div>
-            <div>
-
-                <section className="inputs-analisis">
+            <div id="AnalisisBody">
+                <section id="InputsAnalisis" className="">
                     <div className="row">
                         <div className="col-3">
                             <InputAnalisis
@@ -220,31 +223,12 @@ export default function AnalisisFisicoPage() {
                         </div>
                         <div className="col-3">
                             <InputAnalisis
-                                propLote={"volume"}
-                                inputValue={newAnalisis?.volume}
+                                propLote={"excelso"}
+                                inputValue={newAnalisis?.excelso}
                                 handleFcn={handleProp}
-                                inputLabel="Volumen [ml]:  "
-                                inputClass="InputAnalisis"
-                            />
-                        </div>
-                        <div className="col-3">
-                            <InputAnalisis
-                                propLote={"humidity"}
-                                inputValue={newAnalisis?.humidity}
-                                handleFcn={handleProp}
-                                inputLabel="Humedad [%]:  "
-                                inputClass="InputAnalisis"
-                            />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-3">
-                            <InputAnalisis
-                                propLote={"aw"}
-                                inputValue={newAnalisis?.aw}
-                                handleFcn={handleProp}
-                                inputLabel="Actvidad de agua:  "
-                                inputClass="InputAnalisis"
+                                inputLabel="Excelso [g]:  "
+                                inputClass={validClass["excelso"].classStatus}
+                                p="El peso debe ser mayor a cero"
                             />
                         </div>
                         <div className="col-3">
@@ -256,86 +240,85 @@ export default function AnalisisFisicoPage() {
                                 inputClass="InputAnalisis"
                             />
                         </div>
+                    </div>
+                    <div className="row">
                         <div className="col-3">
                             <InputAnalisis
-                                propLote={"excelso"}
-                                inputValue={newAnalisis?.excelso}
+                                propLote={"humidity"}
+                                inputValue={newAnalisis?.humidity}
                                 handleFcn={handleProp}
-                                inputLabel="Excelso [g]:  "
-                                inputClass={validClass["excelso"].classStatus}
-                                p="El peso debe ser mayor a cero"
+                                inputLabel="Humedad [%]:  "
+                                inputClass="InputAnalisis"
+                            />
+                        </div>
+                        <div className="col-3">
+                            <InputAnalisis
+                                propLote={"volume"}
+                                inputValue={newAnalisis?.volume}
+                                handleFcn={handleProp}
+                                inputLabel="Volumen [ml]:  "
+                                inputClass="InputAnalisis"
+                            />
+                        </div>
+                        <div className="col-3">
+                            <InputAnalisis
+                                propLote={"aw"}
+                                inputValue={newAnalisis?.aw}
+                                handleFcn={handleProp}
+                                inputLabel="Actvidad de agua:  "
+                                inputClass="InputAnalisis"
                             />
                         </div>
                     </div>
                 </section>
-
-                <section className="defectos">
-                    <div className="InputAnalisis">
-                        <div className="input-row">
-                            <div className="input-group">
-                                <label htmlFor="defectSelect" style={{margin:"none"}}>Defectos:</label>
-                                <select
-                                    style={{fontSize:"16px"}}
-                                    id="defectSelect"
-                                    value={selectedDefect.name}
-                                    onChange={(e) => handleDefectValue(e)}
-                                >
-                                    <option value="">Seleccione un defecto</option>
-                                    {predefinedPhysicalDefects.map((defecto) => (
-                                        <option key={defecto.id}>{defecto.name}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className="input-group">
-                                <label htmlFor="pesoDefecto">Peso [g]:</label>
-                                <div className={validClass["pesoDefecto"].classStatus}>
-                                    <input
-                                        
-                                        min="0"
-                                        className={validClass["pesoDefecto"].classStatus}
-                                        step={0.1}
-                                        type="number"
-                                        id="pesoDefecto"
-                                        value={defectWeight}
-                                        onChange={(e) => handleDefectWeight(e)}
-                                    />
-                                    <p>El peso debe ser mayor a cero</p>
-                                </div>
-                                <button
-
-                                    onClick={handleAddDefect}
-                                    className="agg"
-                                >
-                                    <FontAwesomeIcon icon={faPlusCircle} />
-                                </button>
-                            </div>
+                <section id="Defectos" className="inputs-analisis">
+                    <h1>Defectos</h1>
+                    <div className="input-row">
+                        <div className="InputAnalisis">
+                            <label htmlFor="defectSelect" >Defectos:</label>
+                            <select
+                                style={{fontSize:"16px"}}
+                                id="defectSelect"
+                                value={selectedDefect.name}
+                                onChange={(e) => handleDefectValue(e)}
+                            >
+                                <option value="">Seleccione un defecto</option>
+                                {predefinedPhysicalDefects.map((defecto) => (
+                                    <option key={defecto.id}>{defecto.name}</option>
+                                ))}
+                            </select>
                         </div>
-                        <table style={{ border: "1px solid black" }}>
-                            {newAnalisis.defects?.map((defecto) => (
-                                <tr key={defecto.defect.id}>
-                                    <td>{defecto.defect.name}</td>
-                                    <td>Grupo: {defecto.defect.group}</td>
-                                    <td>{defecto.peso} g</td>
-                                    <td>{defecto.porcentaje} %</td>
-                                    <td>
-                                        <button onClick={() => handleDeleteDefect(defecto.defect.id)}><FontAwesomeIcon icon={faTrashAlt}/> </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </table>
+                        <div className={validClass["pesoDefecto"].classStatus}>
+                            <label htmlFor="pesoDefecto">Peso [g]:</label>
+                            <input
+                                min="0"
+                                className={validClass["pesoDefecto"].classStatus}
+                                step={0.1}
+                                type="number"
+                                id="pesoDefecto"
+                                value={defectWeight}
+                                onChange={(e) => handleDefectWeight(e)}
+                            /> 
+                            <p >El peso debe ser mayor a cero</p>
+                            
+                        </div>
+                        <button onClick={handleAddDefect} className="agg">
+                            <FontAwesomeIcon icon={faPlusCircle} />
+                        </button>
                     </div>
+                    <table style={{ border: "1px solid black" }}>
+                        {newAnalisis.defects?.map((defecto) => (
+                            <tr key={defecto.defect.id}>
+                                <td>{defecto.defect.name}</td>
+                                <td>Grupo: {defecto.defect.group}</td>
+                                <td>{defecto.peso} g</td>
+                                <td>{defecto.porcentaje} %</td>
+                                <button style={{margin:"5px"}} onClick={() => handleDeleteDefect(defecto.defect.id)}><FontAwesomeIcon icon={faTrashAlt}/> </button>
+                            </tr>
+                        ))}
+                    </table>
                 </section>
-                <p style={{textAlign:"center", display:"block", margin:"auto", width:"90%"}}>Resultado:</p>
-                <div className="h4-container">
-                    
-                    <h4>Peso defectos: {newAnalisis.defectsWeight} g</h4>
-                    <h4>Grupo 1: {newAnalisis.group1DefectsWeight} g</h4>
-                    <h4>Grupo 2: {newAnalisis.group2DefectsWeight} g</h4>
-                    <h4>Merma medida: {mermaMedida}</h4>
-                </div>
-
-
-                <div className="new-section">
+                <div id="granulometria" className="inputs-analisis">
                     <h1>Granulometría</h1>
                     <table>
                         <thead>
@@ -343,26 +326,29 @@ export default function AnalisisFisicoPage() {
                             <td>Retención [g]</td>
                             <td>Porcentaje</td>
                             <td>Retención acumulada</td>
-
                         </thead>
                         {mallas.map(numero => (
                             <tr>
                                 <td>{numero}</td>
-                                <input type="number" onChange={(e) => handleMallaWeight(e, numero)} value={newAnalisis.mallas[numero]?.weight} />
-                                <td>{newAnalisis.mallas[numero]?.pc}%</td>
-                                <td>{newAnalisis.mallas[numero]?.pcA}%</td>
+                                <td><div className="InputAnalisis"><input type="number" onChange={(e) => handleMallaWeight(e, numero)} value={newAnalisis.mallas[numero]?.weight} /></div></td>
+                                <td style={{width: 'fit-content'}}>{newAnalisis.mallas[numero]?.pc}%</td>
+                                <td style={{width: 'fit-content'}}>{newAnalisis.mallas[numero]?.pcA}%</td>
                             </tr>
                         ))}
                     </table>
-                        <button onClick={() => setMallas(mallas.concat(Number(mallas.slice(-1)) - 1))}>Agregar malla</button>
-                    </div>
-                    <p style={{textAlign:"center", display:"block", margin:"auto"}}>Resultado:</p>
-                    <div className="container-malla">
-                            <h4>Factor de rendimiento: {newAnalisis.factordeRendimiento}</h4>
-                            <h4>Merma calculada: {newAnalisis.Merma} g</h4>
-                            <h4>Porcentaje de Merma: {newAnalisis.pcMerma}%</h4>
-
-                    </div>
+                    <br /><button className="agg" onClick={() => setMallas(mallas.concat(Number(mallas.slice(-1)) - 1))}>Agregar malla</button>
+                </div>
+                <div className="resultados">
+                    <h1 style={{fontSize:"25px", color:"black"}} >Resultados:</h1><br />
+                    <h4>Factor de rendimiento: {newAnalisis.factordeRendimiento}</h4>
+                    <h4>Porcentaje de Merma: {newAnalisis.pcMerma}%</h4>
+                    <h4 className={newAnalisis.density?"InfoVisible":"InfoInvisible"}>Densidad: {newAnalisis?.density} g/ml</h4>
+                    <h4>Peso defectos: {newAnalisis.defectsWeight} g</h4>
+                    <h4 style={{fontSize: "14px"}}>Grupo 1: {newAnalisis.group1DefectsWeight} g</h4>
+                    <h4 style={{fontSize: "14px"}}>Grupo 2: {newAnalisis.group2DefectsWeight} g</h4>
+                    <h4>Merma calculada: {newAnalisis.Merma} gramos</h4>
+                    <h4>Merma medida: {mermaMedida} gramos</h4>
+                </div>
                 <div className="last-buttons">
                     <button onClick={endAnalysis}>Guardar</button>
                     <button>
@@ -370,7 +356,8 @@ export default function AnalisisFisicoPage() {
                             state={{
                                 miLote: miLote
                             }} > Catación </Link>
-                    </button></div>
+                    </button>
+                </div>
             </div>
         </div>
 
