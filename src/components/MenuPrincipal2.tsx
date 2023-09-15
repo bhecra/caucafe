@@ -5,12 +5,9 @@ import logo from "../assets/images/smell_5235019.svg"
 
 //@ts-ignore
 import { Helmet } from 'react-helmet';
-import { createAnalisisFisico } from './LoteInfo';
+import { createAnalisisFisico, createLote } from './LoteInfo';
 
-const miLote:Lote = {
-  codigo: '',
-  analysis: createAnalisisFisico()
-}
+const miLote = createLote()
 
 export default function MenuPrincipal() {
   return (
@@ -27,8 +24,7 @@ export default function MenuPrincipal() {
       <div className="headerMP">
         <img src={logo} alt="logo"/>  
       <Link to={'/SobreNosotros'}
-
-          target="_blank"
+          state={{miLote:miLote}}
           >Sobre Nosotros</Link>
       </div>
 

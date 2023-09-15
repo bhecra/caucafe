@@ -1,17 +1,9 @@
-import { useState } from "react";
+
 import logo from "../logo.svg"
 import foto from "../assets/images/fotos-devs.png"
 import { Link } from 'react-router-dom';
-import { Lote, CatacionLote } from "./MyTypes";
 //@ts-ignore
 import { Helmet } from 'react-helmet';
-const miLote: Lote = {
-  codigo: '',
-  nombreCaficultor: '',
-  municipio: '',
-  proceso: '',
-  variedad: '',
-}
 
 
 export default function SobreNosotros() {
@@ -22,13 +14,10 @@ export default function SobreNosotros() {
           <title>Sobre Nosotros</title>
         </Helmet> </div>
       <div className="headerMP">
-        <img src={logo} alt="logo" />
-        <Link to={'/RegistroLote'}
-          state={{
-            miLote: miLote
-          }}
-          target="_blank"
-        >Nuevo Análisis</Link>
+          <Link to={"/"} >
+            <div style={{marginLeft:"10px"}}>Inicio</div>
+          </Link>
+        
       </div>
       <div className="contentSobreNosotros">
         <div className="imgSobreNosotros">

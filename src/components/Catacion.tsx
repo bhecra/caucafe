@@ -1,30 +1,17 @@
 import { useLocation, Link } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CoffeeScoreInput from './CoffeeScoreInput';
-import { CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect } from './MyTypes';
-import { LoteInfo } from "./LoteInfo";
+import { CatacionLote, Lote, puntajeSCA, predefinedDefects, CupDefect, EMPTY_CUPPING } from './MyTypes';
+import { LoteCodigo, LoteInfo, createLote } from "./LoteInfo";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 // ... ESTILOS ......................
 //@ts-ignore
 import { Helmet } from 'react-helmet';
+import BarraNavegacion from "./BarraNavegacion";
 
-const PageContainer = styled.div`
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 0px;
-  font-family: Arial, sans-serif;
-  padding: 0px;
-  background-image: url('top-view-delicious-coffee-beans-arrangement.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-`;
 
 const ScoreInputsContainer = styled.div`
 
@@ -39,7 +26,7 @@ const ScoreInputsContainer = styled.div`
 `;
 
 const CatacionContainer = styled.div`
-    background-color: rgb(255,255,255,0.5);
+    background-color: #eeeded;
     display: flex;
     flex-direction: row;
     margin-top: 2%;
@@ -80,13 +67,7 @@ const CatacionData = styled.div`
   
 `;
 
-const CatacionScoreInputs = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  
-  flex-direction: row !important;
-`;
+
 const AddCatacionButton = styled.button`
     
   margin-bottom: 20px;
@@ -97,70 +78,15 @@ const AddCatacionButton = styled.button`
 export default function Catacion() {
     const location = useLocation();
     const { miLote }: { miLote: Lote } = location.state || {};
-    const [catacionCount, setCatacionCount] = useState(1);
-    const [reactLote, setReactLote] = useState<Lote[]>([miLote]);
+    const [catacionCount, setCatacionCount] = useState(0);
+    const [reactLote, setReactLote] = useState<Lote[]>([{...miLote}]);
     const [catador, setCatador] = useState('');
-    /* const falseSCAboxList: SCAboxList = [
-            {index:1, value: false},
-            {index:2, value: false},
-            {index:3, value: false},
-            {index:4, value: false},
-            {index:5, value: false},
-        ]
-    */
-    const catacionVacia: CatacionLote = {
-        id: 0,
-        dulzor: [
-            { index: 1, value: true },
-            { index: 2, value: true },
-            { index: 3, value: true },
-            { index: 4, value: true },
-            { index: 5, value: true },
-        ],
-        uniformidad: [
-            { index: 1, value: true },
-            { index: 2, value: true },
-            { index: 3, value: true },
-            { index: 4, value: true },
-            { index: 5, value: true },
-        ],
-        tazaLimpia: [
-            { index: 1, value: true },
-            { index: 2, value: true },
-            { index: 3, value: true },
-            { index: 4, value: true },
-            { index: 5, value: true },
-        ],
-        defectsList: [],
-        uniformidadScore: 10,
-        dulzorScore: 10,
-        tazaLimpiaScore: 10,
-        InfoView: false,
-        InfoClass: "InfoInvisible",
-        defectsQty: 0,
-        SCAdefectsQty: 0,
-        SCAdefects: 0,
-        fragancia: 6,
-        sabor: 6,
-        residual: 6,
-        acidez: 6,
-        cuerpo: 6,
-        balance: 6,
-        puntajeCatador: 6,
-        finalScore: 0,
-        defectsIntesity: 2
-    }
-    const MuestraInicial: CatacionLote = {
-        ...catacionVacia,
-        id: 1,
-        codigo: miLote?.codigo || '',
-        variedad: miLote?.variedad,
-        proceso: miLote?.proceso,
-        altura: miLote?.altura,
-
-    }
-    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([MuestraInicial]);
+    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([EMPTY_CUPPING]);
     const [defectValue, setDefectValue] = useState<CupDefect>({ id: 0, name: '' });
+    useEffect(()=>{
+        catacionElements.forEach(element=>{reactLote[element.id].cupping=element})
+        setReactLote(reactLote)
+    },[catacionElements])
     const handleCatador = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCatador(e.target.value)
     }
@@ -168,9 +94,11 @@ export default function Catacion() {
         const newCatacionCount = catacionCount + 1;
         setCatacionCount(newCatacionCount);
         const newCatacionElement: CatacionLote = {
-            ...catacionVacia,
+            ...EMPTY_CUPPING,
             id: newCatacionCount,
         };
+        const newLote = createLote()
+        setReactLote(prevElements=>[...prevElements,newLote])
         setCatacionElements(prevElements => [...prevElements, newCatacionElement]);
         //setReactLote({...reactLote, cu})
     }
@@ -343,16 +271,12 @@ export default function Catacion() {
     }
     //handleNuevaCatacion();
     return (
-        <div className="Image2Background" >
+        <div className="container-analisisf">
+            <Helmet>
+                <title>Catación</title>
+            </Helmet> 
             <div>
-                <Helmet>
-                    <title>Catación</title>
-                </Helmet> </div>
-            <div>
-                <Link to={'/analisisFisico'}
-                    state={{
-                        miLote: miLote
-                    }} className="backToAf"> Análisis Físico </Link>
+                <BarraNavegacion miLote={reactLote[0]}/>
 
 
                 <div className="tableHeader">
@@ -372,12 +296,9 @@ export default function Catacion() {
                         <CatacionContainer key={catacionElement.id}>
                             <CatacionHeader>
                                 <h2>Muestra {catacionElement.id}</h2><br />
-                                <div className="searchdiv" style={{ height: "25px" }}>
-                                    <input autoCapitalize="characters" placeholder="Código" type="text" id="InputCodigoLote" onChange={(event) => handleCatacionProp(catacionElement.id, "codigo", event)} value={catacionElement.codigo}></input>
-                                    <button>Buscar</button>
-                                </div>
-                                <LoteInfo miLote={miLote} />
-                                <h1>{miLote.analysis?.factordeRendimiento}</h1>
+                                <LoteCodigo miLote={reactLote[catacionElement.id]} handleCodigo={(e)=>{}}/>
+                                <LoteInfo miLote={reactLote[catacionElement.id]} />
+                                
                             </CatacionHeader>
                             <CatacionData >
                                 <div>Puntaje final: {catacionElement.finalScore}</div>
@@ -613,7 +534,7 @@ export default function Catacion() {
                                             </option>
                                         ))}
                                     </select>
-                                    <button onClick={() => handleAddDefect(catacionElement.id)}>Agregar</button>
+                                    <button className="agg" onClick={() => handleAddDefect(catacionElement.id)}>Agregar</button>
 
                                     {catacionElement.defectsList.map((row) => (
                                         <tr key={row.id}>

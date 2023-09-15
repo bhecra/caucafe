@@ -30,6 +30,41 @@ h4 {
 footer {
   height: 10vh;
 }
+/* Estilo para la barra de navegación */
+nav {
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff5733; /* Cambiar el color al pasar el mouse por encima */
+}
 a {
   color: #000;
   font-weight: 600;
@@ -256,7 +291,16 @@ footer {
     height: 20vh;
   }
 }
-
+/*Info Lote*/
+.InfoLote{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.InfoLote p{
+  margin-left: 10px;
+  margin: 10px
+}
 /* ANALISIS FISICO */
 
 .divAnalisisFisico {
@@ -292,7 +336,7 @@ footer {
 }
 
 .field {
-  background-color: rgba(255, 255, 255, 0.895);
+  background-color: rgb(255, 255, 255,0.895);
   margin: 0%;
   padding: 10px;
   border-radius: 1rem;
@@ -680,7 +724,7 @@ footer {
   /* Estilos generales para la sección */
   padding: 20px;
   border: 1px solid #ccc;
-  background-color: #f7f7f7;
+  background-color: #eeeded;
   margin: 3rem 3rem 1rem 3rem;
   width: 90%;
 
@@ -746,7 +790,7 @@ button {
 
 }
 .agg {
-  background-color: #007bff;
+  background-color: #007bff !important;
   margin: 1rem;
   width: fit-content;
   height: fit-content;
@@ -894,7 +938,7 @@ table td {
     flex-wrap: wrap;
     padding: 20px;
     border: 1px solid #ccc;
-    background-color: #D1CCDC; /* Cambiamos el color de fondo a un azul brillante */
+    background-color: #eeeded; /* Cambiamos el color de fondo a un azul brillante */
     margin: 0 3rem 5rem 3rem;
     width: 90%;
     transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Agregamos una transición para el color de fondo y la sombra */
@@ -931,7 +975,7 @@ table td {
 }
 
 .container-analisisf{
-  margin: 10%;
+  margin: 5%;
   display: flex !important;
   flex-direction: column;
   justify-content: center !important;

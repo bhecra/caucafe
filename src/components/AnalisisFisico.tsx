@@ -2,12 +2,11 @@
 import { Link, useLocation, } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AnalisisFisico, Lote, defectoFisico, predefinedPhysicalDefects, samplePhysicalDefect } from "./MyTypes";
-import { LoteCodigo, LoteInfo, createAnalisisFisico } from "./LoteInfo";
-import { exit } from "process";
+import { LoteCodigo, LoteInfo, createAnalisisFisico, createLote } from "./LoteInfo";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { text } from "body-parser";
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import BarraNavegacion from "./BarraNavegacion";
 
 //import { Helmet } from './react-helmet';
 
@@ -25,6 +24,7 @@ function InputAnalisis({ propLote, inputLabel, inputValue, handleFcn, inputClass
         </div>
     )
 }
+
 type ValidClass = {
     //id:string;
     validClass: string;
@@ -72,8 +72,8 @@ const ValidDicc: tipoValidDicc = {
 
 export default function AnalisisFisicoPage() {
     const location = useLocation()
-    let { miLote }: { miLote: Lote } = location.state || {};
-    const [reactLote, setReactLote] = useState(miLote);
+    let { miLote }: { miLote: Lote } = location.state || createLote();
+    const [reactLote, setReactLote] = useState(miLote) || createLote();
     const [newAnalisis, setNewAnalisis] = useState<AnalisisFisico>(miLote?.analysis || createAnalisisFisico())
     const [selectedDefect, setSelectedDefect] = useState<defectoFisico>({ id: 0, name: '', group: 1 })
     const [defectWeight, setDefectWeight] = useState(0.0)
@@ -102,11 +102,12 @@ export default function AnalisisFisicoPage() {
         else handleValidation("excelso", false)
         let A: number = newAnalisis.defectsWeight ? newAnalisis.defectsWeight : 0
         let B: number = newAnalisis.trilla ? newAnalisis.trilla : 0
-
+        //reactLote.analysis=newAnalisis
+        setReactLote({...reactLote, analysis:newAnalisis})
         setMermaMedida(Number(A) + Number(B))
     }, [newAnalisis]);
     function handleCodigo(e: React.ChangeEvent<HTMLInputElement>) {
-        setReactLote({ ...miLote, codigo: e.target.value })
+        setReactLote({ ...reactLote, codigo: e.target.value })
     }
     function handleProp(prop: keyof AnalisisFisico, e: React.ChangeEvent<HTMLInputElement>) {
         let newAnalisis2 = { ...newAnalisis, [prop]: e.target.value };
@@ -173,7 +174,7 @@ export default function AnalisisFisicoPage() {
         setNewAnalisis({ ...newAnalisis, defects: newDefectsList, defectsWeight: newDefectsWeight, group1DefectsWeight: group_1, group2DefectsWeight: group_2 })
     }
     function endAnalysis(): void {
-        miLote.analysis = newAnalisis
+        setReactLote({...reactLote, analysis:newAnalisis})
     }
     function handleMallaWeight(e: React.ChangeEvent<HTMLInputElement>, numero: number) {
         let newMallas = newAnalisis.mallas
@@ -204,6 +205,7 @@ export default function AnalisisFisicoPage() {
     // }
     return (
         <div className="container-analisisf">
+            <BarraNavegacion miLote={reactLote}/>
             <div className="LoteHeader">
                 <LoteCodigo miLote={reactLote} handleCodigo={handleCodigo} />
                 <LoteInfo miLote={reactLote} />

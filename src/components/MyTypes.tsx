@@ -104,7 +104,6 @@ export  type CatacionLote = {
     intensidad?: number;
     mojado?: number;
     nivel?: number;
-    proceso?: string;
     puntajeCatador: number;
     finalScore:number;
     residual: number;
@@ -119,8 +118,60 @@ export  type CatacionLote = {
     uniformidad: SCAboxList;
     uniformidadScore: number;
     tostion?: number;
-    variedad?: string;
     notas?: string;
+}
+export const EMPTY_CUPPING:CatacionLote = {
+    id: 0,
+    dulzor: [
+        { index: 1, value: true },
+        { index: 2, value: true },
+        { index: 3, value: true },
+        { index: 4, value: true },
+        { index: 5, value: true },
+    ],
+    uniformidad: [
+        { index: 1, value: true },
+        { index: 2, value: true },
+        { index: 3, value: true },
+        { index: 4, value: true },
+        { index: 5, value: true },
+    ],
+    tazaLimpia: [
+        { index: 1, value: true },
+        { index: 2, value: true },
+        { index: 3, value: true },
+        { index: 4, value: true },
+        { index: 5, value: true },
+    ],
+    defectsList: [],
+    uniformidadScore: 10,
+    dulzorScore: 10,
+    tazaLimpiaScore: 10,
+    InfoView: false,
+    InfoClass: "InfoInvisible",
+    defectsQty: 0,
+    SCAdefectsQty: 0,
+    SCAdefects: 0,
+    fragancia: 6,
+    sabor: 6,
+    residual: 6,
+    acidez: 6,
+    cuerpo: 6,
+    balance: 6,
+    puntajeCatador: 6,
+    finalScore: 0,
+    defectsIntesity: 2
+}
+export const EMPTY_ANALISIS:AnalisisFisico ={
+    sampleWeight: 250,
+    defects: [],
+    defectsWeight: 0,
+    excelso: 200,
+    factordeRendimiento:100,
+    group1DefectsWeight:0,
+    group2DefectsWeight:0,
+    mallas:{
+    }
 }
 export type Lote = {
     codigo?: string;
@@ -132,6 +183,6 @@ export type Lote = {
     variedad?: string;
     altura?:number;
     peso?: number;
-    cupping?: CatacionLote;
-    analysis?: AnalisisFisico;
+    cupping: CatacionLote;
+    analysis: AnalisisFisico;
 }

@@ -7,6 +7,7 @@ import logo from "../assets/images/logo.svg";
 import { Lote } from "./MyTypes";
 //@ts-ignore
 import { Helmet } from 'react-helmet';
+import BarraNavegacion from "./BarraNavegacion";
 type listItems = {
     id: number
     nombre: string
@@ -60,9 +61,11 @@ const municipiosCauca: Municipio[] = [
     { id: 342, nombre: 'Villa Rica' },
 ];
 export function leerInput(InputID: string) {
-    const HTMLElement = document.getElementById(`${InputID}`) as HTMLInputElement
-    const Value = HTMLElement.value
-    return Value
+    const HTMLElement = document.getElementById(`${InputID}`)
+    if(HTMLElement instanceof HTMLInputElement || HTMLElement instanceof HTMLSelectElement){
+        const Value = HTMLElement.value
+        return Value
+    }
 }
 const procesos: listItems[] = [
     { id: 0, nombre: "Lavado" },
@@ -105,14 +108,13 @@ function generarCodigo(): string {
 export default function RegistroLote() {
     const location = useLocation();
     const { miLote }: { miLote: Lote } = location.state || {};
-    const { siguiente } = useParams();
     const [registroLote, setRegistroLote] = useState<Lote>(miLote)
     //Falta Altura (msnm) 
 
     //const [selectedMunicipio, setSelectedMunicipio] = useState<Municipio | null>(null);
     function cambiarLote(atributo: keyof Lote, id: string) {
         const Input: any = leerInput(id);
-        setRegistroLote({ ...registroLote, [atributo]: Input, numeroCel: Input })
+        setRegistroLote({ ...registroLote, [atributo]: Input})
     }
     function CrearLote(): void {
         setRegistroLote({ ...registroLote, codigo: generarCodigo() })
@@ -132,8 +134,10 @@ export default function RegistroLote() {
             <div>
                 <Helmet>
                     <title>Registro Lote</title>
-                </Helmet> </div>
+                </Helmet> 
+            </div>
             <header className="header">
+                <BarraNavegacion miLote={registroLote}/>
                 <Link to={"/"}>
                     <img width={300} src={logo} alt="logo-caucafe"></img>
                 </Link>
@@ -142,28 +146,31 @@ export default function RegistroLote() {
                 <div className="loteForm">
                     <div className="campoRegistroLote">
                         <label htmlFor="NombreCaficultor"> Nombre de caficultor </label>
-                        <input type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e => cambiarLote("nombreCaficultor", "NombreCaficultor")} /><br />
+                        <input value={registroLote?.nombreCaficultor} type="text" name="NombreCaficultor" id={"NombreCaficultor"} onChange={e => cambiarLote("nombreCaficultor", "NombreCaficultor")} /><br />
                     </div>
                     <div className="campoRegistroLote">
                         <label htmlFor="idCaficultor"> Número de cédula </label>
-                        <input type="text" name="idCaficultor" id={"idCaficultor"} onChange={e => cambiarLote("idCaficultor", "idCaficultor")} /><br />
+                        <input value={registroLote?.idCaficultor} type="text" name="idCaficultor" id={"idCaficultor"} onChange={e => cambiarLote("idCaficultor", "idCaficultor")} /><br />
                     </div>
                     <div className="campoRegistroLote">
                         <label htmlFor="celular">Telefono</label>
-                        <input type="tel" id="celular" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 3161112222" onChange={e => cambiarLote("numeroCel", "celular")}></input>
+                        <input value={registroLote?.numeroCel} type="tel" id="celular" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Ej: 3161112222" onChange={e => cambiarLote("numeroCel", "celular")}></input>
                     </div>
                     <div className="campoRegistroLote">
                         <label>Municipio de Cultivo:  </label>
-                        <select id="MunicipioSelect" onChange={e => cambiarLote("municipio", "MunicipioSelect")} className="input-text">
+                        <select value={registroLote?.municipio} id="MunicipioSelect" onChange={e => cambiarLote("municipio", "MunicipioSelect")} className="input-text">
                             <option value={0}>Selecciona un municipio</option>
-                            {municipiosCauca.map(mun => (
-                                <option key={mun.id} value={mun.nombre}>{mun.nombre}</option>
-                            ))}
+                            {municipiosCauca.map(mun =>{
+                                const isSelected = registroLote?.municipio===mun.nombre?true:false
+                                return (
+                                <option key={mun.id} value={mun.nombre} selected={isSelected}>{mun.nombre}</option>
+                                )
+                            })}
                         </select>
                     </div>
                     <div className="campoRegistroLote">
                         <label>Altura de la finca (msnm)</label>
-                        <input type="number" id="alturaFinca" onChange={e => cambiarLote("altura", "alturaFinca")}></input>
+                        <input value={registroLote?.altura} type="number" id="alturaFinca" onChange={e => cambiarLote("altura", "alturaFinca")}></input>
                     </div>
                     <div className="campoRegistroLote">
                         <label htmlFor="pesoLote">Peso del lote (Kg)</label>
@@ -171,9 +178,12 @@ export default function RegistroLote() {
                     </div>
                     <div className="campoRegistroLote">
                         <label>Variedad</label>
-                        <select id="variedadLote" onChange={e => cambiarLote("variedad", "variedadLote")} className="input-text">
+                        <select value={registroLote?.variedad} id="variedadLote" onChange={e => cambiarLote("variedad", "variedadLote")} className="input-text">
                             <option>Seleccione</option>
-                            {variedadesCafe.map(vari => (<option key={vari.id}>{vari.nombre}</option>))}
+                            {variedadesCafe.map(vari =>{
+                                const isSelected = registroLote?.variedad===vari.nombre
+                                return (<option key={vari.id} selected={isSelected}>{vari.nombre}</option>)
+                            })} 
                         </select>
                     </div>
                     <div className="campoRegistroLote">
@@ -186,19 +196,7 @@ export default function RegistroLote() {
                     <div className="campoBoton">
                         <button onClick={CrearLote} >Generar</button>
                         <h3> Codigo de Lote: {registroLote?.codigo}</h3>
-                        <button>
-                            <Link to={'/AnalisisFisico'}
-                                state={{
-                                    miLote: registroLote,
-                                    numeroCel: registroLote?.numeroCel
-                                }} > Análisis Físico </Link>
-                        </button><br />
-                        <button>
-                            <Link to={'/Catacion'}
-                                state={{
-                                    miLote: registroLote
-                                }} > Catación </Link>
-                        </button>
+                        
                     </div>
                 </div>
             </div>
