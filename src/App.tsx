@@ -10,19 +10,22 @@ import PruebaTwilio from './components/PruebaTwilio';
 import SobreNosotros from './components/SobreNosotros';
 
 function App() {
+ 
   return (
     <div className="App">
+      
         <Routes>
             <Route path="/" element = {<MenuPrincipal/> }></Route>
             <Route path="SobreNosotros" element = {<SobreNosotros/> }></Route>
             <Route path = 'RegistroCaficultor/' element  = {<RegistroCaficultor/>}></Route>
             <Route path = 'AnalisisFisico/' element  = {<AnalisisFisicoPage/>}></Route>
-            <Route path="Catacion/" element={<Catacion/>} />
+            <Route path="catacion/" element={<Catacion/>} />
             <Route path = 'RegistroCaficultor/:siguiente' element  = {<RegistroCaficultor/>}></Route>
             <Route path = 'RegistroLote/' element = {<RegistroLote/>}></Route>
             <Route path = "prueba" element = {<PruebaTwilio/>}> </Route>
         </Routes>
     </div>
+    
   );
 }
 

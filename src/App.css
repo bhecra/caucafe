@@ -29,8 +29,8 @@ h4 {
 
 footer {
   height: 10vh;
+  /* Estilo para la barra de navegación */
 }
-/* Estilo para la barra de navegación */
 nav {
   background-color: #333;
   color: #fff;
@@ -66,7 +66,6 @@ nav a:hover {
   color: #ff5733; /* Cambiar el color al pasar el mouse por encima */
 }
 a {
-  color: #000;
   font-weight: 600;
   padding-bottom: 3%;
   text-decoration: none;
@@ -74,6 +73,7 @@ a {
 
 header {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   margin-bottom: 2%;
 }
@@ -89,6 +89,8 @@ header img {
 
 main {
   height: 100vh;
+  overflow: auto;
+
 }
 
 .section-1 {
@@ -107,10 +109,11 @@ main {
 
 .nuevoAnalisis {
   height: 100vh;
-  width: 40vw;
+  width: 60vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: left;
   margin-right: 80vw;
   margin-left: 5vw;
   text-align: right;
@@ -123,6 +126,13 @@ main {
 .nuevoAnalisis > p {
   text-align: left !important;
   font-size: 18px;
+}
+.nuevoAnalisis a{
+  text-align: left;
+  color: black;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: normal;
 }
 
 .btn {
@@ -153,19 +163,25 @@ main {
 }
 
 .headerMP {
-  display: flex !important;
-  justify-content: space-between;
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   width: 100vw;
-  height: 10vh;
-  background: #000;
+  height: fit-content;
+  background: #52a9ff;
 }
-
-.headerMP > a {
-  color: white !important;
+ .headerMP div{
+  margin:10px
+ }
+.headerMP  a {
+  color: white;
   margin-right: 0.7rem;
-  text-decoration: underline;
   font-size: 18px;
+}
+.headerMP  a:hover {
+  color: rgb(255, 179, 179)
 }
 
 .headerMP > img {
@@ -175,7 +191,7 @@ main {
 
 .imgFondoMP {
   height: 100vh;
-  background-image: url(./assets/images/fondo.png);
+  background-image: url(./assets/images/cafocultor.avif);
   background-size: cover;
   background-attachment: fixed;
   position: fixed;
@@ -185,7 +201,7 @@ main {
   height: 1rem;
 }
 .boxShadow {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   height: 100vh;
 }
 
@@ -278,10 +294,7 @@ footer {
     list-style: none;
     text-align: left;
   }
-  a {
-    padding-bottom: 0;
-    color: white !important;
-  }
+
   header {
     display: flex;
     justify-content: center;
@@ -319,7 +332,7 @@ footer {
 /* REGISTRO DE LOTE */
 
 .ImageBackground {
-  padding: 30px;
+  padding: 0px 0px 20px 0px;
   background-image: url(../public/images/coffee-bean-berry-ripening-coffee-farm.jpg);
   background-size: cover;
   background-attachment: fixed;
@@ -328,7 +341,6 @@ footer {
   font-size: 14px !important;
 }
 .Image2Background {
-  padding: 30px;
   padding-bottom: 30px;
   background-image: url(../public/images/top-view-delicious-coffee-beans-arrangement.jpg);
   background-size: cover;
@@ -337,7 +349,7 @@ footer {
 
 .field {
   background-color: rgb(255, 255, 255,0.895);
-  margin: 0%;
+  margin: 30px;
   padding: 10px;
   border-radius: 1rem;
   box-shadow: 3px 3px 5px rgb(50, 50, 50);
@@ -596,6 +608,12 @@ footer {
 
 
 /* Análisis Físico*/
+
+.analisisBackground{
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url("./assets/images/hands-with-coffee-beans-coffee-beans-that-are-dried.jpg") ;
+}
 
 /* TOP */
 .LoteHeader {

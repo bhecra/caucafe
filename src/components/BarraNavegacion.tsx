@@ -1,22 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Lote } from './MyTypes';
+import logo from "../assets/images/logo.svg"
 
 function BarraNavegacion  ({miLote}:{miLote:Lote}){
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link state={{miLote: miLote }}  to="/RegistroLote">Info de Lote</Link>
-        </li>
-        <li>
+    <div className='headerMP'>
+        <div className='headerLink'>
+          <Link to='/' target='_blank'>
+              <img height={50} src={logo} alt="logo-caucafe" ></img>
+          </Link>
+        </div>
+        <div>
+          <Link state={{miLote: miLote }}  to="/RegistroLote">Registro</Link>
+        </div>
+        <div>
           <Link state={{miLote: miLote }} to="/analisisFisico" >Análisis Físico</Link>
-        </li>
-        <li>
-          <Link state={{miLote: miLote }} to="/Catacion" >Catación</Link>
-        </li>
-      </ul>
-    </nav>
+        </div>
+        <div>
+          <Link state={{miLote: miLote }} to="/catacion" >Catación</Link>
+        </div>
+        <div>
+          <Link state={{miLote: miLote }} to="/" >Enviar Análisis</Link>
+        </div>
+        <div>
+          <Link to={'/SobreNosotros'}
+            state={{miLote:miLote}}
+            target='_blank'>
+            Sobre Nosotros
+          </Link>
+        </div>
+    </div>
   );
 };
 

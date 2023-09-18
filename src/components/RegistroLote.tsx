@@ -129,19 +129,13 @@ export default function RegistroLote() {
 
 
     return (
-
         <div className="ImageBackground">
+            <BarraNavegacion miLote={registroLote}/>
             <div>
                 <Helmet>
                     <title>Registro Lote</title>
                 </Helmet> 
             </div>
-            <header className="header">
-                <BarraNavegacion miLote={registroLote}/>
-                <Link to={"/"}>
-                    <img width={300} src={logo} alt="logo-caucafe"></img>
-                </Link>
-            </header>
             <div className="field">
                 <div className="loteForm">
                     <div className="campoRegistroLote">
