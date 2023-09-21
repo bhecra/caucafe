@@ -4,7 +4,9 @@ import { CatacionLote, Lote, AnalisisFisico, EMPTY_CUPPING, EMPTY_ANALISIS } fro
 export function createLote ():Lote{
     const newLote:Lote={
         cupping:EMPTY_CUPPING,
-        analysis: EMPTY_ANALISIS
+        analysis: EMPTY_ANALISIS,
+        ANALYSYS: false,
+        CUPPING: false,
       }
       return newLote
 }

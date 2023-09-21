@@ -39,17 +39,21 @@ export const predefinedDefects: CupDefect[] = [
 export const predefinedPhysicalDefects: defectoFisico[] = [
     {id:1, name: 'Otros grupo 1', group: 1 },
     {id:2, name: 'Otros grupo 2', group: 2 },
-    {id:3, name: 'Brocado leve', group: 1 },
-    {id:4, name: 'Brocado severo', group: 1 },
-    {id:5, name: 'Negro parcial', group: 1 },
-    {id:6, name: 'Negro total', group: 1 },
-    {id:7, name: 'Vinagre', group: 1 },
-    {id:8, name: 'Cardenillo', group: 1 },
-    {id:8, name: 'Cereza', group: 1 },
-    {id:10, name: 'Inmaduro', group: 1 },
-    {id:11, name: 'Concha', group: 2 },
-    {id:12, name: 'Vano', group: 1 },
-    {id:13, name: 'Averanado', group: 1 }
+    {id:3, name: 'Negro parcial', group: 1 },
+    {id:4, name: 'Negro total', group: 1 },
+    {id:5, name: 'Cardenillo', group: 1 },
+    {id:6, name: 'Vinagre', group: 1 },
+    {id:7, name: 'Cristalizado', group: 1 },
+    {id:8, name: 'Decolorado-Reposado', group: 1 },
+    {id:9, name: 'Decolorado-Mantequillo', group: 1 },
+    {id:10, name: 'Decolorado-sobresecado', group: 1 },
+    {id:11, name: 'Mordido', group: 2 },
+    {id:12, name: 'Brocado leve', group: 1 },
+    {id:13, name: 'Brocado severo', group: 1 },
+    {id:14, name: 'Averanado/Arrugado', group: 1 },
+    {id:15, name: 'Inmaduro/Paloteado', group: 1 },
+    {id:16, name: 'Aplastado', group: 1 },
+    {id:17, name: 'Flojo', group: 1 },
 
 ]
 export type SCAbox = {
@@ -185,4 +189,6 @@ export type Lote = {
     peso?: number;
     cupping: CatacionLote;
     analysis: AnalisisFisico;
+    ANALYSYS: boolean;
+    CUPPING: boolean;
 }

@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Lote } from './MyTypes';
 import logo from "../assets/images/logo.svg"
+import { createLote } from './LoteInfo';
 
-function BarraNavegacion  ({miLote}:{miLote:Lote}){
+function BarraNavegacion  ({miLote=createLote()}:{miLote?:Lote}){
   return (
     <div className='headerMP'>
         <div className='headerLink'>
@@ -21,7 +22,7 @@ function BarraNavegacion  ({miLote}:{miLote:Lote}){
           <Link state={{miLote: miLote }} to="/catacion" >Catación</Link>
         </div>
         <div>
-          <Link state={{miLote: miLote }} to="/" >Enviar Análisis</Link>
+          <Link state={{miLote: miLote }} to="/enviarAnalisis" >Enviar Análisis</Link>
         </div>
         <div>
           <Link to={'/SobreNosotros'}

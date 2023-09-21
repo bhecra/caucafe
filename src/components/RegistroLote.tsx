@@ -8,6 +8,7 @@ import { Lote } from "./MyTypes";
 //@ts-ignore
 import { Helmet } from 'react-helmet';
 import BarraNavegacion from "./BarraNavegacion";
+import { createLote } from "./LoteInfo";
 type listItems = {
     id: number
     nombre: string
@@ -107,7 +108,7 @@ function generarCodigo(): string {
 
 export default function RegistroLote() {
     const location = useLocation();
-    const { miLote }: { miLote: Lote } = location.state || {};
+    const { miLote }: { miLote: Lote } = location.state || createLote();
     const [registroLote, setRegistroLote] = useState<Lote>(miLote)
     //Falta Altura (msnm) 
 

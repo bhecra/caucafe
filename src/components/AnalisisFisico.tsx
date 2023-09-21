@@ -96,6 +96,7 @@ export default function AnalisisFisicoPage() {
         return newMalla
     }
     useEffect(() => {
+
         if (newAnalisis.sampleWeight > 0) handleValidation("sampleWeight", true)
         else handleValidation("sampleWeight", false)
         if (newAnalisis.excelso > 0) handleValidation("excelso", true)
@@ -103,7 +104,7 @@ export default function AnalisisFisicoPage() {
         let A: number = newAnalisis.defectsWeight ? newAnalisis.defectsWeight : 0
         let B: number = newAnalisis.trilla ? newAnalisis.trilla : 0
         //reactLote.analysis=newAnalisis
-        setReactLote({...reactLote, analysis:newAnalisis})
+        setReactLote({...reactLote, analysis:newAnalisis, ANALYSYS:true})
         setMermaMedida(Number(A) + Number(B))
     }, [newAnalisis]);
     function handleCodigo(e: React.ChangeEvent<HTMLInputElement>) {
@@ -122,7 +123,7 @@ export default function AnalisisFisicoPage() {
         let newpcMerma: number = newMerma / newAnalisis2.sampleWeight * 100
         newpcMerma = parseFloat(newpcMerma.toFixed(2))
         setNewAnalisis({ ...newAnalisis2, factordeRendimiento: newfactordeRendimiento, Merma: newMerma, pcMerma: newpcMerma})
-        
+  
     }
 
     function handleDefectValue(event: React.ChangeEvent<HTMLSelectElement>): void {
@@ -276,6 +277,11 @@ export default function AnalisisFisicoPage() {
                     </section>
                     <section id="Defectos" className="field">
                         <h1>Defectos</h1>
+                        <a target="_blanck" 
+                        href="https://federaciondecafeteros.org/app/uploads/2019/11/Afiche-Español-2-final.pdf"
+                        >
+                            Mira los defectos físicos
+                        </a>
                         <div className="input-row">
                             <div className="InputAnalisis">
                                 <label htmlFor="defectSelect" >Defectos:</label>
@@ -343,6 +349,9 @@ export default function AnalisisFisicoPage() {
                     </div>
                     <div className="resultados">
                         <h1 style={{fontSize:"25px", color:"black"}} >Resultados:</h1><br />
+                        <a target="_blanck"  href="https://federaciondecafeteros.org/app/uploads/2019/10/precio_cafe.pdf">
+                            Precio del día
+                        </a>
                         <h4>Factor de rendimiento: {newAnalisis.factordeRendimiento}</h4>
                         <h4>Porcentaje de Merma: {newAnalisis.pcMerma}%</h4>
                         <h4 className={newAnalisis.density?"InfoVisible":"InfoInvisible"}>Densidad: {newAnalisis?.density} g/ml</h4>

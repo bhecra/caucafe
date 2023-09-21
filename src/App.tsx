@@ -8,6 +8,7 @@ import Catacion from './components/Catacion';
 import RegistroLote from './components/RegistroLote'
 import PruebaTwilio from './components/PruebaTwilio';
 import SobreNosotros from './components/SobreNosotros';
+import EnviarAnalisis from './components/EnviarAnalisis';
 
 function App() {
  
@@ -22,6 +23,7 @@ function App() {
             <Route path="catacion/" element={<Catacion/>} />
             <Route path = 'RegistroCaficultor/:siguiente' element  = {<RegistroCaficultor/>}></Route>
             <Route path = 'RegistroLote/' element = {<RegistroLote/>}></Route>
+            <Route path = 'enviarAnalisis/' element = {<EnviarAnalisis/>}></Route>
             <Route path = "prueba" element = {<PruebaTwilio/>}> </Route>
         </Routes>
     </div>

@@ -26,14 +26,14 @@ const ScoreInputsContainer = styled.div`
 `;
 
 const CatacionContainer = styled.div`
-    background-color: #eeeded;
+    background-color: #ffffff8e;
     display: flex;
     flex-direction: row;
     margin-top: 2%;
     margin-bottom: 2%;
     padding: 10px;
     border-radius: 1rem;
-    box-shadow: 3px 3px 5px rgb(50, 50, 50);
+    box-shadow: 3px 3px 5px rgb(50, 50, 50, 0.5);
     width: inherit;
     overflow: auto;
     scrollbar-width: 5px;
@@ -77,22 +77,16 @@ const AddCatacionButton = styled.button`
 
 export default function Catacion() {
     const location = useLocation();
-    const { miLote }: { miLote: Lote } = location.state || {};
+    const { miLote }: { miLote: Lote } = location.state || createLote();
     const [catacionCount, setCatacionCount] = useState(0);
     const [reactLote, setReactLote] = useState<Lote[]>([{...miLote}]);
     const [catador, setCatador] = useState('');
-    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([EMPTY_CUPPING]);
+    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([miLote.cupping]);
     const [defectValue, setDefectValue] = useState<CupDefect>({ id: 0, name: '' });
     useEffect(()=>{
-        setReactLote(lotes=>{
-            lotes.map(lote=>{})
-        })
-        setCatacionElements(prevData =>
-            prevData.map(data =>
-                data.id === id ? { ...data, [Propiedad]: newValue } : data
-            )
-        );
-      reactLote[0].cupping=
+       reactLote[0].cupping = catacionElements[0]
+       reactLote[0].CUPPING=true
+       setReactLote(reactLote)
     },[catacionElements])
     const handleCatador = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newCatador= e.target.value
@@ -300,7 +294,7 @@ export default function Catacion() {
                         {catacionElements.map(catacionElement => (
                             <CatacionContainer key={catacionElement.id}>
                                 <CatacionHeader>
-                                    <h2>Muestra {catacionElement.id}</h2><br />
+                                    <h2>Muestra {catacionElement?.id}</h2><br />
                                     <LoteCodigo miLote={reactLote[catacionElement.id]} handleCodigo={(e)=>{}}/>
                                     <LoteInfo miLote={reactLote[catacionElement.id]} />
                                     
@@ -321,7 +315,7 @@ export default function Catacion() {
                                                     handleScoreChange(catacionElement.id, "fragancia", value as puntajeSCA)
                                                 }
                                             />
-                                            <textarea className="atributosInput" placeholder="Fragancias" onChange={(e) => handleAtributoChange(catacionElement.id, "fraganciaA", e)} />
+                                            <textarea value={catacionElement.fraganciaA} className="atributosInput" placeholder="Fragancias" onChange={(e) => handleAtributoChange(catacionElement.id, "fraganciaA", e)} />
                                             <p>{catacionElement?.fraganciaA}</p>
                                             <CoffeeScoreInput
                                                 aspect="Seco"
@@ -352,9 +346,9 @@ export default function Catacion() {
                                                 }
                                             />
 
-                                            <textarea className="atributosInput" placeholder="Sabores" onChange={(event) => handleAtributoChange(catacionElement.id, "saborA", event)} />
+                                            <textarea className="atributosInput" placeholder="Sabores" value={catacionElement?.saborA} onChange={(event) => handleAtributoChange(catacionElement.id, "saborA", event)} />
                                         </SCABlock>
-                                        <SCABlock>
+                                        <SCABlock> 
                                             <div style={{ display: "flex", justifyContent: "flex-end" }}>
                                                 <div className="SCAScore">
                                                     <h2>Total: {catacionElement.residual}</h2>
@@ -367,7 +361,7 @@ export default function Catacion() {
                                                     handleScoreChange(catacionElement.id, "residual", value)
                                                 }
                                             />
-                                            <textarea className="atributosInput" placeholder="Atributos" onChange={(e) => handleAtributoChange(catacionElement.id, "residualA", e)} />
+                                            <textarea value={catacionElement.residualA} className="atributosInput" placeholder="Atributos" onChange={(e) => handleAtributoChange(catacionElement.id, "residualA", e)} />
                                         </SCABlock>
                                         <SCABlock>
                                             <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -382,7 +376,7 @@ export default function Catacion() {
                                                     handleScoreChange(catacionElement.id, "acidez", value)
                                                 }
                                             />
-                                            <textarea className="atributosInput" placeholder="Atributos" onChange={(e) => handleAtributoChange(catacionElement.id, "acidezA", e)} />
+                                            <textarea value={catacionElement.acidezA} className="atributosInput" placeholder="Atributos" onChange={(e) => handleAtributoChange(catacionElement.id, "acidezA", e)} />
                                             <CoffeeScoreInput
                                                 aspect="Intensidad"
                                                 score={catacionElement.intensidad || 8}
