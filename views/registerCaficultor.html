@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/registerCaficultor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2c91db2581.js" crossorigin="anonymous"></script>
+
+    <title>Registro caficultor</title>
+</head>
+<header>
+    <img src="../public/images/zyro-image.svg" alt="Logo" class="unicauca">
+</header> 
+<body>
+    <main>
+    <form action="#">
+        <div class="inputs">
+        <label for="fname">Nombre </label>
+        <input type="text" class="fname" name="fname"> <br>
+        </div>
+
+        <div class="inputs">
+        <label for="document">Documento </label>
+        <input type="text" class="document" name="document"> <br></div>
+
+        <div class="inputs">
+        <label for="phoneNumber">Celular </label>
+        <input type="tel" class="phoneNumber" name="phoneNumber"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        required> <br> </div>
+
+        
+        <div class="inputs">
+        <div class="checkboxess">
+            <div class="primera">
+            <input type="checkbox" name="yesWha">
+            <label for="yesWha">Usa Whatsapp </label>
+            </div>
+
+            <div class="segunda">
+            <input type="checkbox" name="noWha">
+            <label for="noWha">Diferente Número de Whatsapp</label>
+            </div>
+        </div></div>
+
+
+<div class="inputs">        
+        <label for="fincaName">Nombre de la finca </label>
+        <input type="text" class="fincaName" name="fincaName"> <br> </div>
+
+
+        <div class="inputs">
+        <label for="selectMunicipio">Seleccione un Municipio</label>
+        <select class="selectMunicipio" name="selectMunicipio">
+            <option class="seleccionMuni" disabled selected>Seleccione un municipio...</option>
+            <option class="seleccionMuni">Cajibío</option>
+        </select> <br>  </div>
+
+
+        <div class="inputs">
+        <label for="zona">Zona </label>
+        <input type="text" name="zona" class="zona"> <br>
+</div>
+
+        <div class="inputs">
+        <label for="altura">Altura </label>
+        <input type="number" class="altura" name="altura"> <br>
+</div>
+
+        <div class="inputs">
+            <select class="selectVariedad" name="selectVariedad">
+                <option class="seleccionMuni" disabled selected>Variedad</option>
+                <option class="seleccionMuni">**</option>
+            </select> 
+    
+        
+        <input type="number" min= "1" placeholder="Número de arboles ">
+    </div>
+</div>
+
+    <div class="button"><input type="button" class="guardar" value="Guardar">
+    </div>
+    </form>
+</main> 
+</body>
+</html>

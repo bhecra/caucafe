@@ -1,34 +1,1000 @@
-.App {
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Titillium Web", sans-serif;
   text-align: center;
+  font-size: 16px;
+}
+:root {
+  --gris: #757575;
+  --rojo: #ba1b1d;
+  --blanco: ##f7f4f3;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+h4 {
+  font-size: 16px;
+  color: #000;
+}
+.logoCaucafe {
+  width: 10%;
+}
+
+footer {
+  height: 10vh;
+  /* Estilo para la barra de navegación */
+}
+nav {
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff5733; /* Cambiar el color al pasar el mouse por encima */
+}
+a {
+  font-weight: 600;
+  padding-bottom: 3%;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
+header img {
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.895);
+  border-radius: 50px;
+}
+.unicauca {
+  height: 20vh;
+}
+
+main {
+  height: 100vh;
+  overflow: auto;
+
+}
+
+.section-1 {
+  display: flex;
+  gap: 50px;
+  width: 80%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-1 > img {
+  width: 150px;
+}
+
+/* menu principal 2 */
+
+.nuevoAnalisis {
+  height: 100vh;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  margin-right: 80vw;
+  margin-left: 5vw;
+  text-align: right;
+}
+.nuevoAnalisis > img {
+  height: 5rem;
+  padding-top: 1rem;
+}
+
+.nuevoAnalisis > p {
+  text-align: left !important;
+  font-size: 18px;
+}
+.nuevoAnalisis a{
+  text-align: left;
+  color: black;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  width: 40%;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 35px;
+  background-color: #9c0101;
+  color: rgb(156, 1, 1);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #d00030;
+}
+
+.nuevoAnalisis > h1 {
+  padding-bottom: 1rem !important;
+  text-align: left;
+}
+.quienesSomos {
+  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerMP {
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100vw;
+  height: fit-content;
+  background: #52a9ff;
+}
+ .headerMP div{
+  margin:10px
+ }
+.headerMP  a {
+  color: white;
+  margin-right: 0.7rem;
+  font-size: 18px;
+}
+.headerMP  a:hover {
+  color: rgb(255, 179, 179)
+}
+
+.headerMP > img {
+  margin-left: 0.7rem;
+  height: 2rem;
+}
+
+.imgFondoMP {
+  height: 100vh;
+  background-image: url(./assets/images/cafocultor.avif);
+  background-size: cover;
+  background-attachment: fixed;
+  position: fixed;
+}
+
+.imgFondoMP > img {
+  height: 1rem;
+}
+.boxShadow {
+  background-color: rgba(255, 255, 255, 0.6);
+  height: 100vh;
+}
+
+/* SOBRE NOSOTROS */
+.sobreNosotrosSection {
+  display: column;
+}
+.contentSobreNosotros {
+  display: flex;
+}
+.imgSobreNosotros {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  border-style: dotted;
+  height: 100vh;
+}
+
+.mision {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: column;
+  width: 50vw;
+  border-style: dotted;
+  height: 100vh;
+}
+.mision > h1 {
+  margin: 1rem 0;
+  text-align: left;
+}
+.mision > p {
+  text-align: left;
+}
+
+footer {
+  background-color: #a5907e;
+  color: white;
+  padding: 20px;
+
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.footer-social a {
+  color: white;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.footer-social i {
+  font-size: 18px;
+}
+
+@media (min-width: 768px) {
+  * {
+    font-size: 16px;
+  }
+
+  .section-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .columna {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 20vw;
+  }
+  .columna > ul {
+    list-style: none;
+    text-align: left;
+  }
+
+  header {
+    display: flex;
+    justify-content: center;
+  }
+
+  .unicauca {
+    height: 20vh;
   }
 }
+/*Info Lote*/
+.InfoLote{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.InfoLote p{
+  margin-left: 10px;
+  margin: 10px
+}
+/* ANALISIS FISICO */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100px;
+.divAnalisisFisico {
+  display: flex;
+  width: 70%;
+  height: 80%;
+}
+
+.mainRegisterCafi {
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  justify-content: space-around;
+}
+
+/* REGISTRO DE LOTE */
+
+.ImageBackground {
+  padding: 0px 0px 20px 0px;
+  background-image: url(../public/images/coffee-bean-berry-ripening-coffee-farm.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+#catacionInfoLote {
+  font-size: 14px !important;
+}
+.Image2Background {
+  padding-bottom: 30px;
+  background-image: url(../public/images/top-view-delicious-coffee-beans-arrangement.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.field {
+  background-color: rgb(255, 255, 255,0.895);
+  margin: 30px;
+  padding: 10px;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 5px rgb(50, 50, 50);
+}
+
+.loteForm {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.status-regiLote {
+  height: 10%;
+  padding-top: 5%;
+}
+
+.campoBoton {
+
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+
+}
+.campoBoton h3 { margin-bottom: .8rem;}
+.campoBoton button,
+.campoBoton a {
+  background-color: #9c0101;
+  color: white;
+  padding: 0.2rem 0.2rem;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  width: 300px;
+  text-align: center;
+  border: none;
+  margin-bottom: .8rem;
+}
+
+.siguiente-lote {
+  padding-top: 5%;
+  padding-bottom: 2%;
+}
+
+.campoRegistroLote {
+  margin: 1% 0;
+  width: 80%;
+  align-self: center;
+}
+
+.campoRegistroLote input,
+.campoRegistroLote select {
+  background-color: white;
+  color: black;
+  width: 100%;
+  min-width: 150px;
+  border: 1px solid darkgray;
+  padding: 0.2rem;
+  border-radius: 1rem;
+}
+.field label {
+  text-align: left;
+  display: block;
+  color: rgb(72, 72, 72);
+  padding-left: 10px;
+}
+
+.siguiente {
+  display: flex;
+  flex-direction: column;
+}
+.siguiente h2 {
+  height: 50px;
+}
+
+.siguiente a {
+  padding: 6%;
+  background-color: #9c0101;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.InfoInvisible {
+  display: none;
+}
+
+.InfoVisible {
+  display: inline;
+}
+
+/*Catacion*/
+
+.tableBody {
+  position: sticky;
+  height: 90%;
+}
+.SCACheckBox input {
+  display: inline;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 15px;
+  height: 15px;
+}
+.SCACheckBox input:checked {
+  display: inline;
+  margin-left: 2px;
+  margin-right: 2px;
+  width: 15px;
+  height: 15px;
+}
+
+.SCAScore {
+  width: inherit;
+  padding: 4px;
+  border: 1px solid black;
+  position: relative;
+}
+.SCAScore h2 {
+  font-size: 16px;
+}
+.searchdiv {
+  align-items: center;
+  height: 30px;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.searchdiv input {
+  height: inherit;
+  margin: 0px;
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+  width: 90px;
+  display: inline;
+  font-size: 16px;
+}
+.searchdiv Button {
+  height: inherit;
+  display: inline;
+  font-size: 16px;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  padding: 2px;
+}
+
+.tableHeader {
+  top: 0px;
+}
+.backToAf{
+  text-decoration: underline;
+  color: var(--rojo)!important;
+  display: block;
+  text-align: left;
+  margin-bottom: 1rem;
+  font-size: 16px;
+}
+
+.atributosInput {
+  font-size: 16px;
+  margin: 5px;
+  height: fit-content;
+  min-height: 20px;
+  min-width: 100px;
+  max-width: 200px;
+  max-height: 100px;
+}
+
+.intensityButton {
+  font-size: 16px;
+  border-radius: 0.5em;
+  width: 25px;
+  height: 25px;
+  margin: 3px;
+}
+
+.selectDefectos {
+  border: 1px solid #000; /* Borde alrededor del contenedor */
+  border-radius: 5px; /* Borde redondeado */
+  padding: 10px; /* Espacio interno */
+  margin-bottom: 20px; /* Espacio entre elementos */
+  margin-top: .4rem;
+  
+}
+
+/* Estilos para el título h3 dentro de .selectDefectos */
+.selectDefectos h3 {
+  font-size: 24px; /* Tamaño de fuente del título */
+  margin-bottom: 10px; /* Espacio entre el título y el select */
+}
+
+/* Estilos para el elemento select dentro de .selectDefectos */
+.selectDEF {
+  width: 100%; /* Ancho del select al 100% del contenedor */
+  padding: 10px; /* Espacio interno */
+  border: 1px solid #000; /* Borde del select */
+  border-radius: 5px; /* Borde redondeado */
+  font-size: 16px; /* Tamaño de fuente del select */
+  background-color: #fff; /* Color de fondo */
+  color: #333; /* Color de texto */
+  appearance: none; /* Eliminar las flechas predeterminadas (solo para ciertos navegadores) */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el select */
+}
+
+.selectDEF button{
+  background-color: #007bff; /* Color de fondo del botón */
+  color: #fff;
+}
+
+/* Estilos para el botón dentro de .selectDefectos */
+.selectDefectos button {
+  background-color: #007bff; /* Color de fondo del botón */
+  color: #fff; /* Color de texto del botón */
+  border: none; /* Eliminar el borde del botón */
+  padding: 8px 16px; /* Espacio interno del botón */
+  border-radius: 3px; /* Borde redondeado del botón */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+  margin-top: 10px; /* Espacio superior del botón */
+}
+
+/* Estilos para la tabla dentro de .selectDefectos */
+.selectDefectos table {
+  width: 100%; /* Ancho de la tabla al 100% del contenedor */
+  border-collapse: collapse; /* Colapsar los bordes de la tabla */
+  margin-top: 10px; /* Espacio superior de la tabla */
+}
+
+/* Estilos para las filas (tr) de la tabla dentro de .selectDefectos */
+.selectDefectos tr {
+  border: 1px solid #ddd; /* Borde de las filas */
+}
+
+/* Estilos para las celdas (td) de la tabla dentro de .selectDefectos */
+.selectDefectos td {
+  padding: 5px; /* Espacio interno de las celdas */
+  border: 1px solid #000; /* Borde de las celdas */
+  margin: auto;
+}
+
+/* Estilos para el botón "Eliminar" dentro de .selectDefectos */
+.selectDefectos button {
+  background-color: var(--rojo); /* Color de fondo del botón "Eliminar" */
+  color: #fff; /* Color de texto del botón "Eliminar" */
+  border: none; /* Eliminar el borde del botón "Eliminar" */
+  padding: 5px 10px; /* Espacio interno del botón "Eliminar" */
+  border-radius: 3px; /* Borde redondeado del botón "Eliminar" */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón "Eliminar" */
+  margin-top: 5px; /* Espacio superior del botón "Eliminar" */
+  margin-bottom: .3rem;
+}
+
+/* Estilos para el botón "Eliminar" al pasar el cursor sobre él */
+.selectDefectos button:hover {
+  background-color: #c82333; /* Cambiar el color de fondo al pasar el cursor */
+}
+
+
+
+
+/* Análisis Físico*/
+
+.analisisBackground{
+  background-size: cover;
+  background-attachment: fixed;
+  background-image: url("./assets/images/hands-with-coffee-beans-coffee-beans-that-are-dried.jpg") ;
+}
+
+/* TOP */
+.LoteHeader {
+  font-size: 16px;
+  margin: 10px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+}
+
+
+
+.col-3 {
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 5px;
+  width: auto;
+  min-width: 200px;
+}
+
+/* Estilos para los elementos InputAnalisis */
+.InputAnalisis {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 5px;
+}
+.InputAnalisis label {
+  
+  font-size: 16px;
+  border-radius: 0.2em;
+  margin-bottom: 5px;
+}
+
+.InputAnalisis input {
+  font-size: 16px;
+  border-radius: 0.5em;
+  width: 100px;
+  height: 25px;
+  border: 1px solid black;
+}
+.InputAnalisis p {
+  color: red;
+  margin-top: 5px;
+  display: none;
+}
+.inputValid{
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inputValid label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border-radius: 0.2em;
+  color: black;
+}
+.inputValid input {
+  font-size: 16px;
+  border-radius: 0.5em;
+  width: 100px;
+  height: 25px;
+  border: 1px solid green;
+}
+
+.inputValid p {
+  display: none;
+  color: 1px solid red;
+}
+.inputInvalid label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  border-radius: 0.2em;
+  color: red;
+}
+.inputInvalid input {
+  display: inline;
+  font-size: 16px;
+  border-radius: 0.5em;
+  width: 100px;
+  height: 25px;
+  border: 1px solid red;
+}
+.inputInvalid p {
+  display: inline;
+  color: red !important;
+  font-size: 12px;
+}
+
+/**/
+.inputs-analisis{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #cccccc;
+  background-color:  #f7f7f7;
+  margin: 10px;
+  padding: 2%;
+  border-radius: 10px;
+}
+.row {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+}
+
+
+
+/* Estilos para etiquetas y mensajes de error */
+
+
+/* Estilos para mensajes de error visibles */
+.InputAnalisis.error p {
+  display: block;
+}
+
+/* Defectos */
+.defectos {
+  /* Estilos generales para la sección */
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #eeeded;
+  margin: 3rem 3rem 1rem 3rem;
+  width: 90%;
+
+}
+
+
+.defectos h1 {
+  /* Estilos para encabezados h1 */
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+select {
+  /* Estilos para el elemento select */
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+label {
+  /* Estilos para etiquetas de entrada */
+  display: block;
+
+}
+
+div.valid-input {
+  /* Estilos para el contenedor de entrada con validación */
+  position: relative;
+  margin-top: 10px;
+}
+
+input.valid-input {
+  /* Estilos para la entrada con validación */
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+p.valid-error {
+  /* Estilos para el mensaje de error */
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+
+.selectDefect{
+  height: 100%;
+  padding: 0;
+}
+button {
+  /* Estilos para botones */
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #9c0101;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+.agg {
+  background-color: #007bff !important;
+  margin: 1rem;
+  width: fit-content;
+  height: fit-content;
+}
+
+table {
+  /* Estilos para tablas */
+  border-collapse: collapse;
+  border: 1px solid #000;
+  margin-top: 20px;
+}
+
+table tr {
+  /* Estilos para filas de tabla */
+  border: 1px solid #000;
+}
+
+table td {
+  /* Estilos para celdas de tabla */
+  padding: 5px;
+  border: 1px solid #000;
+  width: fit-content;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.resultados {
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #ded4c6; /* Cambiamos el color de fondo a un azul brillante */
+  margin: 0 3rem 5rem 3rem;
+  width: 90%;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Agregamos una transición para el color de fondo y la sombra */
+   /* Cambia el cursor al pasar el mouse */
+  color: #fff; /* Cambiamos el color del texto a blanco */
+  font-weight: bold; /* Hacemos el texto en negrita */
+}
+
+.resultados h4{
+  color: #000;
+  margin-bottom: .5rem;
+  font-weight: normal;
+}
+/* Estilos para el container cuando se hace hover */
+.resultados:hover {
+  background-color: #ded4c6; /* Cambia el color de fondo a un tono más oscuro al hacer hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregamos una sombra al hacer hover */
+}
+
+
+.new-section h4 {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+
+/* Granulometria */
+
+/* Estilos para la nueva sección */
+.new-section {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  margin: 3rem 3rem 1rem 3rem;
+  width: 90%;
+
+}
+
+/* Estilos para el título h1 */
+.new-section h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilos para la tabla */
+.new-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.new-section th,
+.new-section td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Estilos para los botones */
+.new-section button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.new-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para los elementos h4 */
+.new-section h4 {
+  font-weight: bold;
   color: white;
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.bottom-elements {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.container-malla{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #eeeded; /* Cambiamos el color de fondo a un azul brillante */
+    margin: 0 3rem 5rem 3rem;
+    width: 90%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Agregamos una transición para el color de fondo y la sombra */
+     /* Cambia el cursor al pasar el mouse */
+    color: #fff; /* Cambiamos el color del texto a blanco */
+    font-weight: bold; /* Hacemos el texto en negrita */
   }
-  to {
-    transform: rotate(360deg);
+  
+  /* Estilos para el container cuando se hace hover */
+  .container-malla:hover {
+    background-color: #B3AAC5; /* Cambia el color de fondo a un tono más oscuro al hacer hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agregamos una sombra al hacer hover */
   }
+  .container-malla h4{
+    margin-bottom: .5rem;
+  }
+  
+
+.last-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.last-buttons button{
+  margin-bottom: 1rem;
+  width: 30%;
+}
+
+.LoteHeader {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-analisisf{
+  margin: 5%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
 }
