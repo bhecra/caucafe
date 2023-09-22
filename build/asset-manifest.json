@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.71262fb1.css",
+    "main.js": "/static/js/main.211f1301.js",
+    "static/js/787.dbe24f22.chunk.js": "/static/js/787.dbe24f22.chunk.js",
+    "static/media/top-view-delicious-coffee-beans-arrangement.jpg": "/static/media/top-view-delicious-coffee-beans-arrangement.16a86347e7683bfc2e11.jpg",
+    "static/media/coffee-bean-berry-ripening-coffee-farm.jpg": "/static/media/coffee-bean-berry-ripening-coffee-farm.b2ce8154720498b29e05.jpg",
+    "static/media/hands-with-coffee-beans-coffee-beans-that-are-dried.jpg": "/static/media/hands-with-coffee-beans-coffee-beans-that-are-dried.3372a3fbf776ba50433a.jpg",
+    "static/media/cafocultor.avif": "/static/media/cafocultor.d124ed3982113f375318.avif",
+    "static/media/fotos-devs.png": "/static/media/fotos-devs.136a9ffab0ef30556954.png",
+    "static/media/logo.svg": "/static/media/logo.2f0cfb7928560d6398f12cd52fdc9d52.svg",
+    "index.html": "/index.html",
+    "main.71262fb1.css.map": "/static/css/main.71262fb1.css.map",
+    "main.211f1301.js.map": "/static/js/main.211f1301.js.map",
+    "787.dbe24f22.chunk.js.map": "/static/js/787.dbe24f22.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.71262fb1.css",
+    "static/js/main.211f1301.js"
+  ]
+}
