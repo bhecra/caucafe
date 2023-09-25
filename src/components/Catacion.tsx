@@ -1,4 +1,4 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CoffeeScoreInput from './CoffeeScoreInput';
@@ -74,14 +74,14 @@ const AddCatacionButton = styled.button`
   /* Other styles you want to apply */
 `;
 // TERMINAN ESTILOS ----------------------------------------------
-
 export default function Catacion() {
+    const LoteVacio:Lote = createLote()
     const location = useLocation();
     const { miLote }: { miLote: Lote } = location.state || createLote();
     const [catacionCount, setCatacionCount] = useState(0);
-    const [reactLote, setReactLote] = useState<Lote[]>([{...miLote}]);
+    const [reactLote, setReactLote] = useState<Lote[]>([{...miLote?miLote:LoteVacio}]);
     const [catador, setCatador] = useState('');
-    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([miLote.cupping]);
+    const [catacionElements, setCatacionElements] = useState<CatacionLote[]>([miLote?.cupping||EMPTY_CUPPING ]);
     const [defectValue, setDefectValue] = useState<CupDefect>({ id: 0, name: '' });
     useEffect(()=>{
        reactLote[0].cupping = catacionElements[0]
@@ -108,6 +108,7 @@ export default function Catacion() {
         setCatacionElements(prevElements => [...prevElements, newCatacionElement]);
         //setReactLote({...reactLote, cu})
     }
+    /*
     function handleCatacionProp(id: number, Propiedad: keyof CatacionLote, e: React.ChangeEvent<HTMLInputElement>) {
         const newValue = e.target.value
         setCatacionElements(prevData =>
@@ -116,6 +117,7 @@ export default function Catacion() {
             )
         );
     }
+    */
 
     function handleFinalScore(id: number) {
         setCatacionElements(elements =>
@@ -316,7 +318,7 @@ export default function Catacion() {
                                                 }
                                             />
                                             <textarea value={catacionElement.fraganciaA} className="atributosInput" placeholder="Fragancias" onChange={(e) => handleAtributoChange(catacionElement.id, "fraganciaA", e)} />
-                                            <p>{catacionElement?.fraganciaA}</p>
+                                        
                                             <CoffeeScoreInput
                                                 aspect="Seco"
                                                 score={catacionElement.seco || 8}

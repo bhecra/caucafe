@@ -1,4 +1,4 @@
-import { Link, Outlet, Route, Routes, useParams} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import './App.css';
 import React from 'react';
 import MenuPrincipal from './components/MenuPrincipal2';
@@ -9,7 +9,9 @@ import RegistroLote from './components/RegistroLote'
 import PruebaTwilio from './components/PruebaTwilio';
 import SobreNosotros from './components/SobreNosotros';
 import EnviarAnalisis from './components/EnviarAnalisis';
-
+import { createLote } from './components/LoteInfo';
+import { Lote } from './components/MyTypes';
+const miLote:Lote = createLote()
 function App() {
  
   return (

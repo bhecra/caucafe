@@ -1,5 +1,5 @@
 //import { useState } from "react";
-import { Link, useLocation, } from "react-router-dom";
+import {useLocation}  from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AnalisisFisico, Lote, defectoFisico, predefinedPhysicalDefects, samplePhysicalDefect } from "./MyTypes";
 import { LoteCodigo, LoteInfo, createAnalisisFisico, createLote } from "./LoteInfo";
@@ -174,9 +174,7 @@ export default function AnalisisFisicoPage() {
         })
         setNewAnalisis({ ...newAnalisis, defects: newDefectsList, defectsWeight: newDefectsWeight, group1DefectsWeight: group_1, group2DefectsWeight: group_2 })
     }
-    function endAnalysis(): void {
-        setReactLote({...reactLote, analysis:newAnalisis})
-    }
+
     function handleMallaWeight(e: React.ChangeEvent<HTMLInputElement>, numero: number) {
         let newMallas = newAnalisis.mallas
         let newWeightA: number = 0
