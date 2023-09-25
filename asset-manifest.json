@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/caucafe.co/static/css/main.89960755.css",
-    "main.js": "/caucafe.co/static/js/main.90db5578.js",
-    "static/js/787.dbe24f22.chunk.js": "/caucafe.co/static/js/787.dbe24f22.chunk.js",
-    "static/media/top-view-delicious-coffee-beans-arrangement.jpg": "/caucafe.co/static/media/top-view-delicious-coffee-beans-arrangement.16a86347e7683bfc2e11.jpg",
-    "static/media/coffee-bean-berry-ripening-coffee-farm.jpg": "/caucafe.co/static/media/coffee-bean-berry-ripening-coffee-farm.b2ce8154720498b29e05.jpg",
-    "static/media/hands-with-coffee-beans-coffee-beans-that-are-dried.jpg": "/caucafe.co/static/media/hands-with-coffee-beans-coffee-beans-that-are-dried.3372a3fbf776ba50433a.jpg",
-    "static/media/cafocultor.avif": "/caucafe.co/static/media/cafocultor.d124ed3982113f375318.avif",
-    "static/media/fotos-devs.png": "/caucafe.co/static/media/fotos-devs.136a9ffab0ef30556954.png",
-    "static/media/logo.svg": "/caucafe.co/static/media/logo.9059da1285333fbdabe98746501f5c53.svg",
-    "index.html": "/caucafe.co/index.html",
-    "main.89960755.css.map": "/caucafe.co/static/css/main.89960755.css.map",
-    "main.90db5578.js.map": "/caucafe.co/static/js/main.90db5578.js.map",
-    "787.dbe24f22.chunk.js.map": "/caucafe.co/static/js/787.dbe24f22.chunk.js.map"
+    "main.css": "/caucafe/static/css/main.b41b6aaa.css",
+    "main.js": "/caucafe/static/js/main.2816a0a8.js",
+    "static/js/787.dbe24f22.chunk.js": "/caucafe/static/js/787.dbe24f22.chunk.js",
+    "static/media/top-view-delicious-coffee-beans-arrangement.jpg": "/caucafe/static/media/top-view-delicious-coffee-beans-arrangement.16a86347e7683bfc2e11.jpg",
+    "static/media/coffee-bean-berry-ripening-coffee-farm.jpg": "/caucafe/static/media/coffee-bean-berry-ripening-coffee-farm.b2ce8154720498b29e05.jpg",
+    "static/media/hands-with-coffee-beans-coffee-beans-that-are-dried.jpg": "/caucafe/static/media/hands-with-coffee-beans-coffee-beans-that-are-dried.3372a3fbf776ba50433a.jpg",
+    "static/media/cafocultor.avif": "/caucafe/static/media/cafocultor.d124ed3982113f375318.avif",
+    "static/media/fotos-devs.png": "/caucafe/static/media/fotos-devs.136a9ffab0ef30556954.png",
+    "static/media/logo.svg": "/caucafe/static/media/logo.9059da1285333fbdabe98746501f5c53.svg",
+    "index.html": "/caucafe/index.html",
+    "main.b41b6aaa.css.map": "/caucafe/static/css/main.b41b6aaa.css.map",
+    "main.2816a0a8.js.map": "/caucafe/static/js/main.2816a0a8.js.map",
+    "787.dbe24f22.chunk.js.map": "/caucafe/static/js/787.dbe24f22.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.89960755.css",
-    "static/js/main.90db5578.js"
+    "static/css/main.b41b6aaa.css",
+    "static/js/main.2816a0a8.js"
   ]
 }
