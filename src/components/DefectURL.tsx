@@ -44,13 +44,15 @@ const pURLList:URL[] =[
 export function pDefectURL(id:number):string{
     let URL:string=''
     pURLList.forEach((element) => {
-        if(element.id===id) URL=element.URL
+        if(element.id===id){
+            URL='. ¿Cómo corregir este defecto?: ' + element.URL
+        } 
     });
     return URL 
 }
 
 export function cDefectURL(id:number):string{
     let URL:string=''
-
+    
     return URL 
 }

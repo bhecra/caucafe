@@ -12,7 +12,7 @@ export type CupDefect = {
     id:number;
     name: string;
 }
-
+export type Mallas =  {[numero: number]:{weight:number, pc:number, weightA:number, pcA:number}}
 
 export const predefinedDefects: CupDefect[] = [
     { id: 1, name: 'Acidez excesiva' },
@@ -80,7 +80,7 @@ export type AnalisisFisico = {
     trilla?:number
     pcDefects?:number
     density?: number
-    mallas: {[numero: number]:{weight:number, pc:number, weightA:number, pcA:number}}
+    mallas: Mallas
 }
 export type SCAScoring = {
     

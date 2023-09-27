@@ -282,9 +282,6 @@ export default function Catacion() {
         <div className="Image2Background">
             <BarraNavegacion miLote={reactLote[0]}/>
             <div className="container-analisisf">
-                <Helmet>
-                    <title>Catación</title>
-                </Helmet> 
                 <div>
                     <div className="tableHeader">
                         <div className="field">

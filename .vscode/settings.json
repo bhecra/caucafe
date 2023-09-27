@@ -1,0 +1,6 @@
+{
+    "editor.cursorStyle": "line",
+    "workbench.activityBar.iconClickBehavior": "toggle",
+    "workbench.statusBar.visible": true,
+    "workbench.sideBar.location": "left"
+}
