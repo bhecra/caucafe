@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/caucafe/static/css/main.b41b6aaa.css",
-    "main.js": "/caucafe/static/js/main.2816a0a8.js",
+    "main.js": "/caucafe/static/js/main.a315696c.js",
     "static/js/787.dbe24f22.chunk.js": "/caucafe/static/js/787.dbe24f22.chunk.js",
     "static/media/top-view-delicious-coffee-beans-arrangement.jpg": "/caucafe/static/media/top-view-delicious-coffee-beans-arrangement.16a86347e7683bfc2e11.jpg",
     "static/media/coffee-bean-berry-ripening-coffee-farm.jpg": "/caucafe/static/media/coffee-bean-berry-ripening-coffee-farm.b2ce8154720498b29e05.jpg",
@@ -11,11 +11,11 @@
     "static/media/logo.svg": "/caucafe/static/media/logo.9059da1285333fbdabe98746501f5c53.svg",
     "index.html": "/caucafe/index.html",
     "main.b41b6aaa.css.map": "/caucafe/static/css/main.b41b6aaa.css.map",
-    "main.2816a0a8.js.map": "/caucafe/static/js/main.2816a0a8.js.map",
+    "main.a315696c.js.map": "/caucafe/static/js/main.a315696c.js.map",
     "787.dbe24f22.chunk.js.map": "/caucafe/static/js/787.dbe24f22.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b41b6aaa.css",
-    "static/js/main.2816a0a8.js"
+    "static/js/main.a315696c.js"
   ]
 }
