@@ -2,6 +2,7 @@
   "name": "caucafe",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://bhecra.github.io/caucafe/",
   "dependencies": {
     "@dile/dile-input": "^2.0.5",
     "@emotion/react": "^11.11.1",
