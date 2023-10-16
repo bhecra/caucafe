@@ -20,7 +20,7 @@ type  InfoLote = {
 const Lotes: InfoLote[] = [];
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename='/'>
     <App />
   </BrowserRouter>
 );
