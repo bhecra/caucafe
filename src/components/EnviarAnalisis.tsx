@@ -4,7 +4,7 @@ import { Lote } from "./MyTypes";
 import { createLote } from "./LoteInfo";
 import BarraNavegacion from "./BarraNavegacion";
 import CrearMensaje from "./CrearMensaje";
-import { Client as ConversationsClient } from "@twilio/conversations"; 
+//import { Client as ConversationsClient } from "@twilio/conversations"; 
 
 function EnviarAnalisis(){
     const location = useLocation();
@@ -21,6 +21,7 @@ function EnviarAnalisis(){
                 <div className="mensajeWpp">
                     <p style={{wordWrap:"break-word"}}>{mensaje2}</p>
                 </div>
+                <button>Enviar</button>
             </div>
         </div>
     )

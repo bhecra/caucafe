@@ -146,10 +146,9 @@ export default function Catacion() {
         aspect: keyof CatacionLote,
         value: number
     ) => {
-
+        handleFinalScore(id)
         setCatacionElements(prevElements =>
             prevElements.map(element => {
-                handleFinalScore(element.id)
                 if (element.id === id) return { ...element, [aspect]: value }
                 else return element
             })
@@ -293,7 +292,7 @@ export default function Catacion() {
                         {catacionElements.map(catacionElement => (
                             <CatacionContainer key={catacionElement.id}>
                                 <CatacionHeader>
-                                    <h2>Muestra {catacionElement?.id}</h2><br />
+                                    <h2>Muestra {catacionElement?.id+1}</h2><br />
                                     <LoteCodigo miLote={reactLote[catacionElement.id]} handleCodigo={(e)=>{}}/>
                                     <LoteInfo miLote={reactLote[catacionElement.id]} />
                                     

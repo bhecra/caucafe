@@ -85,11 +85,8 @@ export default function AnalisisFisicoPage() {
     function handleValidation(id: string, valid: boolean): void {
         if (validClass[id]) {
             validClass[id].valid = valid
-            console.log(id)
-            console.log(validClass[id].valid)
             validClass[id].classStatus = valid ? validClass[id].validClass : validClass[id].invalidClass
             setValidClass({ ...validClass })
-            console.log(validClass[id].classStatus)
         }
     }
     function createMallas() {
@@ -111,20 +108,20 @@ export default function AnalisisFisicoPage() {
         setReactLote({ ...reactLote, codigo: e.target.value })
     }
     function handleProp(prop: keyof AnalisisFisico, e: React.ChangeEvent<HTMLInputElement>) {
-        let newAnalisis2 = { ...newAnalisis, [prop]: e.target.value };
-        let newfactordeRendimiento: number = (newAnalisis2.sampleWeight / newAnalisis2.excelso) * 70
+    
+        setNewAnalisis({ ...newAnalisis, [prop]: e.target.value })
+        let newfactordeRendimiento: number = (newAnalisis.sampleWeight / newAnalisis.excelso) * 70
         newfactordeRendimiento = Number(newfactordeRendimiento.toFixed(1))
-        const newMerma: number = newAnalisis2.sampleWeight - newAnalisis2.excelso
-        if(newAnalisis2.excelso && newAnalisis2.volume){
-            let newDensity = newAnalisis2.excelso/newAnalisis2.volume
+        const newMerma: number = newAnalisis.sampleWeight - newAnalisis.excelso
+        if(newAnalisis.excelso && newAnalisis.volume){
+            let newDensity = newAnalisis.excelso/newAnalisis.volume
             newDensity = parseFloat(newDensity.toFixed(3))
-            newAnalisis2.density = newDensity
+            newAnalisis.density = newDensity
         }
-        let newpcMerma: number = newMerma / newAnalisis2.sampleWeight * 100
-        newpcMerma = parseFloat(newpcMerma.toFixed(2))
-        newAnalisis2.mallas=calcularMallas(newAnalisis2.mallas)
-        setNewAnalisis({ ...newAnalisis2, factordeRendimiento: newfactordeRendimiento, Merma: newMerma, pcMerma: newpcMerma, mallas:calcularMallas(newAnalisis2.mallas)})
-  
+        let newpcMerma: number = newMerma / newAnalisis.sampleWeight * 100
+        const newmallas=calcularMallas(newAnalisis.mallas)
+        setNewAnalisis({ ...newAnalisis, factordeRendimiento: newfactordeRendimiento, Merma: newMerma, pcMerma: newpcMerma, mallas:newmallas})
+      
     }
 
     function handleDefectValue(event: React.ChangeEvent<HTMLSelectElement>): void {
@@ -226,6 +223,7 @@ export default function AnalisisFisicoPage() {
                                     inputValue={newAnalisis?.sampleWeight}
                                     propLote={"sampleWeight"}
                                     handleFcn={handleProp}
+                                    
                                     inputLabel="Peso de la muestra [g]:  "
                                     inputClass={validClass["sampleWeight"].classStatus}
                                     p="El peso de la muestra debe ser mayor a cero (250g por defecto)"

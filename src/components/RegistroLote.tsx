@@ -124,7 +124,6 @@ export default function RegistroLote() {
       const municipioId = parseInt(event.target.value);
       const selectedMun = municipiosCauca.find(mun => mun.id === municipioId);
       setSelectedMunicipio(selectedMun || null);
-      console.log(selectedMunicipio?.nombre)
     };*/
     //<InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
 
