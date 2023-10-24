@@ -4,6 +4,7 @@ import foto from "../assets/images/fotos-devs.png"
 import { Link } from 'react-router-dom';
 //@ts-ignore
 import { Helmet } from 'react-helmet';
+import nosotros from "../assets/images/R.jpg"
 
 
 export default function SobreNosotros() {
@@ -19,34 +20,25 @@ export default function SobreNosotros() {
           </Link>
         
       </div>
-      <div className="contentSobreNosotros">
-        <div className="imgSobreNosotros">
-          <img src={foto} alt="foto-devs" />
-        </div>
-
-        <div className="mision">
-          <h1>Nuestra historia</h1>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam autem nisi odit ratione optio ab consequatur veritatis dolorum dicta sequi, aperiam eaque quod vitae officia facilis, est fugit aspernatur aut?</p>
-        </div>
+    <section className="sobre-nosotros">
+      <div className="imagen-creadores">
+        <img
+          src= {nosotros}
+          alt="Imagen de los Creadores"
+          className="imagen-creadores"
+        />
       </div>
-
-      {/* <footer>
-        <div className="container"> 
-          <div className="footer-content">
-            <div className="footer-links">
-              <a href="#">Contacto</a>
-              <a href="#">Sobre nosotros</a>
-            </div>
-            <div className="footer-social">
-              <a href="https://www.instagram.com" target="_blank"></a>
-              <a href="https://www.facebook.com" target="_blank"></a>
-            </div>
-          </div>
-        </div>
-        
-      </footer> */}
+      <div className="descripcion">
+        <h2>Sobre Nosotros</h2>
+        <p>
+          Somos un equipo apasionado que se dedica a crear experiencias web
+          únicas. Nuestro propósito es brindar soluciones innovadoras y
+          hermosas que satisfagan las necesidades de nuestros clientes y
+          usuarios.
+        </p>
+      </div>
+    </section>
+  
     </main>
   )
-
-
 }

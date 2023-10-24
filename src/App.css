@@ -1006,3 +1006,47 @@ table td {
   white-space: pre-wrap;
   text-align: left;
 }
+
+/* Sobre Nosotros */
+
+/* SobreNosotros.css */
+
+/* SobreNosotros.css */
+
+.sobre-nosotros {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar horizontalmente */
+  text-align: left; /* Centrar el texto horizontalmente */
+  padding: 20px;
+  height: 100vh;
+}
+
+.imagen-creadores {
+  flex: 1;
+  max-width: 50%;
+  overflow: hidden; /* Ocultar el exceso de la imagen */
+  border-radius: 20px; /* Estilo de borde para la imagen */
+  margin-right: 20px; /* Espacio entre la imagen y el texto */
+}
+
+.imagen-creadores img {
+  max-width: 100%;
+  height: auto;
+}
+
+.descripcion {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.descripcion h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.descripcion p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
