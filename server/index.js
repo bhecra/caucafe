@@ -4,6 +4,9 @@ const bodyParser = require("body-parser");
 const pino = require("express-pino-logger")();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
+const Client = require('twilio')(accountSid,authToken)
+
+
 var cors = require('cors')
 const app = express();
 app.use(bodyParser.json());

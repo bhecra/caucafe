@@ -1,5 +1,5 @@
 
-import logo from "../logo.svg"
+
 import foto from "../assets/images/fotos-devs.png"
 import { Link } from 'react-router-dom';
 //@ts-ignore

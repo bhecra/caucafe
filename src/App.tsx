@@ -9,7 +9,9 @@ import RegistroLote from './components/RegistroLote'
 import PruebaTwilio from './components/PruebaTwilio';
 import SobreNosotros from './components/SobreNosotros';
 import EnviarAnalisis from './components/EnviarAnalisis';
-
+import { createLote } from './components/LoteInfo';
+import { Lote } from './components/MyTypes';
+const miLote:Lote = createLote()
 function App() {
 
   return (

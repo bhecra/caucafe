@@ -998,3 +998,11 @@ table td {
   flex-direction: column;
   justify-content: center !important;
 }
+
+.mensajeWpp {
+  width: 500px;
+  background-color: rgb(182, 240, 182);
+  border-radius: 1rem;
+  white-space: pre-wrap;
+  text-align: left;
+}

@@ -1,9 +1,9 @@
-import { Link, useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 //import InputTexto from "./InputTexto";
-import { useState } from "react";
+import { useState  } from "react";
+import React from "react";
 //import UbicacionesGeograficas from "./UbicacionesGeograficas";
 //import { useState } from "react";
-import logo from "../assets/images/logo.svg";
 import { Lote } from "./MyTypes";
 //@ts-ignore
 import { Helmet } from 'react-helmet';
@@ -124,7 +124,6 @@ export default function RegistroLote() {
       const municipioId = parseInt(event.target.value);
       const selectedMun = municipiosCauca.find(mun => mun.id === municipioId);
       setSelectedMunicipio(selectedMun || null);
-      console.log(selectedMunicipio?.nombre)
     };*/
     //<InputTexto nombre="Nombre de caficultor:" Id="NombreCaficultor"/>
 
@@ -132,11 +131,7 @@ export default function RegistroLote() {
     return (
         <div className="ImageBackground">
             <BarraNavegacion miLote={registroLote}/>
-            <div>
-                <Helmet>
-                    <title>Registro Lote</title>
-                </Helmet> 
-            </div>
+
             <div className="field">
                 <div className="loteForm">
                     <div className="campoRegistroLote">

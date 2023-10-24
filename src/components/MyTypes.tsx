@@ -4,7 +4,7 @@ export type defectoFisico = {
     group: 1 | 2;
 };
 export type samplePhysicalDefect = {
-    defect: defectoFisico,
+defect: defectoFisico,
     peso:number,
     porcentaje: number,
 }
@@ -12,7 +12,7 @@ export type CupDefect = {
     id:number;
     name: string;
 }
-
+export type Mallas =  {[numero: number]:{weight:number, pc:number, weightA:number, pcA:number}}
 
 export const predefinedDefects: CupDefect[] = [
     { id: 1, name: 'Acidez excesiva' },
@@ -80,7 +80,7 @@ export type AnalisisFisico = {
     trilla?:number
     pcDefects?:number
     density?: number
-    mallas: {[numero: number]:{weight:number, pc:number, weightA:number, pcA:number}}
+    mallas: Mallas
 }
 export type SCAScoring = {
     
@@ -102,7 +102,6 @@ export  type CatacionLote = {
     SCAdefectsQty: number;
     defectsIntesity: number;
     defectsList: CupDefect[];
-    defectsQty: number;
     fragancia: puntajeSCA;
     fraganciaA?: string;
     intensidad?: number;
@@ -153,7 +152,6 @@ export const EMPTY_CUPPING:CatacionLote = {
     tazaLimpiaScore: 10,
     InfoView: false,
     InfoClass: "InfoInvisible",
-    defectsQty: 0,
     SCAdefectsQty: 0,
     SCAdefects: 0,
     fragancia: 6,

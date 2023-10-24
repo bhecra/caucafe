@@ -1,17 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from "../assets/images/logo.svg"
 
 //@ts-ignore
 import { Helmet } from 'react-helmet';
 import {createLote} from './LoteInfo';
-import BarraNavegacion from './BarraNavegacion';
 
 const miLote = createLote()
 
 export default function MenuPrincipal() {
   return (
-  
     <div className="main">
       <Helmet>
       <title>Menu Principal</title>

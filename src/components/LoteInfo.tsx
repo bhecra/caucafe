@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { CatacionLote, Lote, AnalisisFisico, EMPTY_CUPPING, EMPTY_ANALISIS } from "./MyTypes";
 
@@ -16,7 +17,7 @@ export function createAnalisisFisico():AnalisisFisico {
         sampleWeight: 250,
         defects: [],
         defectsWeight: 0,
-        excelso: 200,
+        excelso: 0,
         factordeRendimiento:100,
         group1DefectsWeight:0,
         group2DefectsWeight:0,
