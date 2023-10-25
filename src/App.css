@@ -1022,6 +1022,14 @@ table td {
   height: 100vh;
 }
 
+.image-left {
+  flex-direction: row;
+}
+
+.image-right {
+  flex-direction: row-reverse;
+}
+
 .imagen-creadores {
   flex: 1;
   max-width: 50%;
@@ -1049,4 +1057,5 @@ table td {
   font-size: 16px;
   line-height: 1.5;
 }
+
 

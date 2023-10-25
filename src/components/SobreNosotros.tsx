@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 //@ts-ignore
 import { Helmet } from 'react-helmet';
 import nosotros from "../assets/images/R.jpg"
+import { SobreNosotros } from "./infoQuienesSomos";
 
 
-export default function SobreNosotros() {
+export default function AboutUs() {
   return (
     <main className="">
       <div>
@@ -20,24 +21,19 @@ export default function SobreNosotros() {
           </Link>
         
       </div>
-    <section className="sobre-nosotros">
-      <div className="imagen-creadores">
-        <img
-          src= {nosotros}
-          alt="Imagen de los Creadores"
-          className="imagen-creadores"
-        />
-      </div>
-      <div className="descripcion">
-        <h2>Sobre Nosotros</h2>
-        <p>
-          Somos un equipo apasionado que se dedica a crear experiencias web
-          únicas. Nuestro propósito es brindar soluciones innovadoras y
-          hermosas que satisfagan las necesidades de nuestros clientes y
-          usuarios.
-        </p>
-      </div>
-    </section>
+      <SobreNosotros
+  title="Sobre Nosotros"
+  description="Somos un equipo apasionado que se dedica a crear experiencias web únicas. Nuestro propósito es brindar soluciones innovadoras y hermosas que satisfagan las necesidades de nuestros clientes y usuarios."
+  image={nosotros}
+  imageOnLeft={true} // Cambia a 'false' para mover la imagen a la derecha
+/>
+
+<SobreNosotros
+title="lorem"
+description= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc egestas commodo dui quis sodales. Suspendisse ultrices dapibus lectus ac pretium. Curabitur eget lacus sapien. Cras accumsan quam tortor, eget egestas ipsum facilisis id. Phasellus malesuada malesuada felis, in consequat nisi."
+image={foto}
+imageOnLeft={false}
+/>
   
     </main>
   )
