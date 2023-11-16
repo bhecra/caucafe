@@ -16,11 +16,11 @@ import BarraNavegacion from "./BarraNavegacion";
 //<AnalisisFisicoLote {...codigo:"w4e234"; variedad:Variedad; altura:1800; proceso:"Lavado"}/>
 
 //CREA UN DIV CON LABEL E INPUT
-function InputAnalisis({ propLote, inputLabel, inputValue, handleFcn, inputClass, p }: { propLote: keyof AnalisisFisico, inputLabel: string, inputValue: number | undefined, handleFcn: (prop: keyof AnalisisFisico, e: React.ChangeEvent<HTMLInputElement>) => void, inputClass: string, p?: string }) {
+function InputAnalisis({ propLote, inputLabel, inputValue, handleFcn, inputClass, p }: { propLote: keyof AnalisisFisico, inputLabel: string, inputValue: number | undefined, handleFcn: (e: React.ChangeEvent<HTMLInputElement>, prop?: keyof AnalisisFisico) => void, inputClass: string, p?: string }) {
     return (
         <div className={inputClass}>
             <label>{inputLabel}</label>
-            <input type="number" onChange={e => handleFcn(propLote, e)} value={inputValue} min={"0"}></input>
+            <input type="number" value={inputValue} onChange={e => handleFcn(e, propLote)}></input>
             <div style={{height:"fit-content"}}><p>{p}</p></div>
         </div>
     )
@@ -48,6 +48,12 @@ const ValidDicc: tipoValidDicc = {
         valid: true
     },
     "excelso": {
+        validClass: "inputValid",
+        invalidClass: "inputInvalid",
+        classStatus: "inputValid",
+        valid: true
+    },
+    "trilla":{
         validClass: "inputValid",
         invalidClass: "inputInvalid",
         classStatus: "inputValid",
@@ -80,13 +86,14 @@ export default function AnalisisFisicoPage() {
     const [defectWeight, setDefectWeight] = useState(0.0)
     //const [inputsValid, setInputsValid] = useState<inputValidClass[]>(inputsValidAnalisis)
     const [validClass, setValidClass] = useState<tipoValidDicc>(ValidDicc)
-    const [mermaMedida, setMermaMedida] = useState<number>(0)
+    //const [mermaMedida, setMermaMedida] = useState<number>(0)
     const [mallas, setMallas] = useState<number[]>([18].concat(createMallas()))
+
     function handleValidation(id: string, valid: boolean): void {
         if (validClass[id]) {
             validClass[id].valid = valid
             validClass[id].classStatus = valid ? validClass[id].validClass : validClass[id].invalidClass
-            setValidClass({ ...validClass })
+            setValidClass({...validClass})
         }
     }
     function createMallas() {
@@ -97,21 +104,37 @@ export default function AnalisisFisicoPage() {
 
         if (newAnalisis.sampleWeight > 0) handleValidation("sampleWeight", true)
         else handleValidation("sampleWeight", false)
-        if (newAnalisis.excelso > 0) handleValidation("excelso", true)
-        else handleValidation("excelso", false)
-        let A: number = newAnalisis.defectsWeight ? newAnalisis.defectsWeight : 0
-        let B: number = newAnalisis.trilla ? newAnalisis.trilla : 0
-        //reactLote.analysis=newAnalisis
-        setMermaMedida(Number(A) + Number(B))
+        if (newAnalisis.trilla<=0 ||newAnalisis.trilla>=newAnalisis.sampleWeight )handleValidation("trilla",false)
+        else handleValidation("trilla",true)
+        if (newAnalisis.excelso <= 0 || newAnalisis.excelso>=newAnalisis.trilla) handleValidation("excelso", false)
+        else handleValidation("excelso", true)
+        
+        
+        
     }, [newAnalisis]);
     function handleCodigo(e: React.ChangeEvent<HTMLInputElement>) {
         setReactLote({ ...reactLote, codigo: e.target.value })
     }
-    function handleProp(prop: keyof AnalisisFisico, e: React.ChangeEvent<HTMLInputElement>) {
+    function handleSampleWeight(e: React.ChangeEvent<HTMLInputElement>){
+        newAnalisis.sampleWeight=Number(e.target.value)
+        calcularResultados()
+    }
+    function handleTrilla(e: React.ChangeEvent<HTMLInputElement>){
+        newAnalisis.trilla=Number(e.target.value)
+        calcularResultados()
+    }
+    function handleExcelso(e: React.ChangeEvent<HTMLInputElement>){
+        newAnalisis.excelso=Number(e.target.value)
+        calcularResultados()
+    }
+    function handleProp( e: React.ChangeEvent<HTMLInputElement>, prop?: keyof AnalisisFisico,) {
     
-        setNewAnalisis({ ...newAnalisis, [prop]: e.target.value })
+        if (prop) setNewAnalisis({ ...newAnalisis, [prop]: e.target.value })
+       
+
         let newfactordeRendimiento: number = (newAnalisis.sampleWeight / newAnalisis.excelso) * 70
         newfactordeRendimiento = Number(newfactordeRendimiento.toFixed(1))
+
         const newMerma: number = newAnalisis.sampleWeight - newAnalisis.excelso
         if(newAnalisis.excelso && newAnalisis.volume){
             let newDensity = newAnalisis.excelso/newAnalisis.volume
@@ -120,10 +143,28 @@ export default function AnalisisFisicoPage() {
         }
         let newpcMerma: number = newMerma / newAnalisis.sampleWeight * 100
         const newmallas=calcularMallas(newAnalisis.mallas)
+
         setNewAnalisis({ ...newAnalisis, factordeRendimiento: newfactordeRendimiento, Merma: newMerma, pcMerma: newpcMerma, mallas:newmallas})
       
     }
+    function calcularResultados(){
+        let newfactordeRendimiento: number = (newAnalisis.sampleWeight / newAnalisis.excelso) * 70
+        newfactordeRendimiento = Number(newfactordeRendimiento.toFixed(1))
+        if(newAnalisis.trilla){
 
+            newAnalisis.Merma = (newAnalisis.sampleWeight - newAnalisis.trilla)
+            newAnalisis.pcMerma = newAnalisis.Merma / newAnalisis.sampleWeight * 100
+        }
+        if(newAnalisis.excelso && newAnalisis.volume){
+            let newDensity = newAnalisis.excelso/newAnalisis.volume
+            newDensity = parseFloat(newDensity.toFixed(3))
+            newAnalisis.density = newDensity
+        }
+        const newmallas=calcularMallas(newAnalisis.mallas)
+
+        setNewAnalisis({ ...newAnalisis, factordeRendimiento: newfactordeRendimiento, mallas:newmallas})
+      
+    }
     function handleDefectValue(event: React.ChangeEvent<HTMLSelectElement>): void {
         const newName: string = event.target.value
         const newDefect: defectoFisico = predefinedPhysicalDefects.find((defecto) => defecto.name === newName) || selectedDefect
@@ -143,7 +184,8 @@ export default function AnalisisFisicoPage() {
         if (defectWeight > 0) handleValidation("pesoDefecto", true)
         else handleValidation("pesoDefecto", false)
         if (!added && isDefect && validClass["pesoDefecto"].valid) {
-            const newPorcentaje: number = defectWeight / newAnalisis?.sampleWeight * 100
+            let newPorcentaje: number = defectWeight / newAnalisis.trilla * 100
+            newPorcentaje=Number(newPorcentaje.toFixed(2))
             const newSamplePhysicalDefect: samplePhysicalDefect = { defect: selectedDefect, peso: defectWeight, porcentaje: newPorcentaje }
             const newDefectsList = newAnalisis.defects.concat(newSamplePhysicalDefect)
             let newDefectsWeight: number = 0
@@ -220,34 +262,36 @@ export default function AnalisisFisicoPage() {
                         <div className="row">
                             <div className="col-3">
                                 <InputAnalisis
+                                    inputLabel="Peso de la muestra [g]:  "
                                     inputValue={newAnalisis?.sampleWeight}
                                     propLote={"sampleWeight"}
-                                    handleFcn={handleProp}
-                                    
-                                    inputLabel="Peso de la muestra [g]:  "
+                                    handleFcn={handleSampleWeight}
                                     inputClass={validClass["sampleWeight"].classStatus}
                                     p="El peso de la muestra debe ser mayor a cero (250g por defecto)"
+                                />
+                                
+                            </div>
+                            <div className="col-3">
+                                <InputAnalisis
+                                    propLote={"trilla"}
+                                    inputValue={newAnalisis?.trilla}
+                                    handleFcn={handleTrilla}
+                                    inputLabel="Trilla [g]:  "
+                                    inputClass={validClass["trilla"].classStatus}
+                                    p="El peso debe ser mayor a cero y menor al peso de la muestra"
                                 />
                             </div>
                             <div className="col-3">
                                 <InputAnalisis
                                     propLote={"excelso"}
                                     inputValue={newAnalisis?.excelso}
-                                    handleFcn={handleProp}
+                                    handleFcn={handleExcelso}
                                     inputLabel="Excelso [g]:  "
                                     inputClass={validClass["excelso"].classStatus}
-                                    p="El peso debe ser mayor a cero"
+                                    p="El peso debe ser mayor a cero y menor al peso de trilla"
                                 />
                             </div>
-                            <div className="col-3">
-                                <InputAnalisis
-                                    propLote={"trilla"}
-                                    inputValue={newAnalisis?.trilla}
-                                    handleFcn={handleProp}
-                                    inputLabel="Trilla [g]:  "
-                                    inputClass="InputAnalisis"
-                                />
-                            </div>
+                            
                         </div>
                         <div className="row">
                             <div className="col-3">
@@ -283,9 +327,7 @@ export default function AnalisisFisicoPage() {
                         <h1>Defectos</h1>
                         <a target="_blanck" 
                         href="https://federaciondecafeteros.org/app/uploads/2019/11/Afiche-Español-2-final.pdf"
-                        >
-                            Mira los defectos físicos
-                        </a>
+                        >Mira los defectos físicos</a>
                         <div className="input-row">
                             <div className="InputAnalisis">
                                 <label htmlFor="defectSelect" >Defectos:</label>
@@ -357,13 +399,12 @@ export default function AnalisisFisicoPage() {
                             Precio del día
                         </a>
                         <h4>Factor de rendimiento: {newAnalisis.factordeRendimiento}</h4>
-                        <h4>Porcentaje de Merma: {newAnalisis.pcMerma}%</h4>
-                        <h4 className={newAnalisis.density?"InfoVisible":"InfoInvisible"}>Densidad: {newAnalisis?.density} g/ml</h4>
+                        <h4>Merma: {newAnalisis.pcMerma}% ({newAnalisis.Merma}g) </h4>
                         <h4>Peso defectos: {newAnalisis.defectsWeight} g</h4>
                         <h4 style={{fontSize: "14px"}}>Grupo 1: {newAnalisis.group1DefectsWeight} g</h4>
                         <h4 style={{fontSize: "14px"}}>Grupo 2: {newAnalisis.group2DefectsWeight} g</h4>
-                        <h4>Merma calculada: {newAnalisis.Merma} gramos</h4>
-                        <h4>Merma medida: {mermaMedida} gramos</h4>
+                        <h4 className={newAnalisis.density?"InfoVisible":"InfoInvisible"}>Densidad: {newAnalisis?.density} g/ml</h4>
+                    
                     <button onClick={handleSaveAnalysis}>Guardar</button>
                     </div>
                 </div>

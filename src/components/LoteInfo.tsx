@@ -12,18 +12,7 @@ export function createLote ():Lote{
       return newLote
 }
 export function createAnalisisFisico():AnalisisFisico {
-    let newAnalisis: AnalisisFisico = {
-        
-        sampleWeight: 250,
-        defects: [],
-        defectsWeight: 0,
-        excelso: 0,
-        factordeRendimiento:100,
-        group1DefectsWeight:0,
-        group2DefectsWeight:0,
-        mallas:{
-        }
-    }
+    let newAnalisis = EMPTY_ANALISIS 
     return newAnalisis
 }
 export function createCupping(myLote:Lote, newCatacion: CatacionLote):Lote{

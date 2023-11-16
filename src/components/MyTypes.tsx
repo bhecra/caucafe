@@ -77,7 +77,7 @@ export type AnalisisFisico = {
     factordeRendimiento: number
     Merma?: number
     pcMerma?:number
-    trilla?:number
+    trilla:number
     pcDefects?:number
     density?: number
     mallas: Mallas
@@ -166,9 +166,10 @@ export const EMPTY_CUPPING:CatacionLote = {
 }
 export const EMPTY_ANALISIS:AnalisisFisico ={
     sampleWeight: 250,
+    trilla:0,
     defects: [],
     defectsWeight: 0,
-    excelso: 200,
+    excelso: 0,
     factordeRendimiento:100,
     group1DefectsWeight:0,
     group2DefectsWeight:0,
